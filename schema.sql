@@ -69,6 +69,24 @@ $$ select coalesce(jsonb_agg(x order by x->>'ts'), '[]') from (
      select d || jsonb_build_object('id', id) x from items
      where kind = 'msg' and d->>'ts' > coalesce(since, '') order by d->>'ts' desc limit 150) t $$;
 
+-- ---------- phone alerts (ntfy) ----------
+-- Families' saves and chat posts send a push notification to the coach's ntfy topic.
+create extension if not exists pg_net;
+
+create or replace function _alert(actor text, title text, msg text, tag text) returns void
+language plpgsql security definer set search_path = public, extensions as $$
+declare cfg jsonb := (select d from items where kind = 'secret' and id = 'alerts');
+begin
+  if cfg is null or coalesce(cfg->>'topic', '') = '' then return; end if;
+  if _norm(actor) in (select _norm(x) from unnest(string_to_array(coalesce(cfg->>'mute', ''), ',')) x) then return; end if;
+  perform net.http_post(
+    url := 'https://ntfy.sh/',
+    body := jsonb_build_object('topic', cfg->>'topic', 'title', left(title, 120), 'message', left(coalesce(nullif(msg, ''), 'Open the app for details.'), 1000),
+                               'tags', jsonb_build_array(tag), 'click', 'https://travisbsmith.github.io/hawklets-cyo/'),
+    headers := '{"Content-Type": "application/json"}'::jsonb);
+exception when others then null;  -- an alert must never block a save
+end $$;
+
 -- ---------- web API ----------
 
 create or replace function login(email text, password text) returns text
@@ -137,6 +155,13 @@ begin
              where key in ('jersey1','jersey2','topSize','shortSize','shortLength','needsUniform','uniformOrdered','phone'))
          || jsonb_build_object('formAt', to_char(now() at time zone 'America/Chicago', 'YYYY-MM-DD'));
   update items set d = p where kind = 'player' and id = player_id;
+  perform _alert(me->>'email', _name(me->>'email') || ' updated ' || split_part(p->>'name', ' ', 1) || '''s info',
+    concat_ws(' · ',
+      case when coalesce(p->>'jersey1', '') <> '' then 'Wants #' || (p->>'jersey1') || coalesce(' or #' || nullif(p->>'jersey2', ''), '') end,
+      case p->>'needsUniform' when 'no' then 'Has a uniform' when 'yes' then case when p->>'uniformOrdered' in ('true', '1') then 'Uniform ordered' else 'Needs a uniform' end end,
+      'Jersey ' || nullif(p->>'topSize', ''),
+      'Shorts ' || coalesce(nullif(p->>'shortLength', '') || '" ', '') || nullif(p->>'shortSize', ''),
+      'Cell ' || nullif(p->>'phone', '')), 'basketball');
   return _p(player_id, p);
 end $$;
 
@@ -153,6 +178,12 @@ begin
   p := p || jsonb_build_object('avail', a);
   if coalesce(p->>'formAt', '') = '' then p := p || jsonb_build_object('formAt', to_char(now() at time zone 'America/Chicago', 'YYYY-MM-DD')); end if;
   update items set d = p where kind = 'player' and id = player_id;
+  -- one alert per family per 5 minutes, so tapping through every Saturday sends a single notification
+  if not exists (select 1 from items where kind = 'alertlog' and id = 'avail:' || player_id and (d->>'ts')::timestamptz > now() - interval '5 minutes') then
+    insert into items values ('alertlog', 'avail:' || player_id, jsonb_build_object('ts', now())) on conflict (kind, id) do update set d = excluded.d;
+    perform _alert(me->>'email', _name(me->>'email') || ' updated ' || split_part(p->>'name', ' ', 1) || '''s availability',
+      (select count(*) from jsonb_object_keys(a)) || ' of ' || (select count(*) from items where kind = 'game') || ' Saturdays answered.', 'calendar');
+  end if;
   return a;
 end $$;
 
@@ -164,6 +195,8 @@ begin
   if body = '' then raise exception 'Type a message first.'; end if;
   m := jsonb_build_object('ts', _now(), 'email', me->>'email', 'name', _name(me->>'email'), 'text', body);
   insert into items values ('msg', i, m);
+  perform _alert(me->>'email', case when body like '%?%' then 'Question from ' else 'Chat: ' end || (m->>'name'), body,
+    case when body like '%?%' then 'question' else 'speech_balloon' end);
   return m || jsonb_build_object('id', i);
 end $$;
 
@@ -223,7 +256,7 @@ end $$;
 -- Only the web API is callable from the page.
 do $$ declare f record; begin
   for f in select p.oid::regprocedure sig, p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
-           where n.nspname = 'public' and p.proname in ('_now','_rid','_norm','_settings','_is_admin','_mine','_p','_name','_who','_admin','_msgs',
+           where n.nspname = 'public' and p.proname in ('_alert','_now','_rid','_norm','_settings','_is_admin','_mine','_p','_name','_who','_admin','_msgs',
              'login','get_data','get_messages','save_player_info','set_availability','post_message','admin_save_player','admin_save_game',
              'admin_post_announcement','admin_delete','admin_save_settings')
   loop
