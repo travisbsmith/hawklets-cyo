@@ -72,7 +72,7 @@ $$ select coalesce(jsonb_agg(x order by x->>'ts'), '[]') from (
 -- ---------- web API ----------
 
 create or replace function login(email text, password text) returns text
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare tok text := encode(gen_random_bytes(24), 'hex');
 begin
   email := _norm(email);
@@ -87,7 +87,7 @@ begin
 end $$;
 
 create or replace function get_data(token text) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare me jsonb := _who(token); s jsonb := _settings(); n int; share numeric; fee numeric; r numeric; out jsonb;
 begin
   select count(*) into n from items where kind = 'player' and d->>'status' = 'committed';
@@ -117,11 +117,11 @@ begin
 end $$;
 
 create or replace function get_messages(token text, since text) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 begin perform _who(token); return _msgs(since); end $$;
 
 create or replace function save_player_info(token text, player_id text, info jsonb) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare me jsonb := _who(token); p jsonb; k text;
 begin
   if not (me->>'admin')::boolean and not me->'ids' ? player_id then raise exception 'You can only edit your own player.'; end if;
@@ -141,7 +141,7 @@ begin
 end $$;
 
 create or replace function set_availability(token text, player_id text, game_date text, v text) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare me jsonb := _who(token); p jsonb; a jsonb;
 begin
   if not (me->>'admin')::boolean and not me->'ids' ? player_id then raise exception 'You can only answer for your own player.'; end if;
@@ -157,7 +157,7 @@ begin
 end $$;
 
 create or replace function post_message(token text, body text) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare me jsonb := _who(token); m jsonb; i text := _rid();
 begin
   body := left(trim(coalesce(body, '')), 1000);
@@ -168,7 +168,7 @@ begin
 end $$;
 
 create or replace function admin_save_player(token text, p jsonb) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare i text := coalesce(nullif(p->>'id', ''), _rid()); cur jsonb;
 begin
   perform _admin(token);
@@ -180,7 +180,7 @@ begin
 end $$;
 
 create or replace function admin_save_game(token text, g jsonb) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare i text; cur jsonb;
 begin
   perform _admin(token);
@@ -193,7 +193,7 @@ begin
 end $$;
 
 create or replace function admin_post_announcement(token text, a jsonb) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare i text := _rid(); rec jsonb;
 begin
   perform _admin(token);
@@ -204,7 +204,7 @@ end $$;
 
 -- One delete for players, games, news and chat messages.
 create or replace function admin_delete(token text, item_kind text, item_id text) returns boolean
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 begin
   perform _admin(token);
   if item_kind not in ('player', 'game', 'news', 'msg') then raise exception 'Bad kind.'; end if;
@@ -213,7 +213,7 @@ begin
 end $$;
 
 create or replace function admin_save_settings(token text, o jsonb) returns jsonb
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 begin
   perform _admin(token);
   insert into items values ('settings', 'main', o) on conflict (kind, id) do update set d = items.d || excluded.d;
