@@ -1,11 +1,8 @@
-# Hawklets CYO team page
+# Hawklets CYO team app
 
-A single static page on GitHub Pages for a freshman CYO basketball team: schedule, team list, uniform ordering, and a form that emails the coach jersey numbers, sizes and availability. No server and no database.
+Team app for a Rockhurst freshman CYO basketball team. Families sign in with their email (or their son's Rockhurst email) and the team password. It covers the schedule and availability, jersey numbers and uniform sizes, team chat, and a coach panel (roster, availability, uniforms, money, games, updates, settings).
 
-- `index.html`: the page. Families unlock it with the team password.
-- `data.enc`: the team data, encrypted (PBKDF2-SHA256 + AES-GCM). The page decrypts it in the browser.
-- `build.js`: edits the data.
-  - `TEAM_PASSWORD=... node build.js decrypt > data.json` to read it.
-  - `TEAM_PASSWORD=... node build.js encrypt data.json` to write it back, then commit `data.enc`.
+- `index.html`: the whole app, served by GitHub Pages.
+- `schema.sql`: the Supabase database. The page can only reach data through the functions in this file.
 
-Keep `data.json` out of the repo. To change the password, decrypt with the old one and encrypt with the new one.
+The roster seed and team password are kept out of this repo. Change the password and admins in the app under **Coach > Settings**.
