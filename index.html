@@ -145,7 +145,10 @@ function load(quiet){if(!S.token)return render();if(!quiet&&!S.data)render();
   return api("getData",S.token).then(function(d){S.data=d;var m=d.messages;S.lastMsg=m.length?m[m.length-1].ts:"";render()}).catch(fail)}
 setInterval(function(){if(!S.token||document.hidden)return;
   if(S.tab==="chat"){api("getMessages",S.token,S.lastMsg).then(function(ms){if(ms.length){S.data.messages=S.data.messages.concat(ms);S.lastMsg=ms[ms.length-1].ts;renderChatList(true)}}).catch(function(){})}},8000);
-setInterval(function(){if(S.token&&!document.hidden&&S.tab!=="chat"&&$("overlay").hidden)load(true)},90000);
+setInterval(function(){if(S.token&&!document.hidden&&S.tab!=="chat"&&!S.dirty&&$("overlay").hidden)load(true)},90000);
+/* Unsaved form edits pause the background refresh so it can't wipe them. */
+["input","change"].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest("form"))S.dirty=true},true)});
+document.addEventListener("submit",function(){S.dirty=false},true);
 
 /* ---------- render ---------- */
 function render(){
@@ -268,7 +271,7 @@ function saveP(p){return api("adminSavePlayer",S.token,p).then(function(){toast(
 
 /* ---------- events ---------- */
 document.addEventListener("click",function(e){var t=e.target.closest("[data-tab],[data-act]");if(!t)return;
-  if(t.dataset.tab){e.preventDefault();S.tab=t.dataset.tab;render();window.scrollTo(0,0);return}
+  if(t.dataset.tab){e.preventDefault();S.tab=t.dataset.tab;S.dirty=false;render();window.scrollTo(0,0);return}
   var a=t.dataset.act,id=t.dataset.id;
   if(a==="logout")logout();
   else if(a==="ctab"){S.coachTab=id;render()}
