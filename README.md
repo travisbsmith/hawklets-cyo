@@ -1,13 +1,11 @@
-# Hawklets CYO team app
+# Hawklets CYO team page
 
-Team page for a Rockhurst freshman CYO basketball team: schedule, availability, jersey numbers, uniform sizes, team chat and a coach view. Families sign in with their email and a shared team password.
+A single static page on GitHub Pages for a freshman CYO basketball team: schedule, team list, uniform ordering, and a form that emails the coach jersey numbers, sizes and availability. No server and no database.
 
-- `index.html`: the whole web app, served by GitHub Pages.
-- `schema.sql`: the database (Supabase). The page can only reach data through the functions in this file.
+- `index.html`: the page. Families unlock it with the team password.
+- `data.enc`: the team data, encrypted (PBKDF2-SHA256 + AES-GCM). The page decrypts it in the browser.
+- `build.js`: edits the data.
+  - `TEAM_PASSWORD=... node build.js decrypt > data.json` to read it.
+  - `TEAM_PASSWORD=... node build.js encrypt data.json` to write it back, then commit `data.enc`.
 
-## Setup
-1. Create a free Supabase project. In **SQL Editor**, run `schema.sql`, then the private roster seed (kept out of this repo).
-2. In **Project Settings > API**, copy the project URL and the publishable (anon) key into `CFG` near the top of the script in `index.html`. Both are safe to publish.
-3. Turn on GitHub Pages: **Settings > Pages > Deploy from a branch > main / root**.
-
-Change the team password and admins in the app under **Coach > Settings**.
+Keep `data.json` out of the repo. To change the password, decrypt with the old one and encrypt with the new one.
