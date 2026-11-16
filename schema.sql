@@ -50,6 +50,11 @@ $$ select coalesce((
      from _mine(e) order by id limit 1),
    'Coach ' || coalesce(_settings()->>'coach', '')) $$;
 
+-- Who already holds a jersey number (first come, first served). Declined players don't hold numbers.
+create or replace function _holder(num text, except_id text) returns text language sql stable as
+$$ select d->>'name' from items where kind = 'player' and id <> except_id and coalesce(d->>'status', '') <> 'declined'
+     and coalesce(num, '') <> '' and d->>'jersey' = num limit 1 $$;
+
 create or replace function _who(tok text) returns jsonb language plpgsql stable as $$
 declare e text; ids jsonb; adm boolean;
 begin
@@ -140,24 +145,29 @@ begin perform _who(token); return _msgs(since); end $$;
 
 create or replace function save_player_info(token text, player_id text, info jsonb) returns jsonb
 language plpgsql security definer set search_path = public, extensions as $$
-declare me jsonb := _who(token); p jsonb; k text;
+declare me jsonb := _who(token); p jsonb; num text; holder text;
 begin
   if not (me->>'admin')::boolean and not me->'ids' ? player_id then raise exception 'You can only edit your own player.'; end if;
   if length(info::text) > 2000 then raise exception 'Too long.'; end if;
-  foreach k in array array['jersey1', 'jersey2'] loop
-    if coalesce(info->>k, '') <> '' and info->>k <> all (array['0','1','2','3','4','5','10','11','12','13','14','15','20','21','22','23','24','25',
-        '30','31','32','33','34','35','40','41','42','43','44','45','50','51','52','53','54','55']) then
-      raise exception 'CYO only allows numbers 0-5, 10-15, 20-25, 30-35, 40-45 and 50-55.'; end if;
-  end loop;
   select d into p from items where kind = 'player' and id = player_id for update;
   if p is null then raise exception 'Player not found.'; end if;
+  -- Jersey number: first come, first served. Saving a free number claims it right away.
+  if info ? 'jersey1' then
+    num := coalesce(info->>'jersey1', '');
+    if num <> '' and num <> all (array['0','1','2','3','4','5','10','11','12','13','14','15','20','21','22','23','24','25','30','31','32','33','34','35','40','41','42','43','44','45','50','51','52','53','54','55']) then
+      raise exception 'CYO only allows numbers 0-5, 10-15, 20-25, 30-35, 40-45 and 50-55.'; end if;
+    perform pg_advisory_xact_lock(hashtext('jersey'));
+    holder := _holder(num, player_id);
+    if holder is not null then raise exception '#% was just taken by %. Pick another number.', num, holder; end if;
+    p := p || jsonb_build_object('jersey1', num, 'jersey', num, 'jersey2', '');
+  end if;
   p := p || (select coalesce(jsonb_object_agg(key, value), '{}') from jsonb_each(info)
-             where key in ('jersey1','jersey2','topSize','shortSize','shortLength','needsUniform','uniformOrdered','phone'))
+             where key in ('topSize','shortSize','shortLength','needsUniform','uniformOrdered','phone'))
          || jsonb_build_object('formAt', to_char(now() at time zone 'America/Chicago', 'YYYY-MM-DD'));
   update items set d = p where kind = 'player' and id = player_id;
   perform _alert(me->>'email', _name(me->>'email') || ' updated ' || split_part(p->>'name', ' ', 1) || '''s info',
     concat_ws(' · ',
-      case when coalesce(p->>'jersey1', '') <> '' then 'Wants #' || (p->>'jersey1') || coalesce(' or #' || nullif(p->>'jersey2', ''), '') end,
+      '#' || nullif(p->>'jersey', ''),
       case p->>'needsUniform' when 'no' then 'Has a uniform' when 'yes' then case when p->>'uniformOrdered' in ('true', '1') then 'Uniform ordered' else 'Needs a uniform' end end,
       'Jersey ' || nullif(p->>'topSize', ''),
       'Shorts ' || coalesce(nullif(p->>'shortLength', '') || '" ', '') || nullif(p->>'shortSize', ''),
@@ -202,9 +212,15 @@ end $$;
 
 create or replace function admin_save_player(token text, p jsonb) returns jsonb
 language plpgsql security definer set search_path = public, extensions as $$
-declare i text := coalesce(nullif(p->>'id', ''), _rid()); cur jsonb;
+declare i text := coalesce(nullif(p->>'id', ''), _rid()); cur jsonb; holder text;
 begin
   perform _admin(token);
+  if coalesce(p->>'jersey', '') <> '' then
+    if p->>'jersey' <> all (array['0','1','2','3','4','5','10','11','12','13','14','15','20','21','22','23','24','25','30','31','32','33','34','35','40','41','42','43','44','45','50','51','52','53','54','55']) then raise exception 'CYO only allows numbers 0-5, 10-15, 20-25, 30-35, 40-45 and 50-55.'; end if;
+    perform pg_advisory_xact_lock(hashtext('jersey'));
+    holder := _holder(p->>'jersey', i);
+    if holder is not null then raise exception '#% already belongs to %.', p->>'jersey', holder; end if;
+  end if;
   select d into cur from items where kind = 'player' and id = i;
   cur := coalesce(cur, '{}') || (p - 'id' - 'avail' - 'owed' - 'mine');
   if coalesce(cur->>'status', '') = '' then cur := cur || '{"status":"committed"}'; end if;
@@ -249,6 +265,8 @@ create or replace function admin_save_settings(token text, o jsonb) returns json
 language plpgsql security definer set search_path = public, extensions as $$
 begin
   perform _admin(token);
+  if o ? 'teamPassword' and trim(coalesce(o->>'teamPassword', '')) = '' then raise exception 'The team password can''t be empty.'; end if;
+  if o ? 'admins' and trim(coalesce(o->>'admins', '')) = '' then raise exception 'Keep at least one coach login.'; end if;
   insert into items values ('settings', 'main', o) on conflict (kind, id) do update set d = items.d || excluded.d;
   return _settings();
 end $$;
@@ -256,7 +274,7 @@ end $$;
 -- Only the web API is callable from the page.
 do $$ declare f record; begin
   for f in select p.oid::regprocedure sig, p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
-           where n.nspname = 'public' and p.proname in ('_alert','_now','_rid','_norm','_settings','_is_admin','_mine','_p','_name','_who','_admin','_msgs',
+           where n.nspname = 'public' and p.proname in ('_holder','_alert','_now','_rid','_norm','_settings','_is_admin','_mine','_p','_name','_who','_admin','_msgs',
              'login','get_data','get_messages','save_player_info','set_availability','post_message','admin_save_player','admin_save_game',
              'admin_post_announcement','admin_delete','admin_save_settings')
   loop

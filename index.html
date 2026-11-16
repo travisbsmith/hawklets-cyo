@@ -111,11 +111,9 @@ textarea{min-height:96px;resize:vertical}
 .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
 .chip:disabled{opacity:.35;cursor:not-allowed}
 .nums{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.num{position:relative;border:1px solid var(--line2);background:#fff;border-radius:12px;height:48px;font-weight:700;font-size:16px;color:var(--ink)}
+.num{border:1px solid var(--line2);background:#fff;border-radius:12px;height:48px;font-weight:700;font-size:16px;color:var(--ink)}
 .num.first{background:var(--brand);border-color:var(--brand);color:#fff}
-.num.second{background:var(--brand-soft);border-color:var(--brand);color:var(--brand-ink)}
-.num i{position:absolute;top:-7px;right:-5px;font-style:normal;font-size:10px;font-weight:800;background:var(--navy);color:#fff;border-radius:99px;padding:1px 6px;border:2px solid #fff}
-.num.taken{color:#b7bdc8;background:#f6f7f9;text-decoration:line-through}
+.num.taken,.num:disabled{color:#b7bdc8;background:#f2f4f7;border-color:#eceff3;text-decoration:line-through;cursor:not-allowed}
 .check{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line2);border-radius:var(--r-sm);font-weight:600}
 .check input{width:22px;height:22px;min-height:0;accent-color:var(--brand)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -385,9 +383,9 @@ home(d) {
   d.mine.forEach(p => {
     const f = first(p.name);
     if (!p.registered) todo.push(["red", `${f} needs to accept his CYO invite`, "Use the link in his Rockhurst email. Forwarded links won't work."]);
-    if (!p.jersey1) todo.push(["", `Pick ${f}'s jersey numbers`, "Two choices on My player.", "player"]);
+    if (!p.jersey) todo.push(["", `Claim ${f}'s jersey number`, "First come, first served on My player.", "player"]);
     if (!p.needsUniform) todo.push(["", `Tell us about ${f}'s uniform`, "Sizes, or whether he already has one.", "player"]);
-    else if (p.needsUniform === "yes" && !p.uniformOrdered) todo.push(["", `Order ${f}'s uniform${s.uniformDue ? " by " + fmt(s.uniformDue) : ""}`, p.jersey ? `His number is #${p.jersey}.` : "Wait until Coach confirms his number."]);
+    else if (p.needsUniform === "yes" && !p.uniformOrdered) todo.push(["", `Order ${f}'s uniform${s.uniformDue ? " by " + fmt(s.uniformDue) : ""}`, p.jersey ? `His number is #${p.jersey}.` : "Claim his number first."]);
     const miss = upcoming(d).filter(x => !(p.avail || {})[x.date]).length;
     if (miss) todo.push(["", `Answer ${miss} game date${miss > 1 ? "s" : ""} for ${f}`, "In, Maybe or Out on Schedule.", "schedule"]);
     const bal = d.share == null ? 0 : Math.max(0, d.share - Number(p.paid || 0));
@@ -442,19 +440,19 @@ chat(d) {
 
 player(d) {
   if (!d.mine.length) return head("My player", "Coach account") + `<section class="card"><p class="empty">You're signed in as coach without a player. Use the Coach tab.</p></section>`;
-  const taken = new Set(d.players.filter(p => !p.mine && p.jersey).map(p => String(p.jersey)));
-  return head("My player", "Numbers, uniform and contact") + `<div class="stack">` + d.mine.map(p => {
-    const v = Object.assign({}, p, S.drafts[p.id] || {}), f = first(p.name);
+  const taken = new Map(d.players.filter(p => !p.mine && p.jersey).map(p => [String(p.jersey), first(p.name)]));
+  return head("My player", "Number, uniform and contact") + `<div class="stack">` + d.mine.map(p => {
+    const v = Object.assign({}, p, S.drafts[p.id] || {}), f = first(p.name), num = (S.drafts[p.id] || {}).jersey1 !== undefined ? S.drafts[p.id].jersey1 : (p.jersey || "");
     const nine = v.shortLength === "9";
     return `<section class="card">
       <div class="row" style="margin-bottom:16px"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "?"}</div><div class="grow"><h2 style="font-size:20px">${esc(p.name)}</h2>
-        <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${p.jersey ? `<span class="pill blue">#${esc(p.jersey)} confirmed</span>` : '<span class="pill">Number pending</span>'}${(d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
+        <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${p.jersey ? `<span class="pill blue">#${esc(p.jersey)} is his</span>` : '<span class="pill amber">No number yet</span>'}${(d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
 
-      <div class="field"><div class="lab">Jersey number choices <span>${v.jersey1 ? "#" + esc(v.jersey1) : "1st"} · ${v.jersey2 ? "#" + esc(v.jersey2) : "2nd"}</span></div>
-        <p class="muted small" style="margin-top:-4px">Tap your 1st choice, then your 2nd. Tap again to clear. Crossed-out numbers are taken.</p>
+      <div class="field"><div class="lab">Jersey number <span>${num ? "#" + esc(num) + (num === p.jersey ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
+        <p class="muted small" style="margin-top:-4px">Pick one number and tap Save. Once saved it's his. Grey numbers already belong to a teammate.</p>
         <div class="nums">${LEGAL.map(n => {
-          const cls = v.jersey1 === n ? "first" : v.jersey2 === n ? "second" : taken.has(n) ? "taken" : "";
-          return `<button class="num ${cls}" data-act="pick" data-pid="${esc(p.id)}" data-n="${n}" aria-pressed="${!!cls && cls !== "taken"}" aria-label="Number ${n}${cls === "taken" ? ", taken" : ""}">${n}${cls === "first" ? "<i>1st</i>" : cls === "second" ? "<i>2nd</i>" : ""}</button>`;
+          const mineN = num === n, isTaken = !mineN && taken.has(n);
+          return `<button class="num${mineN ? " first" : isTaken ? " taken" : ""}" data-act="pick" data-pid="${esc(p.id)}" data-n="${n}" ${isTaken ? `disabled title="Taken by ${esc(taken.get(n))}"` : ""} aria-pressed="${mineN}" aria-label="Number ${n}${isTaken ? ", taken by " + esc(taken.get(n)) : ""}">${n}</button>`;
         }).join("")}</div></div>
 
       <div class="field"><div class="lab">Uniform</div><div class="chips">${[["yes", "Need to order"], ["no", "Already have one"]].map(o =>
@@ -471,19 +469,19 @@ player(d) {
 
       <div class="field"><label class="lab" for="ph_${esc(p.id)}">Parent cell <span>for game-day changes</span></label><input id="ph_${esc(p.id)}" type="tel" inputmode="tel" autocomplete="tel" data-act="phone" data-pid="${esc(p.id)}" value="${esc(v.phone)}" placeholder="816-555-0123"></div>
     </section>`;
-  }).join("") + `<section class="card"><div class="hd"><h2>Order the uniform</h2></div><p class="muted small" style="margin-bottom:14px">Order after your number is confirmed${d.settings.uniformDue ? `, by ${esc(fmt(d.settings.uniformDue))}` : ""}. Reversible Scarlet/White jersey $26, black shorts $14 (+$2 for 2XL and 3XL). Custom made and final.</p><a class="btn block" href="${esc(d.settings.uniformLink || "#")}" target="_blank" rel="noopener">${svg("shirt")}Open the Jock's Nitch CYO store</a></section></div>`;
+  }).join("") + `<section class="card"><div class="hd"><h2>Order the uniform</h2></div><p class="muted small" style="margin-bottom:14px">Order once his number is saved${d.settings.uniformDue ? `, by ${esc(fmt(d.settings.uniformDue))}` : ""}. Reversible Scarlet/White jersey $26, black shorts $14 (+$2 for 2XL and 3XL). Custom made and final.</p><a class="btn block" href="${esc(d.settings.uniformLink || "#")}" target="_blank" rel="noopener">${svg("shirt")}Open the Jock's Nitch CYO store</a></section></div>`;
 },
 
 team(d) {
   const reg = d.players.filter(p => p.registered).length;
-  const ps = d.players.slice().sort((a, b) => (Number(a.jersey) + 1 || 999) - (Number(b.jersey) + 1 || 999) || a.name.localeCompare(b.name));
+  const ps = d.players.slice().sort((a, b) => (a.jersey === "" || a.jersey == null ? 999 : +a.jersey) - (b.jersey === "" || b.jersey == null ? 999 : +b.jersey) || a.name.localeCompare(b.name));
   return head("Team", `${d.count} players · ${reg} on the CYO roster`) +
     `<section class="card"><div class="list">${ps.map(p => `<div class="li"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "–"}</div><div class="grow"><h3>${esc(p.name)}${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</h3><div class="row wrap" style="gap:6px;margin-top:4px">${p.registered ? "" : '<span class="pill red dot">Not on CYO</span>'}${uniPill(p)}</div></div></div>`).join("")}</div></section>`;
 },
 
 coach(d) {
   const sub = [["uniforms", "Numbers & uniforms"], ["roster", "Roster"], ["avail", "Availability"], ["money", "Money"], ["games", "Games"], ["news", "Post update"], ["settings", "Settings"]];
-  return head("Coach", "Only you can see this") +
+  return head("Coach", "Coaches only") +
     `<div class="stack"><nav class="subnav" aria-label="Coach sections">${sub.map(x => `<button data-act="ctab" data-id="${x[0]}" class="${S.ctab === x[0] ? "on" : ""}">${x[1]}</button>`).join("")}</nav>${COACH[S.ctab](d)}</div>`;
 }
 };
@@ -494,15 +492,15 @@ uniforms(d) {
   const ps = d.adminPlayers.filter(p => p.status === "committed").sort((a, b) => a.name.localeCompare(b.name));
   const by = {}; ps.forEach(p => { if (p.jersey) (by[p.jersey] = by[p.jersey] || []).push(p.name); });
   const tot = {}; ps.forEach(p => { if (p.needsUniform === "yes") { if (p.topSize) tot["Jersey " + SIZE[p.topSize]] = (tot["Jersey " + SIZE[p.topSize]] || 0) + 1; if (p.shortSize) { const k = `Shorts ${p.shortLength ? p.shortLength + '" ' : ""}${SIZE[p.shortSize]}`; tot[k] = (tot[k] || 0) + 1; } } });
-  const assigned = ps.filter(p => p.jersey).length, sent = ps.filter(p => p.jersey1).length, ordered = ps.filter(p => p.uniformOrdered || p.needsUniform === "no").length;
-  return `<div class="stats"><div class="stat"><b>${sent}/${ps.length}</b><span>Sent choices</span></div><div class="stat"><b>${assigned}/${ps.length}</b><span>Numbers set</span></div><div class="stat"><b>${ordered}/${ps.length}</b><span>Uniform done</span></div></div>
-    <section class="card"><div class="hd"><h2>Assign numbers</h2><button class="btn sm soft" data-act="autoassign">Use 1st choices</button></div>
-    <p class="muted small" style="margin-bottom:12px">Changes save instantly. Families see the number on their My player and Team screens.</p>
+  const assigned = ps.filter(p => p.jersey).length, ordered = ps.filter(p => p.uniformOrdered || p.needsUniform === "no").length;
+  return `<div class="stats"><div class="stat"><b>${assigned}/${ps.length}</b><span>Numbers claimed</span></div><div class="stat"><b>${ps.filter(p => p.topSize || p.needsUniform === "no").length}/${ps.length}</b><span>Sizes sent</span></div><div class="stat"><b>${ordered}/${ps.length}</b><span>Uniform done</span></div></div>
+    <section class="card"><div class="hd"><h2>Jersey numbers</h2></div>
+    <p class="muted small" style="margin-bottom:12px">Families claim numbers first come, first served. You can change any number here; it saves instantly and taken numbers are greyed out.</p>
     <div class="list">${ps.map(p => {
       const dup = p.jersey && by[p.jersey].length > 1;
-      return `<div class="li"><div class="grow"><h3>${esc(p.name)}</h3><p>${p.jersey1 ? `Wants #${esc(p.jersey1)}${p.jersey2 ? ` or #${esc(p.jersey2)}` : ""}` : "No choices yet"}${p.topSize ? ` · ${esc(SIZE[p.topSize])}` : ""}${p.shortSize ? ` / ${p.shortLength ? esc(p.shortLength) + '" ' : ""}${esc(SIZE[p.shortSize])}` : ""}</p>
+      return `<div class="li"><div class="grow"><h3>${esc(p.name)}</h3><p>${p.topSize ? `Jersey ${esc(SIZE[p.topSize])}` : "No sizes yet"}${p.shortSize ? ` / ${p.shortLength ? esc(p.shortLength) + '" ' : ""}${esc(SIZE[p.shortSize])}` : ""}</p>
         <div class="row wrap" style="gap:6px;margin-top:6px">${uniPill(p)}${dup ? '<span class="pill red">Duplicate number</span>' : ""}<span class="saved" id="sv_${esc(p.id)}" hidden>${svg("check", 3)}Saved</span></div></div>
-        <select class="mini" data-act="jersey" data-id="${esc(p.id)}" aria-label="Number for ${esc(p.name)}"><option value="">–</option>${LEGAL.map(n => `<option${String(p.jersey) === n ? " selected" : ""}>${n}</option>`).join("")}</select></div>`;
+        <select class="mini" data-act="jersey" data-id="${esc(p.id)}" aria-label="Number for ${esc(p.name)}"><option value="">–</option>${LEGAL.map(n => { const o = by[n] && !by[n].includes(p.name) ? by[n][0] : ""; return `<option value="${n}"${String(p.jersey) === n ? " selected" : ""}${o ? " disabled" : ""}>${n}${o ? " · " + esc(first(o)) : ""}</option>`; }).join("")}</select></div>`;
     }).join("")}</div></section>
     ${Object.keys(tot).length ? `<section class="card"><div class="hd"><h2>Sizes to order</h2></div><div class="chips">${Object.keys(tot).sort().map(k => `<span class="pill blue" style="font-size:13px;padding:6px 12px">${esc(k)} × ${tot[k]}</span>`).join("")}</div></section>` : ""}`;
 },
@@ -576,7 +574,7 @@ function draft(pid, k, v, quiet) {
   const p = D().mine.find(x => x.id === pid), cur = Object.assign({}, S.drafts[pid] || {});
   cur[k] = v;
   if (k === "shortLength" && v === "9" && /^Y/.test((S.drafts[pid] || {}).shortSize || p.shortSize || "")) cur.shortSize = "";
-  Object.keys(cur).forEach(key => { if (String(cur[key] ?? "") === String(p[key] ?? "") && !(key === "uniformOrdered" && !!cur[key] !== !!p[key])) delete cur[key]; });
+  Object.keys(cur).forEach(key => { if (String(cur[key] ?? "") === String((key === "jersey1" ? p.jersey : p[key]) ?? "") && !(key === "uniformOrdered" && !!cur[key] !== !!p[key])) delete cur[key]; });
   if (Object.keys(cur).length) S.drafts[pid] = cur; else delete S.drafts[pid];
   if (!quiet) return render(true);
   /* typing: keep focus, just show or hide the save bar */
@@ -595,7 +593,11 @@ async function saveDrafts() {
     }
     toast("Saved");
     load(true);
-  } catch (e) { fail(e); render(true); }
+  } catch (e) {
+    /* someone else claimed the number first: drop it from the draft so it shows as taken */
+    if (/just taken/.test(e.message)) Object.keys(S.drafts).forEach(pid => { delete S.drafts[pid].jersey1; if (!Object.keys(S.drafts[pid]).length) delete S.drafts[pid]; });
+    fail(e); load(true);
+  }
 }
 
 /* ---------- sheet (dialog) ---------- */
@@ -634,12 +636,10 @@ document.addEventListener("click", async e => {
   if (a === "logout") { if (confirm("Sign out of the team app?")) logout(); }
   else if (a === "ctab") { S.ctab = id; render(); window.scrollTo(0, 0); }
   else if (a === "pick") {
-    const p = D().mine.find(x => x.id === pid), v = Object.assign({}, p, S.drafts[pid] || {}), n = t.dataset.n;
-    if (t.classList.contains("taken")) { toast(`#${n} is already taken`, true); return; }
-    if (v.jersey1 === n) { draft(pid, "jersey1", v.jersey2 || ""); if (v.jersey2) draft(pid, "jersey2", ""); }
-    else if (v.jersey2 === n) draft(pid, "jersey2", "");
-    else if (!v.jersey1) draft(pid, "jersey1", n);
-    else draft(pid, "jersey2", n);
+    const p = D().mine.find(x => x.id === pid), n = t.dataset.n;
+    if (t.disabled) return;
+    const cur = (S.drafts[pid] || {}).jersey1 !== undefined ? S.drafts[pid].jersey1 : (p.jersey || "");
+    draft(pid, "jersey1", cur === n ? "" : n);
   }
   else if (a === "set") { const p = D().mine.find(x => x.id === pid), v = Object.assign({}, p, S.drafts[pid] || {}); draft(pid, t.dataset.k, v[t.dataset.k] === t.dataset.v ? "" : t.dataset.v); }
   else if (a === "save") saveDrafts();
@@ -655,16 +655,6 @@ document.addEventListener("click", async e => {
   else if (a === "copy") {
     const v = t.dataset.v; if (!v) { toast("No emails in that group", true); return; }
     try { await navigator.clipboard.writeText(v); toast(`Copied ${v.split(",").length} emails`); } catch (er) { prompt("Copy these emails:", v); }
-  }
-  else if (a === "autoassign") {
-    const ps = D().adminPlayers.filter(p => p.status === "committed"), used = new Set(ps.map(p => p.jersey).filter(Boolean)); let n = 0;
-    t.disabled = true;
-    for (const p of ps.filter(p => !p.jersey && p.jersey1)) {
-      const pick = [p.jersey1, p.jersey2].find(x => x && !used.has(x)); if (!pick) continue;
-      used.add(pick); n++;
-      try { await api("adminSavePlayer", S.token, { id: p.id, jersey: pick }); } catch (er) { fail(er); }
-    }
-    toast(n ? `Assigned ${n} number${n > 1 ? "s" : ""}` : "Nothing to assign"); load(true);
   }
   else if (a === "paid") { savePlayer({ id, paid: t.dataset.v }, Number(t.dataset.v) ? "Marked paid" : "Payment cleared"); }
   else if (a === "editp") {
