@@ -4,301 +4,733 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#173f7a">
+<meta name="theme-color" content="#0b2a5b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hawklets">
 <title>Hawklets CYO Basketball</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef2f8;--surface:#fff;--ink:#0f172a;--muted:#475467;--line:#d6dde8;
-  --navy:#173f7a;--accent:#1f4e94;--accent-ink:#fff;--accent-soft:#e6eefa;
-  --good:#11643a;--good-soft:#e1f4e8;--warn:#7a4a00;--warn-soft:#fdefd3;--crit:#a3191b;--crit-soft:#fbe3e3;--r:14px}
-*{box-sizing:border-box}
+:root{
+  --bg:#f4f6fa;--surface:#fff;--ink:#0b1220;--ink2:#344054;--muted:#667085;--line:#e7eaf0;--line2:#d0d5dd;
+  --navy:#0b2a5b;--brand:#1f4fbf;--brand-soft:#eaf0fd;--brand-ink:#1a3f99;
+  --green:#127a3f;--green-soft:#e7f6ec;--amber:#9a5b00;--amber-soft:#fff4e0;--red:#b42318;--red-soft:#fdecea;
+  --r:20px;--r-sm:12px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 2px 8px rgba(16,24,40,.06);
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --nav-h:68px;--safe-b:env(safe-area-inset-bottom,0px)
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--font);font-feature-settings:"tnum" 1,"cv11" 1;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 h1,h2,h3,p{margin:0}
-h1{font-size:20px;line-height:1.2}h2{font-size:19px;line-height:1.25}h3{font-size:16px}
-a{color:var(--accent)}
-:focus-visible{outline:3px solid #f5b400;outline-offset:2px}
-.top{background:var(--navy);color:#fff;padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top))}
-.top .in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.top .grow{flex:1;min-width:0}
-.top small{display:block;font-size:14px;opacity:.9}
-.top button{background:rgba(255,255,255,.14);color:#fff;border-color:transparent}
-.logo{width:42px;height:42px;border-radius:12px;background:#fff;color:var(--navy);display:grid;place-items:center;font:800 15px system-ui;flex:none}
-main{max-width:760px;margin:0 auto;padding:16px 14px calc(96px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:12px}
-.hero{background:linear-gradient(135deg,var(--accent),var(--navy));color:#fff;border:0}
-.hero .sub{color:#dbe6fb}.hero .pill{background:rgba(255,255,255,.18);color:#fff}
-.hero .seg{border-color:rgba(255,255,255,.35)}.hero .seg button{background:transparent;color:#fff}.hero .seg button+button{border-left-color:rgba(255,255,255,.35)}
-.hero .seg button[aria-pressed="true"]{background:#fff!important;color:var(--navy)!important}
-.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.act{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 6px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:650;font-size:14px;text-align:center;cursor:pointer}
-.act svg{width:26px;height:26px;color:var(--accent)}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
-.group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.sub{color:var(--muted);font-size:15px}
-.pill{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
-.pill.good{background:var(--good-soft);color:var(--good)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.crit{background:var(--crit-soft);color:var(--crit)}
-.pill.mute{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
-button,.btn{font:600 15px system-ui,-apple-system,sans-serif;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:11px 16px;min-height:46px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
-button.primary,.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.soft{background:var(--accent-soft);border-color:var(--accent-soft);color:var(--accent)}
-.btn svg{width:20px;height:20px}
-button.small{min-height:38px;padding:6px 12px;font-size:14px}
-button:disabled{opacity:.55}
-input,select,textarea{font:400 16px system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-height:48px}
-textarea{min-height:90px;resize:vertical}
-label{font-size:15px;font-weight:600;color:var(--ink);display:flex;flex-direction:column;gap:5px}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fields .full{grid-column:1/-1}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.seg button{border:0;border-radius:0;min-height:42px;padding:6px 14px;background:var(--surface)}
-.seg button+button{border-left:1px solid var(--line)}
-.seg button[aria-pressed="true"].yes{background:var(--good);color:#fff}
-.seg button[aria-pressed="true"].maybe{background:#9a5b00;color:#fff}
-.seg button[aria-pressed="true"].no{background:var(--crit);color:#fff}
-.game{display:flex;flex-direction:column;gap:8px;padding:14px 0;border-bottom:1px solid var(--line)}
-.game:first-child{padding-top:0}.game:last-child{border-bottom:0;padding-bottom:0}
-.when{font-weight:800;font-size:17px}
-.big{font-weight:800;font-size:30px;line-height:1.1}
-.todo{display:flex;gap:10px;align-items:flex-start}
-.dot{width:10px;height:10px;border-radius:50%;margin-top:8px;flex:none;background:#c98a00}.dot.good{background:var(--good)}.dot.crit{background:var(--crit)}
-.list{display:flex;flex-direction:column}
-.item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
-.item:first-child{padding-top:0}.item:last-child{border-bottom:0;padding-bottom:0}
-.num{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800}
-.num.none{background:var(--accent-soft);color:var(--muted)}
-.chat{display:flex;flex-direction:column;gap:8px;max-height:58vh;overflow-y:auto;padding:4px 2px}
-.msg{max-width:85%;padding:9px 13px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}
-.msg.me{align-self:flex-end;background:var(--accent);color:#fff;border-color:var(--accent)}
-.msg .who{font-size:12px;font-weight:700;opacity:.85}
-.msg .t{white-space:pre-wrap;overflow-wrap:anywhere}
-.msg .ts{font-size:11px;opacity:.75;margin-top:2px}
-.composer{display:flex;gap:8px}.composer textarea{min-height:48px;height:48px}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:5}
-nav.tabs .in{display:flex;width:100%;max-width:620px;gap:4px}
-nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font:650 12px system-ui,-apple-system,sans-serif;padding:7px 2px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:54px}
-nav.tabs a svg{width:24px;height:24px}
-nav.tabs a[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
-@media (min-width:900px){
-  nav.tabs{position:sticky;top:0;bottom:auto;border-top:0;border-bottom:1px solid var(--line)}
-  nav.tabs a{flex-direction:row;justify-content:center;gap:8px;font-size:15px;min-height:44px}
-  nav.tabs a svg{width:20px;height:20px}
-  main{padding-bottom:48px}
-}
-.scroll{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:14px}
-th{text-align:left;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line);white-space:nowrap}
-td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
-.grid th,.grid td{text-align:center;white-space:nowrap}
-.grid th:first-child,.grid td:first-child{position:sticky;left:0;background:var(--surface);text-align:left;font-weight:600}
-.c{display:inline-block;min-width:38px;padding:2px 6px;border-radius:6px;font-weight:700;font-size:13px}
-.c.yes{background:var(--good-soft);color:var(--good)}.c.maybe{background:var(--warn-soft);color:var(--warn)}.c.no{background:var(--crit-soft);color:var(--crit)}.c.none{color:var(--muted)}
-.lockbg{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(160deg,var(--accent),var(--navy))}
-.login{width:100%;max-width:420px}
-.login .logo{width:56px;height:56px;font-size:19px;background:var(--navy);color:#fff}
-.err{color:var(--crit);font-weight:600}
-.overlay{position:fixed;inset:0;background:rgba(8,12,24,.6);display:flex;align-items:flex-start;justify-content:center;padding:4vh 10px;overflow:auto;z-index:20}
-.dialog{background:var(--surface);border-radius:var(--r);padding:18px;width:100%;max-width:560px;display:flex;flex-direction:column;gap:12px}
-#toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:15px;z-index:30;max-width:90vw}
-@media (max-width:520px){.fields,.btns{grid-template-columns:1fr}.big{font-size:26px}}
-</style>
+a{color:var(--brand)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #f2b705;outline-offset:2px;border-radius:8px}
 
+/* shell */
+.page{max-width:720px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(var(--nav-h) + var(--safe-b) + 28px)}
+.head{display:flex;align-items:center;gap:12px;margin:4px 2px 18px}
+.mark{width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;letter-spacing:.02em;flex:none}
+.head .t{flex:1;min-width:0}
+.head h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
+.head p{color:var(--muted);font-size:14px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:0;background:var(--surface);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--ink2)}
+.iconbtn svg{width:20px;height:20px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px}
+.card h2{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.card .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.row{display:flex;align-items:center;gap:12px}
+.between{justify-content:space-between}
+.wrap{flex-wrap:wrap}
+.grow{flex:1;min-width:0}
+
+/* hero */
+.hero{background:radial-gradient(120% 140% at 100% 0%,#2b5fd6 0%,#123a86 45%,var(--navy) 100%);color:#fff;border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(11,42,91,.25)}
+.hero .label{color:#b9cbf5}
+.hero .day{font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:6px 0 4px}
+.hero .meta{color:#d6e1fb;font-size:15px}
+.hero .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.18);margin:18px 0 8px;overflow:hidden}
+.hero .bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .3s}
+.hero .who{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14)}
+.countdown{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border-radius:99px;padding:4px 10px;font-size:13px;font-weight:600}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--surface);box-shadow:var(--shadow);border:0;border-radius:18px;padding:16px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:13px;text-align:center}
+.tile i{width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center}
+.tile svg{width:22px;height:22px}
+
+/* segmented availability */
+.seg{display:inline-grid;grid-template-columns:repeat(3,1fr);background:#eef1f6;border-radius:12px;padding:3px;gap:3px;min-width:198px}
+.seg button{border:0;background:transparent;border-radius:9px;padding:8px 0;font-weight:600;font-size:14px;color:var(--ink2);transition:background .15s,color .15s}
+.seg button.on.yes{background:var(--green);color:#fff}
+.seg button.on.maybe{background:#c27803;color:#fff}
+.seg button.on.no{background:var(--red);color:#fff}
+.hero .seg{background:rgba(255,255,255,.14)}
+.hero .seg button{color:#fff}
+.hero .seg button.on{background:#fff!important;color:var(--navy)!important}
+
+/* lists */
+.list>*+*{border-top:1px solid var(--line)}
+.li{display:flex;align-items:center;gap:14px;padding:14px 0}
+.list>.li:first-child{padding-top:0}.list>.li:last-child{padding-bottom:0}
+.date{flex:none;width:52px;height:56px;border-radius:14px;background:var(--brand-soft);color:var(--brand-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.date small{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.date b{font-size:21px;font-weight:800;margin-top:3px}
+.date.past{background:#f0f2f5;color:var(--muted)}
+.li h3{font-size:16px;font-weight:600}
+.li p{font-size:14px;color:var(--muted)}
+.game{display:flex;flex-direction:column;gap:12px;padding:16px 0}
+.list>.game:first-child{padding-top:0}.list>.game:last-child{padding-bottom:0}
+.counts{display:flex;gap:6px;flex-wrap:wrap}
+
+/* chips, pills */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:#eef1f6;color:var(--ink2);white-space:nowrap}
+.pill.green{background:var(--green-soft);color:var(--green)}.pill.amber{background:var(--amber-soft);color:var(--amber)}.pill.red{background:var(--red-soft);color:var(--red)}.pill.blue{background:var(--brand-soft);color:var(--brand-ink)}
+.pill.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.jn{flex:none;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:16px}
+.jn.none{background:#eef1f6;color:var(--muted);font-weight:600}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:8px}
+.field+.field{margin-top:18px}
+.field>.lab{font-size:14px;font-weight:600;color:var(--ink2);display:flex;justify-content:space-between;gap:8px}
+.field>.lab span{font-weight:500;color:var(--muted)}
+input,select,textarea{font:400 16px var(--font);color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:var(--r-sm);padding:12px 14px;width:100%;min-height:48px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 4px rgba(31,79,191,.14)}
+textarea{min-height:96px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line2);background:#fff;border-radius:12px;padding:10px 14px;font-weight:600;font-size:14px;min-height:44px;color:var(--ink2);transition:all .12s}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip:disabled{opacity:.35;cursor:not-allowed}
+.nums{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.num{position:relative;border:1px solid var(--line2);background:#fff;border-radius:12px;height:48px;font-weight:700;font-size:16px;color:var(--ink)}
+.num.first{background:var(--brand);border-color:var(--brand);color:#fff}
+.num.second{background:var(--brand-soft);border-color:var(--brand);color:var(--brand-ink)}
+.num i{position:absolute;top:-7px;right:-5px;font-style:normal;font-size:10px;font-weight:800;background:var(--navy);color:#fff;border-radius:99px;padding:1px 6px;border:2px solid #fff}
+.num.taken{color:#b7bdc8;background:#f6f7f9;text-decoration:line-through}
+.check{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line2);border-radius:var(--r-sm);font-weight:600}
+.check input{width:22px;height:22px;min-height:0;accent-color:var(--brand)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid2 .full{grid-column:1/-1}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:13px 18px;min-height:50px;font-weight:600;font-size:15px;text-decoration:none;background:var(--brand);color:#fff;transition:transform .08s,opacity .15s}
+.btn:active{transform:scale(.98)}
+.btn.soft{background:var(--brand-soft);color:var(--brand-ink)}
+.btn.ghost{background:#eef1f6;color:var(--ink2)}
+.btn.danger{background:var(--red-soft);color:var(--red)}
+.btn.sm{min-height:38px;padding:8px 12px;font-size:14px;border-radius:11px}
+.btn.block{width:100%}
+.btn:disabled{opacity:.5}
+.btn svg{width:18px;height:18px}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* todo */
+.todo{display:flex;gap:12px;align-items:flex-start;padding:12px 0}
+.todo+.todo{border-top:1px solid var(--line)}
+.todo:first-child{padding-top:0}.todo:last-child{padding-bottom:0}
+.tick{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--line2);margin-top:1px}
+.tick.red{border-color:var(--red)}
+.tick.done{background:var(--green);border-color:var(--green);display:grid;place-items:center;color:#fff}
+.todo b{display:block;font-weight:600}
+.todo span{font-size:14px;color:var(--muted)}
+
+/* chat */
+.chatwrap{display:flex;flex-direction:column;gap:10px;padding-bottom:84px}
+.msg{max-width:82%;align-self:flex-start}
+.msg .bub{background:var(--surface);box-shadow:var(--shadow);border-radius:18px 18px 18px 6px;padding:10px 14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end}
+.msg.me .bub{background:var(--brand);color:#fff;border-radius:18px 18px 6px 18px}
+.msg .meta{font-size:12px;color:var(--muted);margin:4px 8px 0}
+.msg.me .meta{text-align:right}
+.composer{position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-b));padding:10px 16px;background:linear-gradient(to top,var(--bg) 70%,transparent);z-index:4}
+.composer form{max-width:720px;margin:0 auto;display:flex;gap:8px;background:var(--surface);box-shadow:var(--shadow);border-radius:18px;padding:6px}
+.composer textarea{border:0;min-height:44px;height:44px;resize:none;padding:11px 12px;box-shadow:none!important}
+.composer .btn{min-height:44px;border-radius:13px}
+
+/* bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-top:1px solid var(--line);padding:6px 8px calc(6px + var(--safe-b))}
+.nav .in{max-width:620px;margin:0 auto;display:flex;gap:2px}
+.nav button{flex:1;border:0;background:none;border-radius:14px;padding:6px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--muted);min-height:54px}
+.nav svg{width:24px;height:24px}
+.nav button.on{color:var(--brand)}
+.nav button.on svg{stroke-width:2.3}
+.nav .badge{position:relative}
+.nav .badge::after{content:"";position:absolute;top:2px;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid #fff}
+
+/* save bar */
+.savebar{position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-b) + 8px);z-index:9;padding:0 16px;animation:up .2s ease-out}
+.savebar .in{max-width:620px;margin:0 auto;background:var(--ink);color:#fff;border-radius:18px;padding:10px 10px 10px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(11,18,32,.3)}
+.savebar .grow{font-weight:600;font-size:15px}
+.savebar .btn{min-height:44px}
+.savebar .btn.ghost{background:rgba(255,255,255,.12);color:#fff}
+@keyframes up{from{transform:translateY(20px);opacity:0}}
+
+/* toast */
+#toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:50;background:var(--ink);color:#fff;border-radius:99px;padding:10px 16px 10px 12px;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(11,18,32,.25);animation:drop .2s ease-out;max-width:92vw}
+#toast i{width:20px;height:20px;border-radius:50%;background:#22c55e;display:grid;place-items:center;flex:none}
+#toast.err i{background:#ef4444}
+#toast svg{width:13px;height:13px}
+@keyframes drop{from{transform:translate(-50%,-10px);opacity:0}}
+
+/* sheet */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(11,18,32,.45);display:flex;align-items:flex-end;justify-content:center;animation:fade .15s}
+.sheet{background:var(--surface);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:10px 20px calc(20px + var(--safe-b));animation:up .2s ease-out}
+.sheet .grab{width:40px;height:5px;border-radius:99px;background:var(--line2);margin:0 auto 14px}
+.sheet h2{font-size:20px;font-weight:700;margin-bottom:16px}
+@keyframes fade{from{opacity:0}}
+@media (min-width:640px){.scrim{align-items:center}.sheet{border-radius:24px}}
+
+/* coach */
+.subnav{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 4px;margin:-4px -2px 0;scrollbar-width:none}
+.subnav::-webkit-scrollbar{display:none}
+.subnav button{flex:none;border:0;background:var(--surface);box-shadow:var(--shadow);border-radius:99px;padding:9px 16px;font-weight:600;font-size:14px;color:var(--ink2)}
+.subnav button.on{background:var(--ink);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);box-shadow:var(--shadow);border-radius:18px;padding:14px}
+.stat b{display:block;font-size:24px;font-weight:800;letter-spacing:-.02em}
+.stat span{font-size:12px;color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:center;padding:0 6px 10px;white-space:nowrap}
+td{padding:8px 6px;border-top:1px solid var(--line);text-align:center;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);font-weight:600;padding-right:12px}
+.c{display:inline-block;width:30px;height:24px;line-height:24px;border-radius:7px;font-size:12px;font-weight:700}
+.c.yes{background:var(--green-soft);color:var(--green)}.c.maybe{background:var(--amber-soft);color:var(--amber)}.c.no{background:var(--red-soft);color:var(--red)}.c.none{color:#c0c5cf}
+.saved{color:var(--green);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.saved svg{width:14px;height:14px}
+select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
+
+/* login */
+.login{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 20px;background:radial-gradient(120% 80% at 100% 0%,#2b5fd6 0%,#123a86 40%,var(--navy) 100%)}
+.login .card{max-width:420px;width:100%;margin:0 auto;padding:28px 24px}
+.login .mark{width:52px;height:52px;border-radius:16px;font-size:17px;margin-bottom:18px}
+.login h1{font-size:26px;font-weight:800;letter-spacing:-.025em}
+.login p{color:var(--muted);margin:6px 0 22px}
+.err{color:var(--red);font-weight:600;font-size:14px}
+.empty{text-align:center;color:var(--muted);padding:24px 0}
+.skel{height:120px;border-radius:var(--r);background:linear-gradient(90deg,#eceff4 0%,#f6f7f9 50%,#eceff4 100%);background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+
+@media (max-width:420px){.head h1{font-size:25px}.hero .day{font-size:30px}.nums{grid-template-columns:repeat(6,1fr);gap:6px}.seg{min-width:186px}}
+@media (min-width:900px){.page{padding-top:28px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <div id="app"></div>
-<div id="overlay" class="overlay" hidden></div>
-<div id="toast" role="status" hidden></div>
+<div id="sheet"></div>
+<div id="toastHost"></div>
 <script>
 "use strict";
-/* ---------- server: Supabase. Paste the project URL and publishable (anon) key here. ---------- */
-var CFG={url:"https://bndhgvqhujdvxoataslo.supabase.co",key:"sb_publishable_6aSptnsIzUenzEV44DECtg_iUXerDuL"};
-var RPC={login:["email","password"],getData:["token"],getMessages:["token","since"],savePlayerInfo:["token","player_id","info"],
-  setAvailability:["token","player_id","game_date","v"],postMessage:["token","body"],adminSavePlayer:["token","p"],adminSaveGame:["token","g"],
-  adminPostAnnouncement:["token","a"],adminSaveSettings:["token","o"],adminDelete:["token","item_kind","item_id"]};
-function api(fn){var a=[].slice.call(arguments,1),b={},h={"Content-Type":"application/json",apikey:CFG.key};
-  if(!CFG.url)return Promise.reject(new Error("The team app isn't connected yet."));
-  if(/^eyJ/.test(CFG.key))h.Authorization="Bearer "+CFG.key;
-  RPC[fn].forEach(function(k,i){b[k]=a[i]});
-  return fetch(CFG.url+"/rest/v1/rpc/"+fn.replace(/[A-Z]/g,function(c){return"_"+c.toLowerCase()}),{method:"POST",headers:h,body:JSON.stringify(b)})
-    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.message||"Something went wrong. Try again.");return j})})}
-var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
-var S={token:store.get("cyoToken"),data:null,tab:"home",coachTab:"roster",busy:false,lastMsg:""};
-var $=function(id){return document.getElementById(id)};
-var esc=function(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
-var usd=function(v){return v==null?"–":"$"+Number(v).toLocaleString("en-US",{maximumFractionDigits:2})};
-var fmt=function(d,o){var t=new Date(d+"T12:00:00");return isNaN(t)?d:t.toLocaleDateString("en-US",o||{weekday:"short",month:"short",day:"numeric"})};
-var today=function(){return new Date().toISOString().slice(0,10)};
-var SIZES=["YL","YXL","AS","AM","AL","AXL","A2XL","A3XL"];
-var SIZE_NAME={YL:"Youth Large",YXL:"Youth X-Large",AS:"Adult Small",AM:"Adult Medium",AL:"Adult Large",AXL:"Adult X-Large",A2XL:"Adult 2X-Large (+$2)",A3XL:"Adult 3X-Large (+$2)"};
-var LEGAL=["0","1","2","3","4","5","10","11","12","13","14","15","20","21","22","23","24","25","30","31","32","33","34","35","40","41","42","43","44","45","50","51","52","53","54","55"];
-var AV={yes:"In",maybe:"Maybe",no:"Out"};
-function toast(m){var t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){t.hidden=true},2600)}
-function errMsg(e){var m=(e&&e.message)||String(e);return m}
-function fail(e){if(errMsg(e).indexOf("AUTH")>=0){logout();return}toast(errMsg(e))}
-function logout(){store.set("cyoToken",null);S.token=null;S.data=null;render()}
-var ICON={home:'<path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/>',schedule:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',chat:'<path d="M4 5h16v11H8l-4 4z"/>',player:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',team:'<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M10 20c1-3 3-5 6-5s5 2 6 5"/>',coach:'<path d="M12 3l8 4v5c0 5-3 8-8 9-5-1-8-4-8-9V7z"/>',phone:'<path d="M5 3h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2z"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',shirt:'<path d="M8 3l-5 3 2 5 3-1v11h8V10l3 1 2-5-5-3c0 2-2 3-4 3s-4-1-4-3z"/>'};
-var tel=function(p){return String(p||"").replace(/\D/g,"")};
-function svg(k){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">'+ICON[k]+'</svg>'}
-
-/* ---------- load ---------- */
-function load(quiet){if(!S.token)return render();if(!quiet&&!S.data)render();
-  return api("getData",S.token).then(function(d){S.data=d;var m=d.messages;S.lastMsg=m.length?m[m.length-1].ts:"";render()}).catch(fail)}
-setInterval(function(){if(!S.token||document.hidden)return;
-  if(S.tab==="chat"){api("getMessages",S.token,S.lastMsg).then(function(ms){if(ms.length){S.data.messages=S.data.messages.concat(ms);S.lastMsg=ms[ms.length-1].ts;renderChatList(true)}}).catch(function(){})}},8000);
-setInterval(function(){if(S.token&&!document.hidden&&S.tab!=="chat"&&!S.dirty&&$("overlay").hidden)load(true)},90000);
-/* Unsaved form edits pause the background refresh so it can't wipe them. */
-["input","change"].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest("form"))S.dirty=true},true)});
-document.addEventListener("submit",function(){S.dirty=false},true);
-
-/* ---------- render ---------- */
-function render(){
-  var app=$("app");
-  if(!S.token){app.innerHTML=loginView();bindLogin();return}
-  if(!S.data){app.innerHTML='<div class="lockbg"><p style="color:#fff">Loading the team…</p></div>';return}
-  var d=S.data,tabs=[["home","Home"],["schedule","Schedule"],["chat","Chat"],["player","Player"],["team","Team"]];
-  if(d.me.admin)tabs.push(["coach","Coach"]);
-  if(!tabs.some(function(t){return t[0]===S.tab}))S.tab="home";
-  app.innerHTML='<header class="top"><div class="in"><div class="logo">RH</div><div class="grow"><h1>Hawklets CYO Basketball</h1><small>'+esc(d.me.name)+'</small></div><button class="small" data-act="logout">Sign out</button></div></header>'+
-    '<nav class="tabs" aria-label="Sections"><div class="in">'+tabs.map(function(t){return '<a href="#'+t[0]+'" data-tab="'+t[0]+'"'+(S.tab===t[0]?' aria-current="page"':'')+'>'+svg(t[0])+'<span>'+t[1]+'</span></a>'}).join("")+'</div></nav>'+
-    '<main id="view">'+VIEW[S.tab](d)+'</main>';
-  if(S.tab==="chat")renderChatList(false);
+/* ============ server (Supabase RPC) ============ */
+const CFG = { url: "https://bndhgvqhujdvxoataslo.supabase.co", key: "sb_publishable_6aSptnsIzUenzEV44DECtg_iUXerDuL" };
+const RPC = {
+  login: ["email", "password"], getData: ["token"], getMessages: ["token", "since"],
+  savePlayerInfo: ["token", "player_id", "info"], setAvailability: ["token", "player_id", "game_date", "v"], postMessage: ["token", "body"],
+  adminSavePlayer: ["token", "p"], adminSaveGame: ["token", "g"], adminPostAnnouncement: ["token", "a"],
+  adminSaveSettings: ["token", "o"], adminDelete: ["token", "item_kind", "item_id"]
+};
+async function api(fn, ...args) {
+  const body = {}; RPC[fn].forEach((k, i) => body[k] = args[i]);
+  let r;
+  try {
+    r = await fetch(`${CFG.url}/rest/v1/rpc/${fn.replace(/[A-Z]/g, c => "_" + c.toLowerCase())}`,
+      { method: "POST", headers: { "Content-Type": "application/json", apikey: CFG.key }, body: JSON.stringify(body) });
+  } catch (e) { throw new Error("No connection. Check your signal and try again."); }
+  const j = await r.json().catch(() => null);
+  if (!r.ok) throw new Error((j && j.message) || "Something went wrong. Try again.");
+  return j;
 }
-function loginView(){return '<div class="lockbg"><form class="panel login" id="loginForm" novalidate><div class="logo">RH</div><h1>Hawklets CYO Basketball</h1><p class="sub">Rockhurst freshmen, winter 2026-27. Sign in with the email Coach Travis has for your family, or your son\'s Rockhurst email, plus the team password.</p>'+
-  '<label for="lgEmail">Email<input id="lgEmail" type="email" autocomplete="email" inputmode="email" required></label>'+
-  '<label for="lgPw">Team password<input id="lgPw" type="password" autocomplete="current-password" required></label>'+
-  '<p id="lgErr" class="err" hidden></p><button class="primary" type="submit">Sign in</button></form></div>'}
-function bindLogin(){$("loginForm").onsubmit=function(e){e.preventDefault();var b=e.target.querySelector("button");b.disabled=true;$("lgErr").hidden=true;
-  api("login",$("lgEmail").value,$("lgPw").value).then(function(t){S.token=t;store.set("cyoToken",t);S.tab="home";load()})
-  .catch(function(er){$("lgErr").textContent=errMsg(er);$("lgErr").hidden=false;b.disabled=false})}}
 
-function gamesAhead(d){return d.games.filter(function(g){return g.date>=today()})}
-function myAvail(d,g){return (d.mine[0]&&d.mine[0].avail||{})[g.date]||""}
-function counts(d,g){var r={yes:0,maybe:0,no:0,none:0};d.players.forEach(function(p){var v=(p.avail||{})[g.date];r[AV[v]?v:"none"]++});return r}
-function gameLine(g){return [g.time,g.opponent?"vs "+g.opponent:"",g.location].filter(Boolean).join(" · ")||"Time and gym post about a week before"}
-function availButtons(pid,g,cur){return '<div class="seg" role="group" aria-label="Availability for '+esc(fmt(g.date))+'">'+["yes","maybe","no"].map(function(v){return '<button class="'+v+'" data-act="avail" data-pid="'+esc(pid)+'" data-date="'+esc(g.date)+'" data-v="'+v+'" aria-pressed="'+(cur===v)+'">'+AV[v]+'</button>'}).join("")+'</div>'}
+/* ============ constants & helpers ============ */
+const LEGAL = ["0","1","2","3","4","5","10","11","12","13","14","15","20","21","22","23","24","25","30","31","32","33","34","35","40","41","42","43","44","45","50","51","52","53","54","55"];
+const SIZES = [["YL","Youth L"],["YXL","Youth XL"],["AS","Adult S"],["AM","Adult M"],["AL","Adult L"],["AXL","Adult XL"],["A2XL","Adult 2XL"],["A3XL","Adult 3XL"]];
+const SIZE = Object.fromEntries(SIZES);
+const AV = { yes: "In", maybe: "Maybe", no: "Out" };
+const ICON = {
+  home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  schedule: '<rect x="3" y="4.5" width="18" height="16.5" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>',
+  chat: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.7A8 8 0 1 1 21 12z"/>',
+  player: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  team: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/>',
+  coach: '<path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  text: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.7A8 8 0 1 1 21 12z"/><path d="M8 11h8M8 14.5h5"/>',
+  phone: '<path d="M5 3h3.5l2 5-2.5 1.5a11 11 0 0 0 6.5 6.5L16 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+  shirt: '<path d="M8 3 3 6l2 5 3-1v11h8V10l3 1 2-5-5-3a4 4 0 0 1-8 0z"/>',
+  out: '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/>',
+  pin: '<path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>'
+};
+const svg = (k, w) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w || 2}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const $ = id => document.getElementById(id);
+const dt = d => new Date(d + "T12:00:00");
+const fmt = (d, o) => dt(d).toLocaleDateString("en-US", o || { weekday: "short", month: "short", day: "numeric" });
+const todayISO = () => new Date().toLocaleDateString("en-CA");
+const daysTo = d => Math.round((dt(d) - dt(todayISO())) / 864e5);
+const usd = v => v == null ? "–" : "$" + Number(v).toLocaleString("en-US", { maximumFractionDigits: 2 });
+const tel = p => String(p || "").replace(/\D/g, "");
+const first = n => String(n || "").split(" ")[0];
+const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
 
-var VIEW={
-home:function(d){
-  var s=d.settings,up=gamesAhead(d),g=up[0],todo=[];
-  d.mine.forEach(function(p){var f=p.name.split(" ")[0];
-    if(!p.registered)todo.push(["crit",f+" needs to accept his CYO invitation","Check his Rockhurst email for the CYO link, then create a CYO account with that address."]);
-    if(!p.jersey1)todo.push(["warn","Choose "+f+"'s jersey numbers","Under Player."]);
-    if(!p.needsUniform)todo.push(["warn","Tell us about "+f+"'s uniform","Sizes, or whether he already has one. Under Player."]);
-    else if(p.needsUniform==="yes"&&!p.uniformOrdered)todo.push(["warn","Order "+f+"'s uniform"+(s.uniformDue?" by "+fmt(s.uniformDue):""),p.jersey?"His number is #"+p.jersey+".":"Wait until Coach confirms his number."]);
-    var missing=up.filter(function(x){return !(p.avail||{})[x.date]}).length;if(missing)todo.push(["warn","Answer "+missing+" game date"+(missing>1?"s":"")+" for "+f,"In, Maybe or Out on the Schedule tab."]);
-    var bal=d.share==null?null:Math.max(0,d.share-Number(p.paid||0));if(bal)todo.push(["warn","Pay "+usd(bal)+(s.payDue?" by "+fmt(s.payDue):""),"Venmo "+(s.venmo||"")+" or a check to "+(s.checkPayee||"")+". Put "+f+"'s name in the note."]);
+/* ============ state ============ */
+const S = { token: store.get("cyoToken"), data: null, tab: "home", ctab: "uniforms", drafts: {}, lastMsg: "", seenMsg: store.get("seenMsg") || "", sheetOpen: false };
+const D = () => S.data;
+const dirty = () => Object.keys(S.drafts).length > 0;
+
+function toast(msg, isErr) {
+  const h = $("toastHost");
+  h.innerHTML = `<div id="toast" class="${isErr ? "err" : ""}" role="status"><i>${svg(isErr ? "x" : "check", 3)}</i>${esc(msg)}</div>`;
+  clearTimeout(toast.t); toast.t = setTimeout(() => h.innerHTML = "", isErr ? 4200 : 2200);
+}
+function fail(e) {
+  const m = (e && e.message) || String(e);
+  if (m.includes("AUTH")) { logout(); toast("Please sign in again.", true); return; }
+  toast(m, true);
+}
+function logout() { store.set("cyoToken", null); S.token = null; S.data = null; S.drafts = {}; render(); }
+
+async function load(quiet) {
+  if (!S.token) return render();
+  try {
+    S.data = await api("getData", S.token);
+    const m = S.data.messages; S.lastMsg = m.length ? m[m.length - 1].ts : "";
+    if (S.tab === "chat") markSeen();
+    render(quiet);
+  } catch (e) { fail(e); }
+}
+function markSeen() { S.seenMsg = S.lastMsg; store.set("seenMsg", S.lastMsg); }
+
+/* Background refresh: never while editing, typing or with a sheet open. Chat polls every 8s. */
+setInterval(() => {
+  if (!S.token || !S.data || document.hidden || S.tab === "chat" || S.tab === "coach") return;
+  const typing = document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+  if (!dirty() && !S.sheetOpen && !typing) load(true);
+}, 60000);
+setInterval(() => {
+  if (!S.token || !S.data || document.hidden || S.tab !== "chat") return;
+  api("getMessages", S.token, S.lastMsg).then(ms => {
+    if (!ms.length) return;
+    S.data.messages = S.data.messages.concat(ms); S.lastMsg = ms[ms.length - 1].ts; markSeen(); renderChat(true);
+  }).catch(() => {});
+}, 8000);
+window.addEventListener("beforeunload", e => { if (dirty()) { e.preventDefault(); e.returnValue = ""; } });
+
+/* ============ render ============ */
+function render(keepScroll) {
+  const y = window.scrollY, app = $("app");
+  if (!S.token) { app.innerHTML = loginView(); return; }
+  if (!S.data) { app.innerHTML = `<div class="page stack"><div class="skel" style="height:200px"></div><div class="skel"></div><div class="skel"></div></div>`; return; }
+  const d = D(), tabs = [["home", "Home"], ["schedule", "Schedule"], ["chat", "Chat"], ["player", "My player"], ["team", "Team"]];
+  if (d.me.admin) tabs.push(["coach", "Coach"]);
+  if (!tabs.some(t => t[0] === S.tab)) S.tab = "home";
+  const unread = d.messages.length && S.lastMsg > S.seenMsg && S.tab !== "chat";
+  app.innerHTML = `<main class="page">${VIEW[S.tab](d)}</main>
+    ${S.tab === "chat" ? composer() : ""}
+    ${dirty() ? saveBar() : ""}
+    <nav class="nav" aria-label="Sections"><div class="in">${tabs.map(t =>
+      `<button data-tab="${t[0]}" class="${S.tab === t[0] ? "on" : ""}" ${S.tab === t[0] ? 'aria-current="page"' : ""}><span class="${t[0] === "chat" && unread ? "badge" : ""}">${svg(t[0])}</span>${t[1]}</button>`).join("")}</div></nav>`;
+  if (S.tab === "chat") renderChat(false);
+  if (keepScroll) window.scrollTo(0, y);
+}
+function head(title, sub, right) {
+  return `<header class="head"><div class="mark">RH</div><div class="t"><h1>${esc(title)}</h1><p>${esc(sub)}</p></div>${right || ""}</header>`;
+}
+
+/* ---------- login ---------- */
+function loginView() {
+  return `<div class="login"><form class="card" id="loginForm" novalidate>
+    <div class="mark">RH</div><h1>Hawklets CYO</h1>
+    <p>Rockhurst freshmen basketball, winter 2026-27. Sign in with your email, or your son's Rockhurst email, and the team password.</p>
+    <div class="field"><label class="lab" for="lgEmail">Email</label><input id="lgEmail" type="email" autocomplete="email" inputmode="email" autocapitalize="none" required></div>
+    <div class="field"><label class="lab" for="lgPw">Team password</label><input id="lgPw" type="password" autocomplete="current-password" required></div>
+    <p id="lgErr" class="err" role="alert" style="margin:14px 0 0" hidden></p>
+    <button class="btn block" type="submit" style="margin-top:20px">Sign in</button>
+  </form></div>`;
+}
+
+/* ---------- shared pieces ---------- */
+const where = g => [g.time, g.opponent ? "vs " + g.opponent : "", g.location].filter(Boolean).join(" · ") || "Time and gym post about a week before";
+const counts = (d, g) => { const r = { yes: 0, maybe: 0, no: 0 }; d.players.forEach(p => { const v = (p.avail || {})[g.date]; if (r[v] != null) r[v]++; }); return r; };
+const upcoming = d => d.games.filter(g => g.date >= todayISO());
+function seg(pid, date, cur) {
+  return `<div class="seg" role="group" aria-label="Availability ${esc(fmt(date))}">${["yes", "maybe", "no"].map(v =>
+    `<button data-act="avail" data-pid="${esc(pid)}" data-date="${esc(date)}" data-v="${v}" class="${v}${cur === v ? " on" : ""}" aria-pressed="${cur === v}">${AV[v]}</button>`).join("")}</div>`;
+}
+function dateTile(d, past) { return `<div class="date${past ? " past" : ""}"><small>${esc(fmt(d, { month: "short" }))}</small><b>${dt(d).getDate()}</b></div>`; }
+function uniPill(p) {
+  if (p.needsUniform === "no" || p.uniform === "has") return '<span class="pill green dot">Has uniform</span>';
+  if (p.uniformOrdered || p.uniform === "ordered") return '<span class="pill green dot">Ordered</span>';
+  if (p.needsUniform === "yes" || p.uniform === "needs") return '<span class="pill amber dot">To order</span>';
+  return '<span class="pill dot">No info yet</span>';
+}
+
+/* ---------- views ---------- */
+const VIEW = {
+home(d) {
+  const s = d.settings, g = upcoming(d)[0], todo = [];
+  d.mine.forEach(p => {
+    const f = first(p.name);
+    if (!p.registered) todo.push(["red", `${f} needs to accept his CYO invite`, "Use the link in his Rockhurst email. Forwarded links won't work."]);
+    if (!p.jersey1) todo.push(["", `Pick ${f}'s jersey numbers`, "Two choices on My player.", "player"]);
+    if (!p.needsUniform) todo.push(["", `Tell us about ${f}'s uniform`, "Sizes, or whether he already has one.", "player"]);
+    else if (p.needsUniform === "yes" && !p.uniformOrdered) todo.push(["", `Order ${f}'s uniform${s.uniformDue ? " by " + fmt(s.uniformDue) : ""}`, p.jersey ? `His number is #${p.jersey}.` : "Wait until Coach confirms his number."]);
+    const miss = upcoming(d).filter(x => !(p.avail || {})[x.date]).length;
+    if (miss) todo.push(["", `Answer ${miss} game date${miss > 1 ? "s" : ""} for ${f}`, "In, Maybe or Out on Schedule.", "schedule"]);
+    const bal = d.share == null ? 0 : Math.max(0, d.share - Number(p.paid || 0));
+    if (bal) todo.push(["", `Pay ${usd(bal)}${s.payDue ? " by " + fmt(s.payDue) : ""}`, `Venmo ${s.venmo || ""} or a check to ${s.checkPayee || ""}. Put ${f}'s name in the note.`]);
   });
-  return (g?'<section class="panel hero"><div class="row"><h2>Next game</h2><span class="pill">'+(g.kind==="tournament"?"Tournament":"Game")+'</span></div><p class="big">'+esc(fmt(g.date,{weekday:"long",month:"long",day:"numeric"}))+'</p><p class="sub">'+esc(gameLine(g))+'</p>'+
-    d.mine.map(function(p){return '<div class="row"><span>'+esc(p.name.split(" ")[0])+'</span>'+availButtons(p.id,g,(p.avail||{})[g.date]||"")+'</div>'}).join("")
-    +'<p class="sub">'+counts(d,g).yes+' of '+d.count+' players in so far. Bring his Rockhurst student ID.</p></section>':'')+
-  '<div class="actions">'+(s.coachPhone?'<a class="act" href="sms:'+tel(s.coachPhone)+'">'+svg("chat")+'Text Coach</a>':'')+'<a class="act" href="#player" data-tab="player">'+svg("player")+'Player info</a><a class="act" href="'+esc(s.uniformLink||"#")+'" target="_blank" rel="noopener">'+svg("shirt")+'Order uniform</a></div>'+
-  '<section class="panel"><h2>Your to-do list</h2>'+(todo.length?todo.map(function(t){return '<div class="todo"><span class="dot '+t[0]+'"></span><div><strong>'+esc(t[1])+'</strong><p class="sub">'+esc(t[2])+'</p></div></div>'}).join(""):'<div class="todo"><span class="dot good"></span><strong>You\'re all set.</strong></div>')+'</section>'+
-  (d.announcements.length?'<section class="panel"><h2>From Coach</h2>'+d.announcements.slice(0,5).map(function(a){return '<div><strong>'+esc(a.title)+'</strong><p class="sub">'+esc(fmt(String(a.ts).slice(0,10)))+'</p><p style="white-space:pre-wrap">'+esc(a.body)+'</p></div>'}).join('<hr style="border:0;border-top:1px solid var(--line);width:100%">')+'</section>':'')+
-  '<section class="panel"><h2>Team fee</h2><p>CYO charges '+usd(s.teamFee)+' per team, split evenly. With '+d.count+' players, each family pays <strong>'+usd(d.share)+'</strong>.</p><p class="sub">Venmo '+esc(s.venmo||"")+' or a check payable to '+esc(s.checkPayee||"")+'. Put your son\'s name in the note.</p></section>'+
-  '<section class="panel"><h2>Links</h2><div class="group"><a class="btn" href="'+esc(s.uniformLink||"#")+'" target="_blank" rel="noopener">Order uniform</a><a class="btn" href="'+esc(s.cyoLink||"#")+'" target="_blank" rel="noopener">CYO league page</a></div></section>'+
-  '<section class="panel"><h2>Contact Coach Travis</h2><p class="sub">Text is fastest, especially on game days.</p><div class="btns">'+(s.coachPhone?'<a class="btn primary" href="sms:'+tel(s.coachPhone)+'">'+svg("chat")+'Text '+esc(s.coachPhone)+'</a><a class="btn soft" href="tel:'+tel(s.coachPhone)+'">'+svg("phone")+'Call</a>':'')+
-  '<a class="btn soft" style="grid-column:1/-1" href="mailto:'+esc(s.coachEmail||"")+'">'+svg("mail")+esc(s.coachEmail||"")+'</a></div>'+(s.assistant?'<p class="sub">Assistant coach: '+esc(s.assistant)+'</p>':'')+'</section>';
+  const c = g ? counts(d, g) : null, n = g ? daysTo(g.date) : 0;
+  return head("Hi, " + first(String(d.me.name).replace(/^Coach /, "")), "Hawklets · Rockhurst freshmen CYO",
+      `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`) +
+    `<div class="stack">` +
+    (g ? `<section class="hero">
+        <div class="row between"><span class="label">${g.kind === "tournament" ? "Tournament game" : "Next game"}</span><span class="countdown">${n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"}</span></div>
+        <p class="day">${esc(fmt(g.date, { weekday: "long", month: "long", day: "numeric" }))}</p>
+        <p class="meta">${esc(where(g))}</p>
+        <div class="bar"><i style="width:${Math.round(c.yes / Math.max(1, d.count) * 100)}%"></i></div>
+        <p class="meta small">${c.yes} of ${d.count} players in · bring his student ID</p>
+        ${d.mine.map(p => `<div class="who"><b>${esc(first(p.name))}</b>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
+      </section>` : "") +
+    `<div class="tiles">
+      ${s.coachPhone ? `<a class="tile" href="sms:${tel(s.coachPhone)}"><i>${svg("text")}</i>Text Coach</a>` : ""}
+      <button class="tile" data-tab="player"><i>${svg("player")}</i>My player</button>
+      <a class="tile" href="${esc(s.uniformLink || "#")}" target="_blank" rel="noopener"><i>${svg("shirt")}</i>Order uniform</a>
+    </div>
+    <section class="card"><div class="hd"><h2>Your to-do list</h2>${todo.length ? `<span class="pill amber">${todo.length} left</span>` : ""}</div>
+      ${todo.length ? todo.map(t => `<div class="todo"><span class="tick ${t[0]}"></span><div class="grow"><b>${esc(t[1])}</b><span>${esc(t[2])}</span></div>${t[3] ? `<button class="btn sm soft" data-tab="${t[3]}">Go</button>` : ""}</div>`).join("")
+        : `<div class="todo"><span class="tick done">${svg("check", 3)}</span><div><b>You're all set</b><span>Nothing to do right now.</span></div></div>`}
+    </section>` +
+    (d.announcements.length ? `<section class="card"><div class="hd"><h2>From Coach</h2></div><div class="list">${d.announcements.slice(0, 4).map(a =>
+      `<div class="li" style="display:block"><p class="label" style="margin-bottom:4px">${esc(fmt(String(a.ts).slice(0, 10)))}</p><h3>${esc(a.title)}</h3><p style="color:var(--ink2);white-space:pre-wrap;margin-top:4px">${esc(a.body)}</p></div>`).join("")}</div></section>` : "") +
+    `<section class="card"><div class="hd"><h2>Team fee</h2><span class="pill blue">${usd(d.share)} each</span></div>
+      <p class="muted small">CYO charges ${usd(s.teamFee)} per team, split across ${d.count} players. Venmo <b style="color:var(--ink)">${esc(s.venmo || "")}</b> or a check to ${esc(s.checkPayee || "")}${s.payDue ? `, due ${esc(fmt(s.payDue))}` : ""}.</p></section>
+    <section class="card"><div class="hd"><h2>Coach ${esc(s.coach || "")}</h2></div>
+      <div class="btns">${s.coachPhone ? `<a class="btn" href="sms:${tel(s.coachPhone)}">${svg("text")}Text</a><a class="btn soft" href="tel:${tel(s.coachPhone)}">${svg("phone")}Call</a>` : ""}
+      <a class="btn ghost" style="grid-column:1/-1" href="mailto:${esc(s.coachEmail || "")}">${svg("mail")}${esc(s.coachEmail || "")}</a></div>
+      <p class="muted small" style="margin-top:12px">${s.coachPhone ? esc(s.coachPhone) + " · " : ""}${s.assistant ? "Assistant coach " + esc(s.assistant) + " · " : ""}<a href="${esc(s.cyoLink || "#")}" target="_blank" rel="noopener">CYO league page</a></p></section>
+    </div>`;
 },
-schedule:function(d){
-  return '<section class="panel"><h2>Schedule</h2><p class="sub">Saturdays. Times and gyms post about a week before each game. Bring your Rockhurst student ID.</p><div class="list">'+
-  d.games.map(function(g){var c=counts(d,g),past=g.date<today();return '<div class="game"><div class="row"><span class="when">'+esc(fmt(g.date))+'</span>'+(g.kind==="tournament"?'<span class="pill">Tournament</span>':'')+'</div><p class="sub">'+esc(gameLine(g))+'</p>'+(g.note?'<p>'+esc(g.note)+'</p>':'')+
-    (past?'':d.mine.map(function(p){return '<div class="row"><span>'+esc(p.name.split(" ")[0])+'</span>'+availButtons(p.id,g,(p.avail||{})[g.date]||"")+'</div>'}).join(""))+
-    '<div class="group"><span class="pill good">'+c.yes+' in</span><span class="pill warn">'+c.maybe+' maybe</span><span class="pill crit">'+c.no+' out</span></div></div>'}).join("")+'</div></section>';
+
+schedule(d) {
+  const t = todayISO();
+  return head("Schedule", "Saturdays · times and gyms post a week ahead") +
+    `<section class="card"><div class="list">${d.games.map(g => {
+      const c = counts(d, g), past = g.date < t;
+      return `<div class="game"><div class="row">${dateTile(g.date, past)}<div class="grow"><h3 style="font-size:16px;font-weight:600">${esc(fmt(g.date, { weekday: "long" }))}${g.kind === "tournament" ? ' <span class="pill blue">Tournament</span>' : ""}</h3><p class="muted small">${esc(where(g))}</p>${g.note ? `<p class="small" style="margin-top:2px">${esc(g.note)}</p>` : ""}</div></div>
+        ${past ? "" : d.mine.map(p => `<div class="row between"><span class="small" style="font-weight:600">${esc(first(p.name))}</span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
+        <div class="counts"><span class="pill green">${c.yes} in</span><span class="pill amber">${c.maybe} maybe</span><span class="pill red">${c.no} out</span></div></div>`;
+    }).join("")}</div></section>`;
 },
-chat:function(d){return '<section class="panel"><h2>Team chat</h2><p class="sub">Everyone on the team sees these messages.</p><div class="chat" id="chatList"></div>'+
-  '<form class="composer" id="chatForm"><label for="chatText" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" placeholder="Message the team" maxlength="1000"></textarea><button class="primary" type="submit">Send</button></form></section>'},
-player:function(d){
-  if(!d.mine.length)return '<section class="panel"><p>You are signed in as coach without a player.</p></section>';
-  return d.mine.map(function(p){var f=p.name.split(" ")[0];return '<section class="panel"><div class="row"><h2>'+esc(p.name)+'</h2><span class="num'+(p.jersey?"":" none")+'">'+(p.jersey?esc(p.jersey):"?")+'</span></div>'+
-    '<div class="group"><span class="pill '+(p.registered?"good":"crit")+'">'+(p.registered?"Registered with CYO":"Not registered with CYO")+'</span>'+(p.jersey?'<span class="pill good">Number #'+esc(p.jersey)+' confirmed</span>':'<span class="pill mute">Number not set yet</span>')+'</div>'+
-    '<form class="fields" data-form="'+esc(p.id)+'" novalidate>'+
-    '<label>Jersey number, 1st choice<select name="jersey1"><option value="">Choose</option>'+LEGAL.map(function(n){return '<option'+(String(p.jersey1)===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select></label>'+
-    '<label>Jersey number, 2nd choice<select name="jersey2"><option value="">Choose</option>'+LEGAL.map(function(n){return '<option'+(String(p.jersey2)===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select></label>'+
-    '<label class="full">Uniform<select name="needsUniform"><option value="">Choose one</option><option value="yes"'+(p.needsUniform==="yes"?" selected":"")+'>We need to order one</option><option value="no"'+(p.needsUniform==="no"?" selected":"")+'>He already has a CYO uniform</option></select></label>'+
-    '<label>Jersey size<select name="topSize"><option value="">Choose</option>'+SIZES.map(function(z){return '<option value="'+z+'"'+(p.topSize===z?" selected":"")+'>'+SIZE_NAME[z]+'</option>'}).join("")+'</select></label>'+
-    '<label>Short size<select name="shortSize"><option value="">Choose</option>'+SIZES.map(function(z){return '<option value="'+z+'"'+(p.shortSize===z?" selected":"")+'>'+SIZE_NAME[z]+'</option>'}).join("")+'</select></label>'+
-    '<label class="full">Short length<select name="shortLength"><option value="">Choose</option><option value="7"'+(p.shortLength==="7"?" selected":"")+'>7 inch mesh short (youth or adult)</option><option value="9"'+(p.shortLength==="9"?" selected":"")+'>9 inch short with liner (adult only)</option></select></label>'+
-    '<label class="full" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="uniformOrdered" style="width:22px;min-height:22px"'+(p.uniformOrdered?" checked":"")+'> I have ordered the uniform</label>'+
-    '<label class="full">Parent cell phone (for game-day changes)<input name="phone" type="tel" value="'+esc(p.phone)+'"></label>'+
-    '<div class="full row"><span class="sub">Sizes and numbers match the Jock\'s Nitch CYO store.</span><button class="primary" type="submit">Save '+esc(f)+'\'s info</button></div></form>'+
-    '<div class="row"><span>Team fee</span><strong>'+(Number(p.paid||0)>=Number(d.share||0)&&d.share?'<span class="pill good">Paid</span>':usd(Math.max(0,(d.share||0)-Number(p.paid||0)))+' due')+'</strong></div></section>'}).join("");
+
+chat(d) {
+  return head("Team chat", "Everyone on the team sees these") + `<div class="chatwrap" id="chatList"></div>`;
 },
-team:function(d){return '<section class="panel"><h2>Roster</h2><p class="sub">'+d.count+' players</p><div class="list">'+
-  d.players.slice().sort(function(a,b){return (Number(a.jersey)||999)-(Number(b.jersey)||999)||a.name.localeCompare(b.name)}).map(function(p){return '<div class="item"><div class="group"><span class="num'+(p.jersey?"":" none")+'">'+(p.jersey?esc(p.jersey):"?")+'</span><strong>'+esc(p.name)+'</strong>'+(p.mine?' <span class="pill">Yours</span>':'')+'</div>'+(p.registered?'':'<span class="pill warn">CYO pending</span>')+'</div>'}).join("")+'</div></section>'},
-coach:function(d){var t=S.coachTab,sub=[["roster","Roster"],["avail","Availability"],["uniforms","Uniforms"],["money","Money"],["games","Games"],["news","Post update"],["settings","Settings"]];
-  return '<section class="panel"><div class="group">'+sub.map(function(x){return '<button class="small'+(t===x[0]?" primary":"")+'" data-act="ctab" data-id="'+x[0]+'">'+x[1]+'</button>'}).join("")+'</div></section>'+COACH[t](d)}
+
+player(d) {
+  if (!d.mine.length) return head("My player", "Coach account") + `<section class="card"><p class="empty">You're signed in as coach without a player. Use the Coach tab.</p></section>`;
+  const taken = new Set(d.players.filter(p => !p.mine && p.jersey).map(p => String(p.jersey)));
+  return head("My player", "Numbers, uniform and contact") + `<div class="stack">` + d.mine.map(p => {
+    const v = Object.assign({}, p, S.drafts[p.id] || {}), f = first(p.name);
+    const nine = v.shortLength === "9";
+    return `<section class="card">
+      <div class="row" style="margin-bottom:16px"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "?"}</div><div class="grow"><h2 style="font-size:20px">${esc(p.name)}</h2>
+        <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${p.jersey ? `<span class="pill blue">#${esc(p.jersey)} confirmed</span>` : '<span class="pill">Number pending</span>'}${(d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
+
+      <div class="field"><div class="lab">Jersey number choices <span>${v.jersey1 ? "#" + esc(v.jersey1) : "1st"} · ${v.jersey2 ? "#" + esc(v.jersey2) : "2nd"}</span></div>
+        <p class="muted small" style="margin-top:-4px">Tap your 1st choice, then your 2nd. Tap again to clear. Crossed-out numbers are taken.</p>
+        <div class="nums">${LEGAL.map(n => {
+          const cls = v.jersey1 === n ? "first" : v.jersey2 === n ? "second" : taken.has(n) ? "taken" : "";
+          return `<button class="num ${cls}" data-act="pick" data-pid="${esc(p.id)}" data-n="${n}" aria-pressed="${!!cls && cls !== "taken"}" aria-label="Number ${n}${cls === "taken" ? ", taken" : ""}">${n}${cls === "first" ? "<i>1st</i>" : cls === "second" ? "<i>2nd</i>" : ""}</button>`;
+        }).join("")}</div></div>
+
+      <div class="field"><div class="lab">Uniform</div><div class="chips">${[["yes", "Need to order"], ["no", "Already have one"]].map(o =>
+        `<button class="chip${v.needsUniform === o[0] ? " on" : ""}" data-act="set" data-pid="${esc(p.id)}" data-k="needsUniform" data-v="${o[0]}">${o[1]}</button>`).join("")}</div></div>
+
+      ${v.needsUniform === "no" ? "" : `
+      <div class="field"><div class="lab">Jersey size</div><div class="chips">${SIZES.map(z =>
+        `<button class="chip${v.topSize === z[0] ? " on" : ""}" data-act="set" data-pid="${esc(p.id)}" data-k="topSize" data-v="${z[0]}">${z[1]}</button>`).join("")}</div></div>
+      <div class="field"><div class="lab">Shorts</div><div class="chips">${[["7", '7" mesh'], ["9", '9" with liner']].map(o =>
+        `<button class="chip${v.shortLength === o[0] ? " on" : ""}" data-act="set" data-pid="${esc(p.id)}" data-k="shortLength" data-v="${o[0]}">${o[1]}</button>`).join("")}</div></div>
+      <div class="field"><div class="lab">Short size ${nine ? "<span>9\" comes in adult sizes only</span>" : ""}</div><div class="chips">${SIZES.map(z =>
+        `<button class="chip${v.shortSize === z[0] ? " on" : ""}" data-act="set" data-pid="${esc(p.id)}" data-k="shortSize" data-v="${z[0]}" ${nine && z[0][0] === "Y" ? "disabled" : ""}>${z[1]}</button>`).join("")}</div></div>
+      <div class="field"><label class="check"><input type="checkbox" data-act="ordered" data-pid="${esc(p.id)}" ${v.uniformOrdered ? "checked" : ""}> I've ordered ${esc(f)}'s uniform</label></div>`}
+
+      <div class="field"><label class="lab" for="ph_${esc(p.id)}">Parent cell <span>for game-day changes</span></label><input id="ph_${esc(p.id)}" type="tel" inputmode="tel" autocomplete="tel" data-act="phone" data-pid="${esc(p.id)}" value="${esc(v.phone)}" placeholder="816-555-0123"></div>
+    </section>`;
+  }).join("") + `<section class="card"><div class="hd"><h2>Order the uniform</h2></div><p class="muted small" style="margin-bottom:14px">Order after your number is confirmed${d.settings.uniformDue ? `, by ${esc(fmt(d.settings.uniformDue))}` : ""}. Reversible Scarlet/White jersey $26, black shorts $14 (+$2 for 2XL and 3XL). Custom made and final.</p><a class="btn block" href="${esc(d.settings.uniformLink || "#")}" target="_blank" rel="noopener">${svg("shirt")}Open the Jock's Nitch CYO store</a></section></div>`;
+},
+
+team(d) {
+  const reg = d.players.filter(p => p.registered).length;
+  const ps = d.players.slice().sort((a, b) => (Number(a.jersey) + 1 || 999) - (Number(b.jersey) + 1 || 999) || a.name.localeCompare(b.name));
+  return head("Team", `${d.count} players · ${reg} on the CYO roster`) +
+    `<section class="card"><div class="list">${ps.map(p => `<div class="li"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "–"}</div><div class="grow"><h3>${esc(p.name)}${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</h3><div class="row wrap" style="gap:6px;margin-top:4px">${p.registered ? "" : '<span class="pill red dot">Not on CYO</span>'}${uniPill(p)}</div></div></div>`).join("")}</div></section>`;
+},
+
+coach(d) {
+  const sub = [["uniforms", "Numbers & uniforms"], ["roster", "Roster"], ["avail", "Availability"], ["money", "Money"], ["games", "Games"], ["news", "Post update"], ["settings", "Settings"]];
+  return head("Coach", "Only you can see this") +
+    `<div class="stack"><nav class="subnav" aria-label="Coach sections">${sub.map(x => `<button data-act="ctab" data-id="${x[0]}" class="${S.ctab === x[0] ? "on" : ""}">${x[1]}</button>`).join("")}</nav>${COACH[S.ctab](d)}</div>`;
+}
 };
 
-var COACH={
-roster:function(d){var ps=d.adminPlayers.slice().sort(function(a,b){return a.name.localeCompare(b.name)});
-  var em=function(f){return ps.filter(f).map(function(p){return [p.email1,p.email2].filter(Boolean)}).reduce(function(a,b){return a.concat(b)},[])};
-  return '<section class="panel"><div class="row"><h2>Players ('+ps.filter(function(p){return p.status==="committed"}).length+' committed)</h2><button class="primary small" data-act="editp">Add player</button></div>'+
-  '<div class="group"><button class="small" data-act="copy" data-v="'+esc(em(function(p){return p.status==="committed"}).join(", "))+'">Copy all parent emails</button><button class="small" data-act="copy" data-v="'+esc(em(function(p){return p.status==="committed"&&!p.registered}).join(", "))+'">Copy not-registered</button><button class="small" data-act="copy" data-v="'+esc(ps.filter(function(p){return p.status==="committed"}).map(function(p){return p.studentEmail}).filter(Boolean).join(", "))+'">Copy student emails</button></div>'+
-  '<div class="list">'+ps.map(function(p){return '<div class="item"><div><strong>'+esc(p.name)+'</strong> '+(p.jersey?'#'+esc(p.jersey):'')+'<p class="sub">'+esc([p.parent1,p.parent2].filter(Boolean).join(" & "))+' · '+esc([p.email1,p.email2].filter(Boolean).join(", "))+(p.phone?' · '+esc(p.phone):'')+'</p><div class="group"><span class="pill '+(p.status==="committed"?"good":p.status==="declined"?"mute":"warn")+'">'+esc(p.status)+'</span><span class="pill '+(p.registered?"good":"crit")+'">'+(p.registered?"CYO registered":"Not registered")+'</span>'+(p.formAt?'':'<span class="pill warn">No info yet</span>')+'</div></div><button class="small" data-act="editp" data-id="'+esc(p.id)+'">Edit</button></div>'}).join("")+'</div></section>'},
-avail:function(d){var gs=d.games;return '<section class="panel"><h2>Availability</h2><div class="scroll"><table class="grid"><thead><tr><th>Player</th>'+gs.map(function(g){return '<th>'+esc(fmt(g.date,{month:"short",day:"numeric"}))+'</th>'}).join("")+'</tr></thead><tbody>'+
-  d.players.map(function(p){return '<tr><td>'+esc(p.name)+'</td>'+gs.map(function(g){var v=(p.avail||{})[g.date];return '<td><span class="c '+(v||"none")+'">'+(AV[v]||"–")+'</span></td>'}).join("")+'</tr>'}).join("")+
-  '<tr><td>In</td>'+gs.map(function(g){var c=counts(d,g);return '<td><strong style="color:var(--'+(c.yes>=5?"good":"crit")+')">'+c.yes+'</strong></td>'}).join("")+'</tr></tbody></table></div><p class="sub">CYO needs at least 5 players to start a game.</p></section>'},
-uniforms:function(d){var ps=d.adminPlayers.filter(function(p){return p.status==="committed"}),tot={};ps.forEach(function(p){if(p.needsUniform==="yes"){["topSize","shortSize"].forEach(function(k){if(p[k]){var key=(k==="topSize"?"Jersey ":"Shorts "+(p.shortLength?p.shortLength+'" ':""))+p[k];tot[key]=(tot[key]||0)+1}})}});
-  var by={};ps.forEach(function(p){if(p.jersey)(by[p.jersey]=by[p.jersey]||[]).push(p.name)});
-  return '<section class="panel"><h2>Numbers and uniforms</h2><div class="group">'+Object.keys(tot).sort().map(function(k){return '<span class="pill">'+esc(k)+': '+tot[k]+'</span>'}).join("")+'</div><div class="scroll"><table><thead><tr><th>Player</th><th>Choices</th><th>Number</th><th>Sizes</th><th>Status</th></tr></thead><tbody>'+
-  ps.map(function(p){var dup=p.jersey&&by[p.jersey].length>1;return '<tr><td>'+esc(p.name)+'</td><td>'+esc([p.jersey1,p.jersey2].filter(Boolean).join(" / ")||"–")+'</td><td><select style="width:80px;min-height:38px;padding:4px 8px" data-chg="jersey" data-id="'+esc(p.id)+'" aria-label="Number for '+esc(p.name)+'"><option value="">–</option>'+LEGAL.map(function(n){return '<option'+(String(p.jersey)===n?" selected":"")+'>'+n+'</option>'}).join("")+'</select>'+(dup?' <span class="pill crit">Duplicate</span>':'')+'</td><td>'+esc([p.topSize,p.shortSize?(p.shortLength?p.shortLength+'" ':"")+p.shortSize:""].filter(Boolean).join(" / ")||"–")+'</td><td>'+(p.needsUniform==="no"?'<span class="pill good">Has one</span>':p.uniformOrdered?'<span class="pill good">Ordered</span>':p.needsUniform==="yes"?'<span class="pill warn">To order</span>':'<span class="pill mute">Unknown</span>')+'</td></tr>'}).join("")+'</tbody></table></div><p class="sub">Pick a number to assign it. Families see it on their My player page.</p></section>'},
-money:function(d){var ps=d.adminPlayers.filter(function(p){return p.status==="committed"}),got=ps.reduce(function(a,p){return a+Number(p.paid||0)},0);
-  return '<section class="panel"><h2>Team fee</h2><p>'+usd(d.settings.teamFee)+' split '+d.count+' ways = <strong>'+usd(d.share)+'</strong> each. Collected '+usd(got)+' of '+usd(d.share*d.count)+'.</p><div class="list">'+
-  ps.map(function(p){var paid=Number(p.paid||0),done=d.share&&paid>=d.share;return '<div class="item"><div><strong>'+esc(p.name)+'</strong><p class="sub">'+usd(paid)+' paid</p></div><div class="group">'+(done?'<span class="pill good">Paid</span>':'<button class="small" data-act="paid" data-id="'+esc(p.id)+'">Mark '+usd(d.share)+' paid</button>')+'</div></div>'}).join("")+'</div></section>'},
-games:function(d){return '<section class="panel"><div class="row"><h2>Games</h2><button class="primary small" data-act="editg">Add game</button></div><div class="list">'+d.games.map(function(g){return '<div class="item"><div><strong>'+esc(fmt(g.date))+'</strong><p class="sub">'+esc(gameLine(g))+'</p></div><button class="small" data-act="editg" data-id="'+esc(g.id)+'">Edit</button></div>'}).join("")+'</div></section>'},
-news:function(d){return '<section class="panel"><h2>Post an update</h2><p class="sub">Shows on everyone\'s Home tab.</p><form id="newsForm" class="fields" novalidate><label class="full">Title<input name="title" maxlength="120"></label><label class="full">Message<textarea name="body" maxlength="3000"></textarea></label><div class="full row"><span></span><button class="primary" type="submit">Post</button></div></form></section>'+
-  '<section class="panel"><h2>Posted</h2><div class="list">'+d.announcements.map(function(a){return '<div class="item"><div><strong>'+esc(a.title)+'</strong><p class="sub">'+esc(fmt(String(a.ts).slice(0,10)))+'</p></div><button class="small" data-act="delnews" data-id="'+esc(a.id)+'">Delete</button></div>'}).join("")+'</div></section>'},
-settings:function(d){var s=d.adminSettings,f=[["teamPassword","Team password"],["teamFee","Team fee ($)"],["roundTo","Round each share up to ($)"],["payDue","Payment due (YYYY-MM-DD)"],["venmo","Venmo"],["checkPayee","Checks payable to"],["uniformLink","Uniform order link"],["uniformDue","Uniform order deadline (YYYY-MM-DD)"],["coach","Coach name"],["coachEmail","Coach email"],["coachPhone","Coach cell (for texts)"],["assistant","Assistant coach"],["admins","Coach logins (comma separated emails)"]];
-  return '<section class="panel"><h2>Settings</h2><form id="setForm" class="fields" novalidate>'+f.map(function(x){return '<label class="full">'+x[1]+'<input name="'+x[0]+'" value="'+esc(s[x[0]])+'"></label>'}).join("")+'<div class="full row"><span class="sub">Changing the password signs nobody out, but new sign-ins need it.</span><button class="primary" type="submit">Save settings</button></div></form></section>'}
+/* ---------- coach views ---------- */
+const COACH = {
+uniforms(d) {
+  const ps = d.adminPlayers.filter(p => p.status === "committed").sort((a, b) => a.name.localeCompare(b.name));
+  const by = {}; ps.forEach(p => { if (p.jersey) (by[p.jersey] = by[p.jersey] || []).push(p.name); });
+  const tot = {}; ps.forEach(p => { if (p.needsUniform === "yes") { if (p.topSize) tot["Jersey " + SIZE[p.topSize]] = (tot["Jersey " + SIZE[p.topSize]] || 0) + 1; if (p.shortSize) { const k = `Shorts ${p.shortLength ? p.shortLength + '" ' : ""}${SIZE[p.shortSize]}`; tot[k] = (tot[k] || 0) + 1; } } });
+  const assigned = ps.filter(p => p.jersey).length, sent = ps.filter(p => p.jersey1).length, ordered = ps.filter(p => p.uniformOrdered || p.needsUniform === "no").length;
+  return `<div class="stats"><div class="stat"><b>${sent}/${ps.length}</b><span>Sent choices</span></div><div class="stat"><b>${assigned}/${ps.length}</b><span>Numbers set</span></div><div class="stat"><b>${ordered}/${ps.length}</b><span>Uniform done</span></div></div>
+    <section class="card"><div class="hd"><h2>Assign numbers</h2><button class="btn sm soft" data-act="autoassign">Use 1st choices</button></div>
+    <p class="muted small" style="margin-bottom:12px">Changes save instantly. Families see the number on their My player and Team screens.</p>
+    <div class="list">${ps.map(p => {
+      const dup = p.jersey && by[p.jersey].length > 1;
+      return `<div class="li"><div class="grow"><h3>${esc(p.name)}</h3><p>${p.jersey1 ? `Wants #${esc(p.jersey1)}${p.jersey2 ? ` or #${esc(p.jersey2)}` : ""}` : "No choices yet"}${p.topSize ? ` · ${esc(SIZE[p.topSize])}` : ""}${p.shortSize ? ` / ${p.shortLength ? esc(p.shortLength) + '" ' : ""}${esc(SIZE[p.shortSize])}` : ""}</p>
+        <div class="row wrap" style="gap:6px;margin-top:6px">${uniPill(p)}${dup ? '<span class="pill red">Duplicate number</span>' : ""}<span class="saved" id="sv_${esc(p.id)}" hidden>${svg("check", 3)}Saved</span></div></div>
+        <select class="mini" data-act="jersey" data-id="${esc(p.id)}" aria-label="Number for ${esc(p.name)}"><option value="">–</option>${LEGAL.map(n => `<option${String(p.jersey) === n ? " selected" : ""}>${n}</option>`).join("")}</select></div>`;
+    }).join("")}</div></section>
+    ${Object.keys(tot).length ? `<section class="card"><div class="hd"><h2>Sizes to order</h2></div><div class="chips">${Object.keys(tot).sort().map(k => `<span class="pill blue" style="font-size:13px;padding:6px 12px">${esc(k)} × ${tot[k]}</span>`).join("")}</div></section>` : ""}`;
+},
+roster(d) {
+  const ps = d.adminPlayers.slice().sort((a, b) => a.name.localeCompare(b.name));
+  const em = f => ps.filter(f).flatMap(p => [p.email1, p.email2].filter(Boolean)).join(", ");
+  return `<section class="card"><div class="hd"><h2>${ps.filter(p => p.status === "committed").length} players</h2><button class="btn sm" data-act="editp">${svg("plus")}Add</button></div>
+    <div class="row wrap" style="gap:8px;margin-bottom:16px">
+      <button class="btn sm ghost" data-act="copy" data-v="${esc(em(p => p.status === "committed"))}">${svg("copy")}All parent emails</button>
+      <button class="btn sm ghost" data-act="copy" data-v="${esc(em(p => p.status === "committed" && !p.registered))}">${svg("copy")}Not on CYO</button>
+      <button class="btn sm ghost" data-act="copy" data-v="${esc(ps.filter(p => p.status === "committed" && p.studentEmail).map(p => p.studentEmail).join(", "))}">${svg("copy")}Student emails</button></div>
+    <div class="list">${ps.map(p => `<div class="li"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "–"}</div><div class="grow"><h3>${esc(p.name)}</h3><p style="overflow:hidden;text-overflow:ellipsis">${esc([p.parent1, p.parent2].filter(Boolean).join(" & "))}${p.phone ? " · " + esc(p.phone) : ""}</p>
+      <div class="row wrap" style="gap:6px;margin-top:6px"><span class="pill ${p.status === "committed" ? "green" : p.status === "declined" ? "red" : ""}">${esc(p.status)}</span>${p.registered ? '<span class="pill green">On CYO</span>' : '<span class="pill red">Not on CYO</span>'}${p.formAt ? "" : '<span class="pill amber">No info yet</span>'}</div></div>
+      <button class="btn sm ghost" data-act="editp" data-id="${esc(p.id)}">Edit</button></div>`).join("")}</div></section>`;
+},
+avail(d) {
+  const gs = d.games, ps = d.adminPlayers.filter(p => p.status === "committed");
+  return `<section class="card"><div class="hd"><h2>Availability</h2></div><div class="scroll"><table><thead><tr><th>Player</th>${gs.map(g => `<th>${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}</th>`).join("")}</tr></thead><tbody>
+    ${ps.map(p => `<tr><td>${esc(p.name)}</td>${gs.map(g => { const v = (p.avail || {})[g.date]; return `<td><span class="c ${v || "none"}">${v ? AV[v][0] : "·"}</span></td>`; }).join("")}</tr>`).join("")}
+    <tr><td>In</td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr></tbody></table></div>
+    <p class="muted small" style="margin-top:12px">I = in, M = maybe, O = out. CYO needs 5 players to start a game.</p></section>`;
+},
+money(d) {
+  const ps = d.adminPlayers.filter(p => p.status === "committed"), got = ps.reduce((a, p) => a + Number(p.paid || 0), 0), due = (d.share || 0) * ps.length;
+  return `<div class="stats"><div class="stat"><b>${usd(got)}</b><span>Collected</span></div><div class="stat"><b>${usd(Math.max(0, due - got))}</b><span>Outstanding</span></div><div class="stat"><b>${usd(d.share)}</b><span>Per player</span></div></div>
+    <section class="card"><div class="list">${ps.map(p => { const paid = Number(p.paid || 0), done = d.share && paid >= d.share;
+      return `<div class="li"><div class="grow"><h3>${esc(p.name)}</h3><p>${done ? "Paid " + usd(paid) : usd(paid) + " of " + usd(d.share)}</p></div>${done ? `<span class="pill green dot">Paid</span><button class="btn sm ghost" data-act="paid" data-id="${esc(p.id)}" data-v="0">Undo</button>` : `<button class="btn sm" data-act="paid" data-id="${esc(p.id)}" data-v="${d.share}">Mark paid</button>`}</div>`; }).join("")}</div></section>`;
+},
+games(d) {
+  return `<section class="card"><div class="hd"><h2>Games</h2><button class="btn sm" data-act="editg">${svg("plus")}Add</button></div><div class="list">${d.games.map(g =>
+    `<div class="li">${dateTile(g.date, g.date < todayISO())}<div class="grow"><h3>${esc(fmt(g.date, { weekday: "long" }))}${g.kind === "tournament" ? ' <span class="pill blue">Tournament</span>' : ""}</h3><p>${esc(where(g))}</p></div><button class="btn sm ghost" data-act="editg" data-id="${esc(g.id)}">Edit</button></div>`).join("")}</div></section>`;
+},
+news(d) {
+  return `<section class="card"><div class="hd"><h2>Post an update</h2></div><form id="newsForm" novalidate>
+    <div class="field"><label class="lab" for="nwT">Title</label><input id="nwT" name="title" maxlength="120" required></div>
+    <div class="field"><label class="lab" for="nwB">Message</label><textarea id="nwB" name="body" maxlength="3000" required></textarea></div>
+    <button class="btn block" type="submit" style="margin-top:18px">Post to everyone's Home screen</button></form></section>
+    <section class="card"><div class="hd"><h2>Posted</h2></div><div class="list">${d.announcements.length ? d.announcements.map(a =>
+      `<div class="li"><div class="grow"><h3>${esc(a.title)}</h3><p>${esc(fmt(String(a.ts).slice(0, 10)))}</p></div><button class="btn sm danger" data-act="delnews" data-id="${esc(a.id)}">Delete</button></div>`).join("") : '<p class="empty">Nothing posted yet.</p>'}</div></section>`;
+},
+settings(d) {
+  const s = d.adminSettings, f = [["teamPassword", "Team password"], ["coach", "Coach name"], ["coachEmail", "Coach email"], ["coachPhone", "Coach cell (for texts)"], ["assistant", "Assistant coach"],
+    ["teamFee", "Team fee ($)"], ["roundTo", "Round each share up to ($)"], ["payDue", "Payment due", "date"], ["venmo", "Venmo"], ["checkPayee", "Checks payable to"],
+    ["uniformLink", "Uniform store link"], ["uniformDue", "Uniform order deadline", "date"], ["cyoLink", "CYO league page"], ["admins", "Coach logins (emails, comma separated)"]];
+  return `<section class="card"><form id="setForm" novalidate>${f.map(x => `<div class="field"><label class="lab" for="st_${x[0]}">${x[1]}</label><input id="st_${x[0]}" name="${x[0]}" ${x[2] ? `type="${x[2]}"` : ""} value="${esc(s[x[0]])}"></div>`).join("")}
+    <button class="btn block" type="submit" style="margin-top:20px">Save settings</button>
+    <p class="muted small" style="margin-top:10px">Changing the password doesn't sign anyone out. New sign-ins need the new one.</p></form></section>`;
+}
 };
 
 /* ---------- chat ---------- */
-function renderChatList(keep){var el=$("chatList");if(!el)return;var atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-40;
-  var me=S.data.me.email;el.innerHTML=S.data.messages.length?S.data.messages.map(function(m){var mine=String(m.email).toLowerCase()===me;return '<div class="msg'+(mine?" me":"")+'">'+(mine?"":'<div class="who">'+esc(m.name)+'</div>')+'<div class="t">'+esc(m.text)+'</div><div class="ts">'+esc(new Date(m.ts).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))+(S.data.me.admin?' · <a href="#" data-act="delmsg" data-id="'+esc(m.id)+'" style="color:inherit">delete</a>':'')+'</div></div>'}).join(""):'<p class="sub">No messages yet. Say hi to the team.</p>';
-  if(!keep||atBottom)el.scrollTop=el.scrollHeight}
+function composer() {
+  return `<div class="composer"><form id="chatForm"><label for="chatText" class="sr" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" rows="1" placeholder="Message the team" maxlength="1000"></textarea><button class="btn" type="submit">Send</button></form></div>`;
+}
+function renderChat(keep) {
+  const el = $("chatList"); if (!el) return;
+  const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 120;
+  const me = S.data.me.email, admin = S.data.me.admin;
+  el.innerHTML = S.data.messages.length ? S.data.messages.map(m => {
+    const mine = String(m.email).toLowerCase() === me;
+    return `<div class="msg${mine ? " me" : ""}"><div class="bub">${esc(m.text)}</div><div class="meta">${mine ? "" : esc(m.name) + " · "}${esc(new Date(m.ts).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }))}${admin ? ` · <a href="#" data-act="delmsg" data-id="${esc(m.id)}">Delete</a>` : ""}</div></div>`;
+  }).join("") : `<section class="card"><p class="empty">No messages yet. Say hi to the team.</p></section>`;
+  if (!keep || nearBottom) window.scrollTo(0, document.body.scrollHeight);
+}
 
-/* ---------- dialogs ---------- */
-function dialog(title,fields,vals,onSave,onDelete){var o=$("overlay");
-  o.innerHTML='<form class="dialog" id="dlg" novalidate><h2>'+esc(title)+'</h2><div class="fields">'+fields.map(function(f){var v=vals[f[0]]==null?"":vals[f[0]];
-    if(f[2]&&f[2].length)return '<label class="'+(f[3]?"full":"")+'">'+esc(f[1])+'<select name="'+f[0]+'">'+f[2].map(function(op){return '<option value="'+esc(op[0])+'"'+(String(v)===String(op[0])?" selected":"")+'>'+esc(op[1])+'</option>'}).join("")+'</select></label>';
-    return '<label class="'+(f[3]?"full":"")+'">'+esc(f[1])+'<input name="'+f[0]+'" value="'+esc(v)+'"'+(f[2]==="date"?' type="date"':'')+'></label>'}).join("")+'</div>'+
-    '<div class="row"><div>'+(onDelete?'<button type="button" class="small" id="dlgDel" style="color:var(--crit)">Delete</button>':'')+'</div><div class="group"><button type="button" id="dlgX">Cancel</button><button class="primary" type="submit">Save</button></div></div></form>';
-  o.hidden=false;$("dlgX").onclick=close;if(onDelete)$("dlgDel").onclick=function(){if(this.dataset.sure){onDelete();close()}else{this.dataset.sure=1;this.textContent="Tap again to delete"}};
-  $("dlg").onsubmit=function(e){e.preventDefault();var out={};fields.forEach(function(f){out[f[0]]=e.target.elements[f[0]].value});onSave(out);close()}}
-function close(){$("overlay").hidden=true;$("overlay").innerHTML=""}
-function playerById(id){return (S.data.adminPlayers||[]).filter(function(p){return p.id===id})[0]}
-function saveP(p){return api("adminSavePlayer",S.token,p).then(function(){toast("Saved");return load(true)}).catch(fail)}
+/* ---------- save bar (My player) ---------- */
+function saveBar() {
+  return `<div class="savebar"><div class="in"><span class="grow">Unsaved changes</span><button class="btn ghost sm" data-act="discard">Discard</button><button class="btn sm" data-act="save" id="saveBtn">Save changes</button></div></div>`;
+}
+function draft(pid, k, v, quiet) {
+  const p = D().mine.find(x => x.id === pid), cur = Object.assign({}, S.drafts[pid] || {});
+  cur[k] = v;
+  if (k === "shortLength" && v === "9" && /^Y/.test((S.drafts[pid] || {}).shortSize || p.shortSize || "")) cur.shortSize = "";
+  Object.keys(cur).forEach(key => { if (String(cur[key] ?? "") === String(p[key] ?? "") && !(key === "uniformOrdered" && !!cur[key] !== !!p[key])) delete cur[key]; });
+  if (Object.keys(cur).length) S.drafts[pid] = cur; else delete S.drafts[pid];
+  if (!quiet) return render(true);
+  /* typing: keep focus, just show or hide the save bar */
+  const bar = document.querySelector(".savebar");
+  if (dirty() && !bar) $("app").insertAdjacentHTML("beforeend", saveBar());
+  else if (!dirty() && bar) bar.remove();
+}
+async function saveDrafts() {
+  const btn = $("saveBtn"); if (btn) { btn.disabled = true; btn.textContent = "Saving…"; }
+  try {
+    for (const pid of Object.keys(S.drafts)) {
+      const saved = await api("savePlayerInfo", S.token, pid, S.drafts[pid]);
+      const i = D().mine.findIndex(x => x.id === pid);
+      D().mine[i] = Object.assign({}, D().mine[i], saved);
+      delete S.drafts[pid];
+    }
+    toast("Saved");
+    load(true);
+  } catch (e) { fail(e); render(true); }
+}
 
-/* ---------- events ---------- */
-document.addEventListener("click",function(e){var t=e.target.closest("[data-tab],[data-act]");if(!t)return;
-  if(t.dataset.tab){e.preventDefault();S.tab=t.dataset.tab;S.dirty=false;render();window.scrollTo(0,0);return}
-  var a=t.dataset.act,id=t.dataset.id;
-  if(a==="logout")logout();
-  else if(a==="ctab"){S.coachTab=id;render()}
-  else if(a==="avail"){var pid=t.dataset.pid,date=t.dataset.date,v=t.getAttribute("aria-pressed")==="true"?"":t.dataset.v;
-    S.data.mine.concat(S.data.players).forEach(function(p){if(p.id===pid){p.avail=Object.assign({},p.avail);if(v)p.avail[date]=v;else delete p.avail[date]}});render();
-    api("setAvailability",S.token,pid,date,v).then(function(){toast(v?"Saved: "+AV[v]:"Answer cleared")}).catch(function(er){fail(er);load(true)})}
-  else if(a==="copy"){var v2=t.dataset.v;if(!v2){toast("Nobody in that group");return}(navigator.clipboard?navigator.clipboard.writeText(v2):Promise.reject()).then(function(){toast("Copied")},function(){prompt("Copy these addresses:",v2)})}
-  else if(a==="paid"){var p=playerById(id);saveP(Object.assign({},p,{paid:S.data.share}))}
-  else if(a==="editp"){var q=id?playerById(id):{};dialog(id?"Edit player":"Add player",[["name","Player name",0,1],["status","Status",[["committed","Committed"],["interested","Interested"],["declined","Declined"]]],["registered","CYO registered",[["false","No"],["true","Yes"]]],["parent1","Parent 1"],["email1","Parent 1 email"],["parent2","Parent 2"],["email2","Parent 2 email"],["phone","Phone"],["studentEmail","Rockhurst email"],["jersey","Jersey number"],["paid","Paid ($)"],["notes","Notes",0,1]],
-    Object.assign({},q,{registered:String(!!q.registered)}),function(v){v.id=id||"";saveP(v)},id?function(){api("adminDelete",S.token,"player",id).then(function(){load(true)}).catch(fail)}:null)}
-  else if(a==="editg"){var g=id?S.data.games.filter(function(x){return x.id===id})[0]:{};dialog(id?"Edit game":"Add game",[["date","Date","date"],["time","Time"],["opponent","Opponent"],["location","Gym"],["kind","Type",[["game","Regular season"],["tournament","Tournament"]]],["note","Note",0,1]],g,
-    function(v){v.id=id||"";api("adminSaveGame",S.token,v).then(function(){toast("Saved");load(true)}).catch(fail)},id?function(){api("adminDelete",S.token,"game",id).then(function(){load(true)}).catch(fail)}:null)}
-  else if(a==="delnews"){api("adminDelete",S.token,"news",id).then(function(){load(true)}).catch(fail)}
-  else if(a==="delmsg"){e.preventDefault();api("adminDelete",S.token,"msg",id).then(function(){S.data.messages=S.data.messages.filter(function(m){return m.id!==id});renderChatList(true)}).catch(fail)}
+/* ---------- sheet (dialog) ---------- */
+function sheet(title, fields, vals, onSave, onDelete) {
+  S.sheetOpen = true;
+  $("sheet").innerHTML = `<div class="scrim" id="scrim"><form class="sheet" id="sheetForm" novalidate role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="grab"></div><h2>${esc(title)}</h2>
+    <div class="grid2">${fields.map(f => {
+      const v = vals[f[0]] == null ? "" : vals[f[0]];
+      const ctl = Array.isArray(f[2]) ? `<select id="sf_${f[0]}" name="${f[0]}">${f[2].map(o => `<option value="${esc(o[0])}"${String(v) === String(o[0]) ? " selected" : ""}>${esc(o[1])}</option>`).join("")}</select>`
+        : `<input id="sf_${f[0]}" name="${f[0]}" ${f[2] ? `type="${f[2]}"` : ""} value="${esc(v)}">`;
+      return `<div class="field ${f[3] ? "full" : ""}" style="margin:0"><label class="lab" for="sf_${f[0]}">${esc(f[1])}</label>${ctl}</div>`;
+    }).join("")}</div>
+    <div class="row" style="margin-top:22px;gap:10px">${onDelete ? `<button type="button" class="btn danger" id="sfDel">Delete</button>` : ""}<span class="grow"></span><button type="button" class="btn ghost" id="sfX">Cancel</button><button class="btn" type="submit">Save</button></div></form></div>`;
+  const close = () => { S.sheetOpen = false; $("sheet").innerHTML = ""; };
+  $("sfX").onclick = close;
+  $("scrim").onclick = e => { if (e.target.id === "scrim") close(); };
+  if (onDelete) $("sfDel").onclick = function () { if (this.dataset.sure) { onDelete(); close(); } else { this.dataset.sure = 1; this.textContent = "Tap to confirm"; } };
+  $("sheetForm").onsubmit = e => { e.preventDefault(); const out = {}; fields.forEach(f => out[f[0]] = e.target.elements[f[0]].value.trim()); onSave(out); close(); };
+  setTimeout(() => { const i = $("sheetForm").querySelector("input,select"); if (i && window.innerWidth > 640) i.focus(); }, 50);
+}
+const adminPlayer = id => (D().adminPlayers || []).find(p => p.id === id);
+async function savePlayer(p, msg) {
+  try { await api("adminSavePlayer", S.token, p); toast(msg || "Saved"); await load(true); } catch (e) { fail(e); }
+}
+
+/* ============ events ============ */
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-tab],[data-act]"); if (!t || t.closest("#sheet form") && !t.dataset.act) return;
+  if (t.dataset.tab) {
+    e.preventDefault();
+    if (dirty() && t.dataset.tab !== S.tab && !confirm("You have unsaved changes. Leave without saving?")) return;
+    if (t.dataset.tab !== S.tab) S.drafts = {};
+    S.tab = t.dataset.tab; if (S.tab === "chat") markSeen(); render(); window.scrollTo(0, S.tab === "chat" ? document.body.scrollHeight : 0); return;
+  }
+  const a = t.dataset.act, id = t.dataset.id, pid = t.dataset.pid;
+  if (a === "logout") { if (confirm("Sign out of the team app?")) logout(); }
+  else if (a === "ctab") { S.ctab = id; render(); window.scrollTo(0, 0); }
+  else if (a === "pick") {
+    const p = D().mine.find(x => x.id === pid), v = Object.assign({}, p, S.drafts[pid] || {}), n = t.dataset.n;
+    if (t.classList.contains("taken")) { toast(`#${n} is already taken`, true); return; }
+    if (v.jersey1 === n) { draft(pid, "jersey1", v.jersey2 || ""); if (v.jersey2) draft(pid, "jersey2", ""); }
+    else if (v.jersey2 === n) draft(pid, "jersey2", "");
+    else if (!v.jersey1) draft(pid, "jersey1", n);
+    else draft(pid, "jersey2", n);
+  }
+  else if (a === "set") { const p = D().mine.find(x => x.id === pid), v = Object.assign({}, p, S.drafts[pid] || {}); draft(pid, t.dataset.k, v[t.dataset.k] === t.dataset.v ? "" : t.dataset.v); }
+  else if (a === "save") saveDrafts();
+  else if (a === "discard") { S.drafts = {}; render(true); }
+  else if (a === "avail") {
+    const d = D(), p = d.mine.find(x => x.id === pid), cur = (p.avail || {})[t.dataset.date] || "", v = cur === t.dataset.v ? "" : t.dataset.v;
+    p.avail = Object.assign({}, p.avail); if (v) p.avail[t.dataset.date] = v; else delete p.avail[t.dataset.date];
+    const pub = d.players.find(x => x.id === pid); if (pub) pub.avail = p.avail;
+    render(true);
+    try { await api("setAvailability", S.token, pid, t.dataset.date, v); toast(v ? `Saved: ${AV[v]} for ${fmt(t.dataset.date)}` : "Answer cleared"); }
+    catch (er) { fail(er); load(true); }
+  }
+  else if (a === "copy") {
+    const v = t.dataset.v; if (!v) { toast("No emails in that group", true); return; }
+    try { await navigator.clipboard.writeText(v); toast(`Copied ${v.split(",").length} emails`); } catch (er) { prompt("Copy these emails:", v); }
+  }
+  else if (a === "autoassign") {
+    const ps = D().adminPlayers.filter(p => p.status === "committed"), used = new Set(ps.map(p => p.jersey).filter(Boolean)); let n = 0;
+    t.disabled = true;
+    for (const p of ps.filter(p => !p.jersey && p.jersey1)) {
+      const pick = [p.jersey1, p.jersey2].find(x => x && !used.has(x)); if (!pick) continue;
+      used.add(pick); n++;
+      try { await api("adminSavePlayer", S.token, { id: p.id, jersey: pick }); } catch (er) { fail(er); }
+    }
+    toast(n ? `Assigned ${n} number${n > 1 ? "s" : ""}` : "Nothing to assign"); load(true);
+  }
+  else if (a === "paid") { savePlayer({ id, paid: t.dataset.v }, Number(t.dataset.v) ? "Marked paid" : "Payment cleared"); }
+  else if (a === "editp") {
+    const p = id ? adminPlayer(id) : { status: "committed", registered: false };
+    sheet(id ? "Edit player" : "Add player", [["name", "Player name", "", 1], ["status", "Status", [["committed", "Committed"], ["maybe", "Maybe"], ["declined", "Declined"]]], ["registered", "On CYO roster", [["false", "No"], ["true", "Yes"]]],
+      ["parent1", "Parent"], ["email1", "Parent email", "email"], ["parent2", "Second parent"], ["email2", "Second email", "email"], ["phone", "Parent cell", "tel"], ["studentEmail", "Student email", "email"], ["notes", "Notes", "", 1]],
+      Object.assign({}, p, { registered: String(!!p.registered) }),
+      v => { if (!v.name) { toast("Add a player name", true); return; } v.id = id || ""; savePlayer(v); },
+      id ? async () => { try { await api("adminDelete", S.token, "player", id); toast("Player removed"); load(true); } catch (er) { fail(er); } } : null);
+  }
+  else if (a === "editg") {
+    const g = id ? D().games.find(x => x.id === id) : { kind: "game" };
+    sheet(id ? "Edit game" : "Add game", [["date", "Date", "date"], ["kind", "Type", [["game", "League game"], ["tournament", "Tournament"]]], ["time", "Time"], ["location", "Gym"], ["opponent", "Opponent"], ["note", "Note", "", 1]], g,
+      async v => { v.id = id || ""; try { await api("adminSaveGame", S.token, v); toast("Game saved"); load(true); } catch (er) { fail(er); } },
+      id ? async () => { try { await api("adminDelete", S.token, "game", id); toast("Game deleted"); load(true); } catch (er) { fail(er); } } : null);
+  }
+  else if (a === "delnews") { if (!confirm("Delete this update?")) return; try { await api("adminDelete", S.token, "news", id); toast("Deleted"); load(true); } catch (er) { fail(er); } }
+  else if (a === "delmsg") { e.preventDefault(); if (!confirm("Delete this message for everyone?")) return; try { await api("adminDelete", S.token, "msg", id); S.data.messages = S.data.messages.filter(m => m.id !== id); renderChat(true); toast("Deleted"); } catch (er) { fail(er); } }
 });
-document.addEventListener("submit",function(e){var f=e.target;
-  if(f.id==="chatForm"){e.preventDefault();var ta=$("chatText"),txt=ta.value.trim();if(!txt)return;ta.value="";
-    api("postMessage",S.token,txt).then(function(m){S.data.messages.push(m);S.lastMsg=m.ts;renderChatList(false)}).catch(function(er){ta.value=txt;fail(er)})}
-  else if(f.dataset.form){e.preventDefault();var el=f.elements,info={jersey1:el.jersey1.value,jersey2:el.jersey2.value,needsUniform:el.needsUniform.value,topSize:el.topSize.value,shortSize:el.shortSize.value,shortLength:el.shortLength.value,uniformOrdered:el.uniformOrdered.checked,phone:el.phone.value};
-    api("savePlayerInfo",S.token,f.dataset.form,info).then(function(){toast("Saved");load(true)}).catch(fail)}
-  else if(f.id==="newsForm"){e.preventDefault();api("adminPostAnnouncement",S.token,{title:f.elements.title.value,body:f.elements.body.value}).then(function(){toast("Posted");load(true)}).catch(fail)}
-  else if(f.id==="setForm"){e.preventDefault();var o={};[].forEach.call(f.elements,function(x){if(x.name)o[x.name]=x.value});api("adminSaveSettings",S.token,o).then(function(){toast("Saved");load(true)}).catch(fail)}
+
+document.addEventListener("change", async e => {
+  const t = e.target, a = t.dataset.act;
+  if (a === "ordered") draft(t.dataset.pid, "uniformOrdered", t.checked);
+  else if (a === "jersey") {
+    const id = t.dataset.id, mark = $("sv_" + id);
+    t.disabled = true;
+    try {
+      await api("adminSavePlayer", S.token, { id, jersey: t.value });
+      const p = adminPlayer(id); p.jersey = t.value; const pub = D().players.find(x => x.id === id); if (pub) pub.jersey = t.value;
+      if (mark) { mark.hidden = false; setTimeout(() => mark.hidden = true, 2500); }
+      toast(t.value ? `#${t.value} saved for ${first(p.name)}` : `Number cleared for ${first(p.name)}`);
+      setTimeout(() => render(true), 900);
+    } catch (er) { fail(er); load(true); }
+    finally { t.disabled = false; }
+  }
 });
-document.addEventListener("change",function(e){var t=e.target;if(t.dataset.chg==="jersey"){var p=playerById(t.dataset.id);if(p)saveP(Object.assign({},p,{jersey:t.value.trim()}))}});
-document.addEventListener("keydown",function(e){if(e.target.id==="chatText"&&e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("chatForm").requestSubmit()}});
-var h=location.hash.slice(1);if(h)S.tab=h;
-load();
+document.addEventListener("input", e => { if (e.target.dataset.act === "phone") draft(e.target.dataset.pid, "phone", e.target.value.trim(), true); }, { passive: true });
+
+document.addEventListener("submit", async e => {
+  const f = e.target; e.preventDefault();
+  if (f.id === "loginForm") {
+    const b = f.querySelector("button"), er = $("lgErr"); b.disabled = true; b.textContent = "Signing in…"; er.hidden = true;
+    try { S.token = await api("login", $("lgEmail").value, $("lgPw").value); store.set("cyoToken", S.token); S.tab = "home"; render(); await load(); }
+    catch (x) { er.textContent = x.message; er.hidden = false; b.disabled = false; b.textContent = "Sign in"; }
+  }
+  else if (f.id === "chatForm") {
+    const ta = $("chatText"), txt = ta.value.trim(); if (!txt) return; ta.value = "";
+    try { const m = await api("postMessage", S.token, txt); S.data.messages.push(m); S.lastMsg = m.ts; markSeen(); renderChat(false); }
+    catch (x) { ta.value = txt; fail(x); }
+  }
+  else if (f.id === "newsForm") {
+    const title = f.elements.title.value.trim(), body = f.elements.body.value.trim();
+    if (!title || !body) { toast("Add a title and a message", true); return; }
+    try { await api("adminPostAnnouncement", S.token, { title, body }); toast("Posted"); f.reset(); load(true); } catch (x) { fail(x); }
+  }
+  else if (f.id === "setForm") {
+    const o = {}; [...f.elements].forEach(x => { if (x.name) o[x.name] = x.value.trim(); });
+    try { await api("adminSaveSettings", S.token, o); toast("Settings saved"); load(true); } catch (x) { fail(x); }
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.target.id === "chatText" && e.key === "Enter" && !e.shiftKey && window.innerWidth > 640) { e.preventDefault(); $("chatForm").requestSubmit(); }
+  if (e.key === "Escape" && S.sheetOpen) $("sfX").click();
+});
+
+render(); load();
 </script>
 </body>
 </html>
