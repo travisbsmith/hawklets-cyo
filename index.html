@@ -388,7 +388,7 @@ home(d) {
     else if (p.needsUniform === "yes" && !p.uniformOrdered) todo.push(["", `Order ${f}'s uniform${s.uniformDue ? " by " + fmt(s.uniformDue) : ""}`, p.jersey ? `His number is #${p.jersey}.` : "Claim his number first."]);
     const miss = upcoming(d).filter(x => !(p.avail || {})[x.date]).length;
     if (miss) todo.push(["", `Answer ${miss} game date${miss > 1 ? "s" : ""} for ${f}`, "In, Maybe or Out on Schedule.", "schedule"]);
-    const bal = d.share == null ? 0 : Math.max(0, d.share - Number(p.paid || 0));
+    const bal = s.feeReady !== "yes" || d.share == null ? 0 : Math.max(0, d.share - Number(p.paid || 0));
     if (bal) todo.push(["", `Pay ${usd(bal)}${s.payDue ? " by " + fmt(s.payDue) : ""}`, `Venmo ${s.venmo || ""} or a check to ${s.checkPayee || ""}. Put ${f}'s name in the note.`]);
   });
   const c = g ? counts(d, g) : null, n = g ? daysTo(g.date) : 0;
@@ -414,8 +414,8 @@ home(d) {
     </section>` +
     (d.announcements.length ? `<section class="card"><div class="hd"><h2>From Coach</h2></div><div class="list">${d.announcements.slice(0, 4).map(a =>
       `<div class="li" style="display:block"><p class="label" style="margin-bottom:4px">${esc(fmt(String(a.ts).slice(0, 10)))}</p><h3>${esc(a.title)}</h3><p style="color:var(--ink2);white-space:pre-wrap;margin-top:4px">${esc(a.body)}</p></div>`).join("")}</div></section>` : "") +
-    `<section class="card"><div class="hd"><h2>Team fee</h2><span class="pill blue">${usd(d.share)} each</span></div>
-      <p class="muted small">CYO charges ${usd(s.teamFee)} per team, split across ${d.count} players. Venmo <b style="color:var(--ink)">${esc(s.venmo || "")}</b> or a check to ${esc(s.checkPayee || "")}${s.payDue ? `, due ${esc(fmt(s.payDue))}` : ""}.</p></section>
+    (s.feeReady === "yes" ? `<section class="card"><div class="hd"><h2>Team fee</h2><span class="pill blue">${usd(d.share)} each</span></div>
+      <p class="muted small">CYO charges ${usd(s.teamFee)} per team, split across ${d.count} players. Venmo <b style="color:var(--ink)">${esc(s.venmo || "")}</b> or a check to ${esc(s.checkPayee || "")}${s.payDue ? `, due ${esc(fmt(s.payDue))}` : ""}.</p></section>` : "") + `
     <section class="card"><div class="hd"><h2>Coach ${esc(s.coach || "")}</h2></div>
       <div class="btns">${s.coachPhone ? `<a class="btn" href="sms:${tel(s.coachPhone)}">${svg("text")}Text</a><a class="btn soft" href="tel:${tel(s.coachPhone)}">${svg("phone")}Call</a>` : ""}
       <a class="btn ghost" style="grid-column:1/-1" href="mailto:${esc(s.coachEmail || "")}">${svg("mail")}${esc(s.coachEmail || "")}</a></div>
@@ -446,7 +446,7 @@ player(d) {
     const nine = v.shortLength === "9";
     return `<section class="card">
       <div class="row" style="margin-bottom:16px"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "?"}</div><div class="grow"><h2 style="font-size:20px">${esc(p.name)}</h2>
-        <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${p.jersey ? `<span class="pill blue">#${esc(p.jersey)} is his</span>` : '<span class="pill amber">No number yet</span>'}${(d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
+        <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${p.jersey ? `<span class="pill blue">#${esc(p.jersey)} is his</span>` : '<span class="pill amber">No number yet</span>'}${d.settings.feeReady !== "yes" ? "" : (d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
 
       <div class="field"><div class="lab">Jersey number <span>${num ? "#" + esc(num) + (num === p.jersey ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
         <p class="muted small" style="margin-top:-4px">Pick one number and tap Save. Once saved it's his. Grey numbers already belong to a teammate.</p>
@@ -543,9 +543,11 @@ news(d) {
 },
 settings(d) {
   const s = d.adminSettings, f = [["teamPassword", "Team password"], ["coach", "Coach name"], ["coachEmail", "Coach email"], ["coachPhone", "Coach cell (for texts)"], ["assistant", "Assistant coach"],
-    ["teamFee", "Team fee ($)"], ["roundTo", "Round each share up to ($)"], ["payDue", "Payment due", "date"], ["venmo", "Venmo"], ["checkPayee", "Checks payable to"],
+    ["feeReady", "Show the team fee to families", [["", "Not yet"], ["yes", "Yes, show it"]]], ["teamFee", "Team fee ($)"], ["roundTo", "Round each share up to ($)"], ["payDue", "Payment due", "date"], ["venmo", "Venmo"], ["checkPayee", "Checks payable to"],
     ["uniformLink", "Uniform store link"], ["uniformDue", "Uniform order deadline", "date"], ["cyoLink", "CYO league page"], ["admins", "Coach logins (emails, comma separated)"]];
-  return `<section class="card"><form id="setForm" novalidate>${f.map(x => `<div class="field"><label class="lab" for="st_${x[0]}">${x[1]}</label><input id="st_${x[0]}" name="${x[0]}" ${x[2] ? `type="${x[2]}"` : ""} value="${esc(s[x[0]])}"></div>`).join("")}
+  return `<section class="card"><form id="setForm" novalidate>${f.map(x => `<div class="field"><label class="lab" for="st_${x[0]}">${x[1]}</label>${Array.isArray(x[2])
+      ? `<select id="st_${x[0]}" name="${x[0]}">${x[2].map(o => `<option value="${o[0]}"${(s[x[0]] || "") === o[0] ? " selected" : ""}>${o[1]}</option>`).join("")}</select>`
+      : `<input id="st_${x[0]}" name="${x[0]}" ${x[2] ? `type="${x[2]}"` : ""} value="${esc(s[x[0]])}">`}</div>`).join("")}
     <button class="btn block" type="submit" style="margin-top:20px">Save settings</button>
     <p class="muted small" style="margin-top:10px">Changing the password doesn't sign anyone out. New sign-ins need the new one.</p></form></section>`;
 }
