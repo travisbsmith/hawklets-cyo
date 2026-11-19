@@ -10,7 +10,7 @@
 <title>Hawklets CYO Basketball</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Graduate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;
@@ -22,7 +22,6 @@
   --lift:0 6px 18px rgba(13,26,53,.14);
   --font:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --cond:"Barlow Condensed","Barlow",system-ui,sans-serif;
-  --varsity:"Graduate","Barlow Condensed",serif;
   --nav-h:68px;--safe-b:env(safe-area-inset-bottom,0px)
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -39,7 +38,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* shell */
 .page{max-width:720px;margin:0 auto;padding:0 16px calc(var(--nav-h) + var(--safe-b) + 28px)}
 .head{display:flex;align-items:center;gap:12px;margin:0 -16px 18px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;background:var(--wool);color:#fff;border-bottom:2px solid var(--gold)}
-.mark{position:relative;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:400 13px/1 var(--varsity);flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold)}
+.mark{position:relative;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 17px/1 var(--cond);letter-spacing:.03em;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold)}
 .mark::after,.jn::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.45);pointer-events:none}
 .head .t{flex:1;min-width:0}
 .head h1{font:700 26px/1.05 var(--cond);letter-spacing:.005em;text-transform:uppercase}
@@ -61,13 +60,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* next game: navy wool field with a gold trim rule */
 .hero{position:relative;background:var(--wool);color:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--lift);border-top:3px solid var(--gold)}
-.hero .label{color:var(--gold)}
 .hero .day{font:700 38px/1 var(--cond);text-transform:uppercase;letter-spacing:.005em;margin:8px 0 6px}
 .hero .meta{color:#c4cde0;font-size:15px}
 .hero .bar{height:8px;border-radius:2px;background:rgba(255,255,255,.12);margin:18px 0 8px;overflow:hidden}
-.hero .bar i{display:block;height:100%;background:var(--gold);transition:width .3s cubic-bezier(.2,.8,.2,1)}
+.hero .bar i{display:block;height:100%;background:#fff;transition:width .3s cubic-bezier(.2,.8,.2,1)}
 .hero .who{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px dashed rgba(255,255,255,.22)}
-.countdown{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(198,162,74,.6);color:var(--gold);border-radius:6px;padding:3px 9px;font:600 13px/1.4 var(--font);letter-spacing:.02em}
+.countdown{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.3);color:#dfe5f1;border-radius:6px;white-space:nowrap;margin-top:6px;padding:3px 9px;font:600 13px/1.4 var(--font);letter-spacing:.02em}
 
 /* tiles */
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -86,7 +84,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .hero .seg{background:rgba(255,255,255,.1)}
 .hero .seg button{color:#dfe5f1}
 .hero .seg button:hover:not(.on){background:rgba(255,255,255,.08)}
-.hero .seg button.on{background:#fff!important;color:var(--wool)!important}
+.hero .seg button.on.maybe{background:#c98a12}
 
 /* lists */
 .list>*+*{border-top:1px solid var(--line)}
@@ -104,13 +102,19 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* pills */
 .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:6px;background:#e9edf3;color:var(--ink2);white-space:nowrap}
-.pill.green{background:var(--green-soft);color:var(--green)}.pill.amber{background:var(--amber-soft);color:var(--amber)}.pill.red{background:var(--red-soft);color:var(--red)}.pill.blue{background:var(--gold-soft);color:var(--gold-ink)}
+.pill.green{background:var(--green-soft);color:var(--green)}.pill.amber{background:var(--amber-soft);color:var(--amber)}.pill.red{background:var(--red-soft);color:var(--red)}.pill.blue{background:var(--brand-soft);color:var(--navy)}
 .pill.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
 
 /* signature: the varsity numeral patch */
-.jn{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:400 18px/1 var(--varsity);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold),0 2px 5px rgba(13,26,53,.25)}
-.jn.none{background:#e9edf3;color:var(--muted);font:600 16px/1 var(--font);box-shadow:0 0 0 1.5px var(--line2)}
-.jn.none::after{border-color:var(--line2)}
+.jn{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 25px/1 var(--cond);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold),0 2px 5px rgba(13,26,53,.25)}
+.jn.none{background:transparent;color:var(--muted);box-shadow:none}
+.jn.none::after{inset:0;border:1.5px dashed var(--muted)}
+.jn.hd{width:42px;height:42px;font-size:23px}
+.jn.sm{width:34px;height:34px;font-size:18px}
+.jn.xs{width:26px;height:26px;font-size:14px;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px var(--gold)}
+.jn.xs::after{inset:2px;border-width:1px}
+.jn.xs.none{box-shadow:none}.jn.xs.none::after{inset:0}
+.hero .jn.none::after{border-color:rgba(255,255,255,.35)}
 
 /* forms */
 .field{display:flex;flex-direction:column;gap:8px}
@@ -119,7 +123,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .field>.lab span{font-weight:500;color:var(--muted)}
 input,select,textarea{font:400 16px var(--font);color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:var(--r-sm);padding:12px 14px;width:100%;min-height:48px;caret-color:var(--navy2);transition:border-color .15s,box-shadow .15s}
 input::placeholder,textarea::placeholder{color:#6b7590}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--navy2);box-shadow:0 0 0 3px rgba(198,162,74,.35)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--navy2);box-shadow:0 0 0 3px rgba(31,58,110,.18)}
 textarea{min-height:96px;resize:vertical}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--line2);background:#fff;border-radius:var(--r-sm);padding:10px 14px;font-weight:600;font-size:14px;min-height:44px;color:var(--ink2);transition:background .12s,border-color .12s,color .12s}
@@ -127,7 +131,7 @@ textarea{min-height:96px;resize:vertical}
 .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
 .chip:disabled{opacity:.35;cursor:not-allowed}
 .nums{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.num{border:1px solid var(--line2);background:#fff;border-radius:50%;aspect-ratio:1;max-width:56px;width:100%;justify-self:center;font:400 15px/1 var(--varsity);color:var(--navy);transition:background .12s,box-shadow .12s}
+.num{border:1px solid var(--line2);background:#fff;border-radius:50%;aspect-ratio:1;max-width:56px;width:100%;justify-self:center;font:700 21px/1 var(--cond);color:var(--navy);transition:background .12s,box-shadow .12s}
 .num:hover:not(:disabled):not(.first){border-color:var(--navy2);background:var(--brand-soft)}
 .num.first{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold)}
 .num.taken,.num:disabled{color:#a9b0bf;background:#eef0f4;border-color:transparent;text-decoration:line-through;cursor:not-allowed}
@@ -175,7 +179,7 @@ textarea{min-height:96px;resize:vertical}
 .composer .btn{min-height:44px}
 
 /* navigation: wool bar with gold active trim */
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--wool);border-top:2px solid var(--gold);padding:4px 8px calc(4px + var(--safe-b))}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--wool);border-top:1px solid rgba(255,255,255,.1);padding:4px 8px calc(4px + var(--safe-b))}
 .nav .in{max-width:620px;margin:0 auto;display:flex;gap:2px}
 .nav button{flex:1;border:0;background:none;border-radius:10px;padding:6px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;letter-spacing:.02em;color:#97a3bd;min-height:54px;transition:color .15s}
 .nav button:hover{color:#fff}
@@ -183,14 +187,14 @@ textarea{min-height:96px;resize:vertical}
 .nav button.on{color:#fff}
 .nav button.on svg{color:var(--gold);stroke-width:2.3}
 .nav .badge{position:relative}
-.nav .badge::after{content:"";position:absolute;top:1px;right:-4px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--wool)}
+.nav .badge::after{content:"";position:absolute;top:1px;right:-4px;width:9px;height:9px;border-radius:50%;background:#e5484d;border:2px solid var(--wool)}
 
 /* save bar */
 .savebar{position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-b) + 10px);z-index:9;padding:0 16px;animation:up .22s cubic-bezier(.2,.8,.2,1)}
-.savebar .in{max-width:620px;margin:0 auto;background:var(--wool);color:#fff;border-radius:var(--r);border:1px solid var(--gold);padding:10px 10px 10px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 30px rgba(13,26,53,.35)}
+.savebar .in{max-width:620px;margin:0 auto;background:var(--wool);color:#fff;border-radius:var(--r);padding:10px 10px 10px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 30px rgba(13,26,53,.35)}
 .savebar .grow{font-weight:600;font-size:15px}
-.savebar .btn{min-height:44px;background:var(--gold);color:var(--wool)}
-.savebar .btn:hover{background:#d6b25a}
+.savebar .btn{min-height:44px;background:#fff;color:var(--wool)}
+.savebar .btn:hover{background:#e6ebf4}
 .savebar .btn.ghost{background:rgba(255,255,255,.1);color:#fff}
 @keyframes up{from{transform:translateY(16px);opacity:0}}
 
@@ -203,7 +207,7 @@ textarea{min-height:96px;resize:vertical}
 
 /* sheet */
 .scrim{position:fixed;inset:0;z-index:40;background:rgba(13,26,53,.5);display:flex;align-items:flex-end;justify-content:center;animation:fade .15s}
-.sheet{background:var(--surface);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;border-top:3px solid var(--gold);padding:10px 20px calc(20px + var(--safe-b));animation:up .22s cubic-bezier(.2,.8,.2,1)}
+.sheet{background:var(--surface);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:10px 20px calc(20px + var(--safe-b));animation:up .22s cubic-bezier(.2,.8,.2,1)}
 .sheet .grab{width:40px;height:5px;border-radius:99px;background:var(--line2);margin:0 auto 14px}
 .sheet h2{font:700 22px/1.2 var(--cond);text-transform:uppercase;color:var(--navy);margin-bottom:16px}
 @keyframes fade{from{opacity:0}}
@@ -232,8 +236,8 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
 
 /* login: full wool field, patch mark */
 .login{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 20px;background:var(--wool)}
-.login .card{max-width:420px;width:100%;margin:0 auto;padding:30px 24px 26px;border-top:3px solid var(--gold);box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.login .mark{width:58px;height:58px;font-size:17px;margin-bottom:20px}
+.login .card{max-width:420px;width:100%;margin:0 auto;padding:30px 24px 26px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.login .mark{width:58px;height:58px;font-size:23px;margin-bottom:20px}
 .login h1{font:700 32px/1.05 var(--cond);text-transform:uppercase;color:var(--navy)}
 .login p{color:var(--muted);margin:6px 0 22px}
 .err{color:var(--red);font-weight:600;font-size:14px}
@@ -265,14 +269,15 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
 .tbl tbody tr:hover td{background:var(--brand-soft)}
 .tbl th button{border:0;background:none;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;padding:0;cursor:pointer}
 .tbl th button:hover,.tbl th button.on{color:var(--navy)}
-.tbl .num-c{font:400 13px/1 var(--varsity);color:var(--navy);text-align:center}
-.tbl tr.mine td{background:var(--gold-soft)!important}
+.tbl .num-c{text-align:center;padding-top:4px;padding-bottom:4px}
+.tbl td.trunc{max-width:190px;overflow:hidden;text-overflow:ellipsis}
+.tbl tr.mine td{background:var(--brand-soft)!important}
 .grid-av th,.grid-av td{padding:7px 4px;text-align:center}
 .grid-av td:nth-child(-n+4),.grid-av th:nth-child(-n+4){text-align:left;padding-left:8px}
 .sticky1{position:sticky!important;left:0;background:var(--surface)!important;z-index:1}
-.tbl tbody tr:nth-child(even) td.sticky1{background:#f8f9fb!important}.tbl tbody tr:hover td.sticky1{background:var(--brand-soft)!important}.tbl tr.mine td.sticky1{background:var(--gold-soft)!important}
+.tbl tbody tr:nth-child(even) td.sticky1{background:#f8f9fb!important}.tbl tbody tr:hover td.sticky1{background:var(--brand-soft)!important}.tbl tr.mine td.sticky1{background:var(--brand-soft)!important}
 .dot-ok{color:var(--green);display:inline-flex;vertical-align:middle}.dot-ok svg{width:16px;height:16px}
-.dot-no{color:var(--red);font-weight:700}.dot-q{color:#b4bbc8}
+.dot-no{color:var(--red);font-weight:700}.dot-q{color:var(--muted)}
 @media (min-width:1100px){
   .nav{top:0;bottom:0;right:auto;width:232px;border-top:0;border-right:2px solid var(--gold);padding:22px 14px}
   .nav::before{content:"Hawklets";display:block;font:700 26px/1 var(--cond);text-transform:uppercase;color:#fff;padding:4px 14px 2px}
@@ -280,7 +285,7 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
   .nav .in{flex-direction:column;gap:2px;max-width:none;margin-top:34px}
   .nav button{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;padding:11px 14px;font-size:15px;min-height:0;border-radius:8px}
   .nav button:hover{background:rgba(255,255,255,.05)}
-  .nav button.on{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(198,162,74,.45)}
+  .nav button.on{background:rgba(255,255,255,.08)}
   .nav svg{width:20px;height:20px}
   .page{max-width:1480px;margin:0 0 0 232px;padding:0 32px 48px}
   .head{margin:0 -32px 24px;padding:18px 32px;background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
@@ -424,8 +429,10 @@ function render(keepScroll) {
   if (chatLive()) renderChat(false);
   if (keepScroll) window.scrollTo(0, y);
 }
+const patch = (n, cls) => `<span class="jn${cls ? " " + cls : ""}${n ? "" : " none"}"${n ? ` aria-label="Number ${esc(n)}"` : ' aria-label="No number yet"'}>${n ? esc(n) : ""}</span>`;
 function head(title, sub, right) {
-  return `<header class="head"><div class="mark" aria-hidden="true">RH</div><div class="t"><h1>${esc(title)}</h1><p>${esc(sub)}</p></div>${right || ""}</header>`;
+  const p = S.data && S.data.mine && S.data.mine[0], n = p ? held(p) : "";
+  return `<header class="head">${n ? patch(n, "hd") : '<div class="mark" aria-hidden="true">RH</div>'}<div class="t"><h1>${esc(title)}</h1><p>${esc(sub)}</p></div>${right || ""}</header>`;
 }
 
 /* ---------- login ---------- */
@@ -477,12 +484,11 @@ homeMain(d, noHead) {
       `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`)) +
     `<div class="stack">` +
     (g ? `<section class="hero">
-        <div class="row between"><span class="label">${g.kind === "tournament" ? "Tournament game" : "Next game"}</span><span class="countdown">${n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"}</span></div>
-        <p class="day">${esc(fmt(g.date, { weekday: "long", month: "long", day: "numeric" }))}</p>
-        <p class="meta">${esc(where(g))}</p>
+        <div class="row between" style="align-items:flex-start"><p class="day">${esc(fmt(g.date, { weekday: "long", month: "long", day: "numeric" }))}</p><span class="countdown">${n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"}</span></div>
+        <p class="meta">${g.kind === "tournament" ? "Tournament · " : "Next game · "}${esc(where(g))}</p>
         <div class="bar"><i style="width:${Math.round(c.yes / Math.max(1, d.count) * 100)}%"></i></div>
         <p class="meta small">${c.yes} of ${d.count} players in · bring his student ID</p>
-        ${d.mine.map(p => `<div class="who"><b>${esc(first(p.name))}</b>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
+        ${d.mine.map(p => `<div class="who"><span class="row" style="gap:10px">${patch(held(p), "sm")}<b>${esc(first(p.name))}</b></span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
       </section>` : "") +
     `<div class="tiles">
       ${s.coachPhone ? `<a class="tile" href="sms:${tel(s.coachPhone)}"><i>${svg("text")}</i>Text Coach</a>` : ""}
@@ -494,7 +500,7 @@ homeMain(d, noHead) {
         : `<div class="todo"><span class="tick done">${svg("check", 3)}</span><div><b>You're all set</b><span>Nothing to do right now.</span></div></div>`}
     </section>` +
     (d.announcements.length ? `<section class="card"><div class="hd"><h2>From Coach</h2></div><div class="list">${d.announcements.slice(0, 4).map(a =>
-      `<div class="li" style="display:block"><p class="label" style="margin-bottom:4px">${esc(fmt(String(a.ts).slice(0, 10)))}</p><h3>${esc(a.title)}</h3><p style="color:var(--ink2);white-space:pre-wrap;margin-top:4px">${esc(a.body)}</p></div>`).join("")}</div></section>` : "") +
+      `<div class="li" style="display:block"><h3>${esc(a.title)}</h3><p class="muted small">${esc(fmt(String(a.ts).slice(0, 10)))}</p><p style="color:var(--ink2);white-space:pre-wrap;margin-top:4px">${esc(a.body)}</p></div>`).join("")}</div></section>` : "") +
     (s.feeReady === "yes" ? `<section class="card"><div class="hd"><h2>Team fee</h2><span class="pill blue">${usd(d.share)} each</span></div>
       <p class="muted small">CYO charges ${usd(s.teamFee)} per team, split across ${d.count} players. Venmo <b style="color:var(--ink)">${esc(s.venmo || "")}</b> or a check to ${esc(s.checkPayee || "")}${s.payDue ? `, due ${esc(fmt(s.payDue))}` : ""}.</p></section>` : "") + `
     <section class="card"><div class="hd"><h2>Coach ${esc(s.coach || "")}</h2></div>
@@ -510,7 +516,7 @@ schedule(d) {
     `<section class="card"><div class="list">${d.games.map(g => {
       const c = counts(d, g), past = g.date < t;
       return `<div class="game"><div class="row">${dateTile(g.date, past)}<div class="grow"><h3 style="font-size:16px;font-weight:600">${esc(fmt(g.date, { weekday: "long" }))}${g.kind === "tournament" ? ' <span class="pill blue">Tournament</span>' : ""}</h3><p class="muted small">${esc(where(g))}</p>${g.note ? `<p class="small" style="margin-top:2px">${esc(g.note)}</p>` : ""}</div></div>
-        ${past ? "" : d.mine.map(p => `<div class="row between"><span class="small" style="font-weight:600">${esc(first(p.name))}</span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
+        ${past ? "" : d.mine.map(p => `<div class="row between"><span class="row small" style="gap:8px;font-weight:600">${patch(held(p), "xs")}${esc(first(p.name))}</span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
         <div class="counts"><span class="pill green">${c.yes} in</span><span class="pill amber">${c.maybe} maybe</span><span class="pill red">${c.no} out</span></div></div>`;
     }).join("")}</div></section>`;
 },
@@ -572,7 +578,7 @@ team(d) {
     </div>
     <section class="card"><div class="hd"><h2>Roster and availability</h2><span class="muted small">I = in · M = maybe · O = out</span></div>
     <div class="scroll"><table class="tbl grid-av"><thead><tr><th class="sticky1">#</th><th>Player</th><th>CYO</th><th>Uniform</th>${gs.map(g => `<th title="${esc(fmt(g.date))}">${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}${g.kind === "tournament" ? "*" : ""}</th>`).join("")}</tr></thead><tbody>
-    ${ps.map(p => `<tr class="${p.mine ? "mine" : ""}"><td class="sticky1 num-c">${esc(p.jersey || "–")}</td><td><b>${esc(p.name)}</b>${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</td><td>${p.registered ? `<span class="dot-ok" aria-label="Yes">${svg("check", 3)}</span>` : '<span class="dot-no">Not yet</span>'}</td><td>${uniTxt(p.uniform)}</td>${gs.map(g => `<td>${cell((p.avail || {})[g.date])}</td>`).join("")}</tr>`).join("")}
+    ${ps.map(p => `<tr class="${p.mine ? "mine" : ""}"><td class="sticky1 num-c">${patch(p.jersey, "xs")}</td><td><b>${esc(p.name)}</b>${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</td><td>${p.registered ? `<span class="dot-ok" aria-label="Yes">${svg("check", 3)}</span>` : '<span class="dot-no">Not yet</span>'}</td><td>${uniTxt(p.uniform)}</td>${gs.map(g => `<td>${cell((p.avail || {})[g.date])}</td>`).join("")}</tr>`).join("")}
     <tr><td class="sticky1"></td><td><b>In</b></td><td></td><td></td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr>
     </tbody></table></div><p class="muted small" style="margin-top:10px">* Tournament. CYO needs 5 players by the end of the first quarter. ${info} of ${d.count} families have saved player info.</p></section></div>`;
 },
@@ -607,7 +613,7 @@ function dashboard(d) {
     ${games.length ? games.map(g => { const c = counts(d, g); return `<div class="mini-game">${dateTile(g.date)}<div style="min-width:0"><b style="font-size:14px">${esc(fmt(g.date, { weekday: "short" }))}${g.kind === "tournament" ? ' <span class="pill blue">Tourney</span>' : ""}</b><div class="muted" style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(where(g))}</div><div class="cts"><span class="dot-ok">${c.yes} in</span> · ${c.maybe} maybe · <span class="dot-no">${c.no} out</span></div></div><div style="display:flex;flex-direction:column;gap:4px">${d.mine.map(p => seg(p.id, g.date, (p.avail || {})[g.date] || "")).join("")}</div></div>`; }).join("") : '<p class="empty">No upcoming games.</p>'}</section>`;
   const chat = `<section class="card chatcard"><div class="hd"><h2>Team chat</h2><span class="muted small">${d.count} players</span></div>
     <div class="chatbox" id="chatList"></div>
-    <form id="chatForm"><label for="chatText" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" rows="1" placeholder="Message the team · Enter to send" maxlength="1000"></textarea><button class="btn" type="submit">Send</button></form></section>`;
+    <form id="chatForm"><label for="chatText" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" rows="1" placeholder="Message the team" maxlength="1000"></textarea><button class="btn" type="submit">Send</button></form></section>`;
   return head("Hi, " + first(String(d.me.name).replace(/^Coach /, "")), "Hawklets · Rockhurst freshmen CYO",
       `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`) +
     `<div class="dash"><div class="col">${VIEW.homeMain(d, true)}</div><div class="col">${mine}${sched}</div><div class="col">${chat}</div></div>`;
@@ -624,10 +630,8 @@ overview(d) {
   const cols = [
     ["jersey", "#", p => held(p) === "" ? 999 : +held(p)],
     ["name", "Player", p => p.name],
-    ["status", "Status", p => p.status],
     ["registered", "CYO", p => p.registered ? 1 : 0],
     ["parent1", "Parent", p => [p.parent1, p.parent2].filter(Boolean).join(" & ")],
-    ["email1", "Email", p => [p.email1, p.email2].filter(Boolean).join(", ")],
     ["phone", "Cell", p => phone(p.phone)],
     ["topSize", "Jersey", p => SIZE[p.topSize] || ""],
     ["shortSize", "Shorts", p => p.shortSize ? (p.shortLength ? p.shortLength + '" ' : "") + SIZE[p.shortSize] : ""],
@@ -642,15 +646,15 @@ overview(d) {
   const rows = ps.slice().sort((a, b) => { const x = col[2](a), y = col[2](b); return (x > y ? 1 : x < y ? -1 : a.name.localeCompare(b.name)) * S.sort.dir; });
   const cellOf = (c, p) => {
     const v = c[2](p);
-    if (c[0] === "jersey") return `<td class="num-c">${esc(held(p) || "–")}</td>`;
-    if (c[0] === "name") return `<td><b>${esc(p.name)}</b></td>`;
+    if (c[0] === "jersey") return `<td class="num-c">${patch(held(p), "xs")}</td>`;
+    if (c[0] === "name") return `<td><b>${esc(p.name)}</b>${p.status && p.status !== "committed" ? ` <span class="pill">${esc(p.status)}</span>` : ""}</td>`;
     if (c[0] === "registered") return `<td>${p.registered ? `<span class="dot-ok" aria-label="Yes">${svg("check", 3)}</span>` : '<span class="dot-no">No</span>'}</td>`;
-    if (c[0] === "status") return `<td><span class="pill ${p.status === "committed" ? "green" : ""}">${esc(p.status)}</span></td>`;
     if (c[0] === "uniform") return `<td>${v === "To order" ? '<span style="color:var(--amber);font-weight:700">To order</span>' : v === "–" ? '<span class="dot-q">–</span>' : '<span class="dot-ok">' + v + "</span>"}</td>`;
     if (c[0] === "avail") return `<td>${v}/${gs.length}</td>`;
     if (c[0] === "next") return `<td>${v ? `<span class="c ${v}">${AV[v][0]}</span>` : '<span class="dot-q">·</span>'}</td>`;
     if (c[0] === "paid") return `<td>${d.share && v >= d.share ? '<span class="dot-ok">' + usd(v) + "</span>" : v ? usd(v) : '<span class="dot-q">$0</span>'}</td>`;
     if (c[0] === "formAt") return `<td>${v ? esc(fmt(v, { month: "short", day: "numeric" })) : '<span class="dot-q">–</span>'}</td>`;
+    if (c[0] === "parent1") return `<td class="trunc" title="${esc(v)}">${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
     return `<td>${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
   };
   const stat = (b, s) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`;
@@ -748,7 +752,7 @@ function renderChat(keep) {
   el.innerHTML = S.data.messages.length ? S.data.messages.map(m => {
     const mine = String(m.email).toLowerCase() === me;
     return `<div class="msg${mine ? " me" : ""}"><div class="bub">${esc(m.text)}</div><div class="meta">${mine ? "" : esc(m.name) + " · "}${esc(new Date(m.ts).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }))}${admin ? ` · <a href="#" data-act="delmsg" data-id="${esc(m.id)}">Delete</a>` : ""}</div></div>`;
-  }).join("") : `<section class="card"><p class="empty">No messages yet. Say hi to the team.</p></section>`;
+  }).join("") : (box ? '<p class="empty">No messages yet. Say hi to the team.</p>' : `<section class="card"><p class="empty">No messages yet. Say hi to the team.</p></section>`);
   if (!keep || nearBottom) { if (box) el.scrollTop = el.scrollHeight; else window.scrollTo(0, document.body.scrollHeight); }
 }
 
