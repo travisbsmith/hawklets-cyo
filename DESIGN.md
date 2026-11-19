@@ -22,23 +22,23 @@ colors:
   state-out-soft: "#fbe9e7"
 typography:
   display:
-    fontFamily: "Barlow Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "38px"
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "32px"
     fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "0.005em"
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Barlow Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "26px"
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "24px"
     fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "0.005em"
+    lineHeight: 1.15
+    letterSpacing: "-0.015em"
   title:
-    fontFamily: "Barlow Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "19px"
+    fontFamily: "Barlow, system-ui, sans-serif"
+    fontSize: "18px"
     fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "0.01em"
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
   numeral:
     fontFamily: "Barlow Condensed, Barlow, system-ui, sans-serif"
     fontSize: "28px"
@@ -171,7 +171,7 @@ Color carries meaning sparingly. Green, amber and red appear only where they say
 - Navy wool fields for identity and the "what's next" moment; white leather cards for everything you read and edit.
 - One gold trim line per field: rail edge, phone header rule, hero top rule, active tab underline, patch ring.
 - The stitched numeral patch wherever a player is named.
-- One superfamily: Barlow for UI text, Barlow Condensed 700 uppercase for titles and numerals.
+- One superfamily: Barlow for UI text, Barlow 700 sentence case for titles; Barlow Condensed 700 for numerals and big counts only.
 - State colors only where they mean state; tabular numerals everywhere.
 
 ## Colors
@@ -208,12 +208,12 @@ A two-material palette (navy wool and white leather) on a cool ground, trimmed i
 **Display Font:** Barlow Condensed 700 (with Barlow, system-ui)
 **Body Font:** Barlow 400-700 (with system-ui, -apple-system, Segoe UI, Roboto)
 
-**Character:** One superfamily in two cuts. The condensed cut is the jacket's chest lettering: tall, uppercase, compact. The regular cut is the coach talking to parents: plain, even and readable on a phone.
+**Character:** One superfamily in two cuts. The condensed cut is the jacket's numerals: tall, compact, used only for numbers. The regular cut is the coach talking to parents: plain, even and readable on a phone.
 
 ### Hierarchy
-- **Display** (Barlow Condensed 700, 38px, 1.0, uppercase; 33px under 420px): The next game's date in the hero. One per screen.
-- **Headline** (Barlow Condensed 700, 26px, 1.05, uppercase; 32px on login, 24px under 420px): Page header titles and the desktop rail wordmark.
-- **Title** (Barlow Condensed 700, 19px, 1.2, uppercase, navy; 22px in sheets): Card and sheet headings.
+- **Display** (Barlow 700, 32px, 1.1, -0.02em, sentence case; 28px under 420px): The next game's date in the hero. One per screen.
+- **Headline** (Barlow 700, 24px, 1.15, -0.015em, sentence case; 28px on login, 22px under 420px): Page header titles and the desktop rail wordmark.
+- **Title** (Barlow 700, 18px, 1.25, -0.01em, sentence case, navy; 21px in sheets): Card and sheet headings.
 - **Numeral** (Barlow Condensed 700, 28px stat counts; 25px in the patch; 24px in date blocks; 21px in the number picker): Jersey numbers and big counts.
 - **Body** (Barlow 400, 16px, 1.5, tabular figures): All reading text and inputs (16px keeps iOS from zooming).
 - **Body small** (Barlow 400-600, 14px): Meta lines, list secondary text, tables.
@@ -221,7 +221,7 @@ A two-material palette (navy wool and white leather) on a cool ground, trimmed i
 - **Label** (Barlow 700, 11-12px, 0.07-0.08em, uppercase, muted): Table column headers and the month line in date blocks only.
 
 ### Named Rules
-**The Chest Lettering Rule.** Condensed uppercase is reserved for names of things (pages, cards, sheets, the team) and for numerals. Sentences, buttons and labels on controls stay in regular Barlow, sentence case.
+**The Chest Lettering Rule.** The condensed cut is reserved for numerals: jersey patches, the number picker, stat counts and date numbers. Titles and headlines are Barlow 700 in sentence case; all-caps headlines are prohibited.
 
 **The Tabular Rule.** Body text runs `font-variant-numeric: tabular-nums` so counts, dates and fees align in lists and grids.
 
@@ -302,7 +302,8 @@ A navy felt disc with a white condensed numeral, white piping, a gold outer ring
 - **Do** put a numeral patch beside every player name, sized to context (46 / 42 / 34 / 26px).
 - **Do** use wool for whole regions: rail, phone header band, hero, save bar, toast, login.
 - **Do** keep gold to one thin trim per surface (rail edge, header rule, hero top rule, active underline, patch ring, focus outline).
-- **Do** set page, card and sheet titles in Barlow Condensed 700 uppercase, and everything else in Barlow sentence case.
+- **Do** set every title in Barlow 700 sentence case. Barlow Condensed is for numerals and counts only.
+- **Don't** set headlines in all caps.
 - **Do** keep inputs at 16px text and 48px height, primary buttons at 50px, chips at 44px.
 - **Do** tint every shadow with wool.
 

@@ -41,14 +41,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .mark{position:relative;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 17px/1 var(--cond);letter-spacing:.03em;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold)}
 .mark::after,.jn::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.45);pointer-events:none}
 .head .t{flex:1;min-width:0}
-.head h1{font:700 26px/1.05 var(--cond);letter-spacing:.005em;text-transform:uppercase}
+.head h1{font:700 24px/1.15 var(--font);letter-spacing:-.015em}
 .head p{color:#b8c3da;font-size:14px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .iconbtn{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:transparent;display:grid;place-items:center;color:#fff}
 .iconbtn:hover{background:rgba(255,255,255,.08)}
 .iconbtn svg{width:20px;height:20px}
 .stack{display:flex;flex-direction:column;gap:14px}
 .card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px}
-.card h2{font:700 19px/1.2 var(--cond);letter-spacing:.01em;text-transform:uppercase;color:var(--navy)}
+.card h2{font:700 18px/1.25 var(--font);letter-spacing:-.01em;color:var(--navy)}
 .card .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
 .label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .muted{color:var(--muted)}
@@ -60,7 +60,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* next game: navy wool field with a gold trim rule */
 .hero{position:relative;background:var(--wool);color:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--lift);border-top:3px solid var(--gold)}
-.hero .day{font:700 38px/1 var(--cond);text-transform:uppercase;letter-spacing:.005em;margin:8px 0 6px}
+.hero .day{font:700 32px/1.1 var(--font);letter-spacing:-.02em;margin:4px 0 6px;text-wrap:balance}
 .hero .meta{color:#c4cde0;font-size:15px}
 .hero .bar{height:8px;border-radius:2px;background:rgba(255,255,255,.12);margin:18px 0 8px;overflow:hidden}
 .hero .bar i{display:block;height:100%;background:#fff;transition:width .3s cubic-bezier(.2,.8,.2,1)}
@@ -209,7 +209,7 @@ textarea{min-height:96px;resize:vertical}
 .scrim{position:fixed;inset:0;z-index:40;background:rgba(13,26,53,.5);display:flex;align-items:flex-end;justify-content:center;animation:fade .15s}
 .sheet{background:var(--surface);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:10px 20px calc(20px + var(--safe-b));animation:up .22s cubic-bezier(.2,.8,.2,1)}
 .sheet .grab{width:40px;height:5px;border-radius:99px;background:var(--line2);margin:0 auto 14px}
-.sheet h2{font:700 22px/1.2 var(--cond);text-transform:uppercase;color:var(--navy);margin-bottom:16px}
+.sheet h2{font:700 21px/1.25 var(--font);letter-spacing:-.015em;color:var(--navy);margin-bottom:16px}
 @keyframes fade{from{opacity:0}}
 @media (min-width:640px){.scrim{align-items:center}.sheet{border-radius:var(--r)}}
 
@@ -238,14 +238,14 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
 .login{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 20px;background:var(--wool)}
 .login .card{max-width:420px;width:100%;margin:0 auto;padding:30px 24px 26px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .login .mark{width:58px;height:58px;font-size:23px;margin-bottom:20px}
-.login h1{font:700 32px/1.05 var(--cond);text-transform:uppercase;color:var(--navy)}
+.login h1{font:700 28px/1.15 var(--font);letter-spacing:-.02em;color:var(--navy)}
 .login p{color:var(--muted);margin:6px 0 22px}
 .err{color:var(--red);font-weight:600;font-size:14px}
 .empty{text-align:center;color:var(--muted);padding:24px 0}
 .skel{height:120px;border-radius:var(--r);background:linear-gradient(90deg,#e4e8ef 0%,#f1f3f7 50%,#e4e8ef 100%);background-size:200% 100%;animation:sh 1.2s infinite}
 @keyframes sh{to{background-position:-200% 0}}
 
-@media (max-width:420px){.head h1{font-size:24px}.hero .day{font-size:33px}.nums{gap:6px}.seg{min-width:186px}}
+@media (max-width:420px){.head h1{font-size:22px}.hero .day{font-size:28px}.nums{gap:6px}.seg{min-width:186px}}
 
 /* ---------- desktop: wool sidebar + multi-column dashboard ---------- */
 .dash{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(330px,.95fr);gap:18px;align-items:start}
@@ -280,7 +280,7 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
 .dot-no{color:var(--red);font-weight:700}.dot-q{color:var(--muted)}
 @media (min-width:1100px){
   .nav{top:0;bottom:0;right:auto;width:232px;border-top:0;border-right:2px solid var(--gold);padding:22px 14px}
-  .nav::before{content:"Hawklets";display:block;font:700 26px/1 var(--cond);text-transform:uppercase;color:#fff;padding:4px 14px 2px}
+  .nav::before{content:"Hawklets";display:block;font:700 24px/1 var(--font);letter-spacing:-.015em;color:#fff;padding:4px 14px 2px}
   .nav::after{content:"Rockhurst freshman CYO";display:block;position:absolute;top:52px;left:28px;font-size:12px;color:#97a3bd;letter-spacing:.02em}
   .nav .in{flex-direction:column;gap:2px;max-width:none;margin-top:34px}
   .nav button{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;padding:11px 14px;font-size:15px;min-height:0;border-radius:8px}

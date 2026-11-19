@@ -278,15 +278,15 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Next game date in the hero; uppercase."
+        "purpose": "Next game date in the hero; Barlow 700 sentence case."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Page header titles and rail wordmark; uppercase."
+        "purpose": "Page header titles and rail wordmark; Barlow 700 sentence case."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Card and sheet headings; uppercase navy."
+        "purpose": "Card and sheet headings; Barlow 700 sentence case, navy."
       },
       "numeral": {
         "displayName": "Numeral",
@@ -436,7 +436,7 @@
       "refersTo": "card",
       "description": "White leather panel with condensed navy title.",
       "html": "<section class=\"ds-card\"><div class=\"ds-hd\"><h2>Your to-do list</h2><span class=\"ds-pill\">2 left</span></div><p>Send uniform sizes by Friday.</p></section>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;font:400 16px/1.5 var(--font);color:var(--ink);max-width:360px}.ds-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.ds-card h2{margin:0;font:700 19px/1.2 var(--cond);letter-spacing:.01em;text-transform:uppercase;color:var(--navy)}.ds-card p{margin:0}.ds-pill{font:600 12px var(--font);padding:3px 9px;border-radius:6px;background:var(--amber-soft);color:var(--amber)}"
+      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;font:400 16px/1.5 var(--font);color:var(--ink);max-width:360px}.ds-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.ds-card h2{margin:0;font:700 18px/1.25 var(--font);letter-spacing:-.01em;color:var(--navy)}.ds-card p{margin:0}.ds-pill{font:600 12px var(--font);padding:3px 9px;border-radius:6px;background:var(--amber-soft);color:var(--amber)}"
     },
     {
       "name": "Next-game Hero",
@@ -444,7 +444,7 @@
       "refersTo": "hero",
       "description": "Wool field with gold top rule, display date, progress of players in.",
       "html": "<section class=\"ds-hero\"><p class=\"ds-day\">Saturday, December 5</p><p class=\"ds-meta\">Next game · Gym posts a week ahead</p><div class=\"ds-bar\"><i style=\"width:46%\"></i></div><p class=\"ds-meta\">6 of 13 players in</p></section>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-hero{background:var(--wool);color:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--lift);border-top:3px solid var(--gold);font-family:var(--font);max-width:380px}.ds-hero p{margin:0}.ds-day{font:700 38px/1 var(--cond);text-transform:uppercase;letter-spacing:.005em;margin:8px 0 6px!important}.ds-meta{color:#c4cde0;font-size:15px}.ds-bar{height:8px;border-radius:2px;background:rgba(255,255,255,.12);margin:18px 0 8px;overflow:hidden}.ds-bar i{display:block;height:100%;background:#fff;transition:width .3s cubic-bezier(.2,.8,.2,1)}"
+      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-hero{background:var(--wool);color:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--lift);border-top:3px solid var(--gold);font-family:var(--font);max-width:380px}.ds-hero p{margin:0}.ds-day{font:700 32px/1.1 var(--font);letter-spacing:-.02em;margin:8px 0 6px!important}.ds-meta{color:#c4cde0;font-size:15px}.ds-bar{height:8px;border-radius:2px;background:rgba(255,255,255,.12);margin:18px 0 8px;overflow:hidden}.ds-bar i{display:block;height:100%;background:#fff;transition:width .3s cubic-bezier(.2,.8,.2,1)}"
     },
     {
       "name": "Numeral Patch",
@@ -470,7 +470,7 @@
       "Navy wool fields for identity and the \"what's next\" moment; white leather cards for everything you read and edit.",
       "One gold trim line per field: rail edge, phone header rule, hero top rule, active tab underline, patch ring.",
       "The stitched numeral patch wherever a player is named.",
-      "One superfamily: Barlow for UI text, Barlow Condensed 700 uppercase for titles and numerals.",
+      "One superfamily: Barlow for UI text, Barlow 700 sentence case for titles; Barlow Condensed 700 for numerals and big counts only.",
       "State colors only where they mean state; tabular numerals everywhere."
     ],
     "rules": [
@@ -491,7 +491,7 @@
       },
       {
         "name": "The Chest Lettering Rule",
-        "body": "Condensed uppercase is reserved for names of things (pages, cards, sheets, the team) and for numerals. Sentences, buttons and labels on controls stay in regular Barlow, sentence case.",
+        "body": "The condensed cut is reserved for numerals: jersey patches, the number picker, stat counts and date numbers. Titles and headlines are Barlow 700 in sentence case; all-caps headlines are prohibited.",
         "section": "typography"
       },
       {
@@ -509,7 +509,7 @@
       "**Do** put a numeral patch beside every player name, sized to context (46 / 42 / 34 / 26px).",
       "**Do** use wool for whole regions: rail, phone header band, hero, save bar, toast, login.",
       "**Do** keep gold to one thin trim per surface (rail edge, header rule, hero top rule, active underline, patch ring, focus outline).",
-      "**Do** set page, card and sheet titles in Barlow Condensed 700 uppercase, and everything else in Barlow sentence case.",
+      "**Do** set every title in Barlow 700 sentence case. Barlow Condensed is for numerals and counts only.",
       "**Do** keep inputs at 16px text and 48px height, primary buttons at 50px, chips at 44px.",
       "**Do** tint every shadow with wool."
     ],
