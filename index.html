@@ -201,7 +201,7 @@ table{border-collapse:collapse;width:100%;font-size:14px}
 th{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:center;padding:0 6px 10px;white-space:nowrap}
 td{padding:8px 6px;border-top:1px solid var(--line);text-align:center;white-space:nowrap}
 th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);font-weight:600;padding-right:12px}
-.c{display:inline-block;width:30px;height:24px;line-height:24px;border-radius:7px;font-size:12px;font-weight:700}
+.c{display:inline-block;text-align:center;width:30px;height:24px;line-height:24px;border-radius:7px;font-size:12px;font-weight:700}
 .c.yes{background:var(--green-soft);color:var(--green)}.c.maybe{background:var(--amber-soft);color:var(--amber)}.c.no{background:var(--red-soft);color:var(--red)}.c.none{color:#c0c5cf}
 .saved{color:var(--green);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
 .saved svg{width:14px;height:14px}
@@ -220,6 +220,46 @@ select.mini{width:84px;min-height:40px;padding:8px 10px;font-weight:700}
 
 @media (max-width:420px){.head h1{font-size:25px}.hero .day{font-size:30px}.nums{grid-template-columns:repeat(6,1fr);gap:6px}.seg{min-width:186px}}
 @media (min-width:900px){.page{padding-top:28px}}
+
+/* ---------- desktop: left sidebar + multi-column dashboard ---------- */
+.dash{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(330px,.95fr);gap:18px;align-items:start}
+.dash>.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.chatcard{position:sticky;top:24px;display:flex;flex-direction:column;height:calc(100vh - 132px);min-height:420px;padding:0;overflow:hidden}
+.chatcard .hd{padding:18px 20px 0;margin-bottom:10px}
+.chatbox{flex:1;overflow-y:auto;padding:6px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.chatcard form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chatcard textarea{min-height:44px;height:44px;resize:none}
+.mini-game{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.mini-game:first-child{border-top:0;padding-top:0}
+.mini-game .seg{min-width:150px}.mini-game .seg button{padding:6px 0;font-size:13px}
+.mini-game .cts{font-size:12px;white-space:nowrap;margin-top:2px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}
+.stats.auto{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.tbl{font-size:13px}
+.tbl th,.tbl td{text-align:left;padding:8px 10px;white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{position:static}
+.tbl tbody tr:nth-child(even) td{background:#fafbfc}
+.tbl tbody tr:hover td{background:var(--brand-soft)}
+.tbl th button{border:0;background:none;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;padding:0;cursor:pointer}
+.tbl th button.on{color:var(--brand-ink)}
+.tbl .num-c{font-weight:800;text-align:center}
+.tbl tr.mine td{background:var(--brand-soft)!important}
+.grid-av th,.grid-av td{padding:7px 4px;text-align:center}
+.grid-av td:nth-child(-n+4),.grid-av th:nth-child(-n+4){text-align:left;padding-left:8px}
+.sticky1{position:sticky!important;left:0;background:var(--surface)!important;z-index:1}
+.dot-ok{color:var(--green);font-weight:700}.dot-no{color:var(--red);font-weight:700}.dot-q{color:#c0c5cf}
+@media (min-width:1100px){
+  .nav{top:0;bottom:0;right:auto;width:232px;border-top:0;border-right:1px solid var(--line);padding:24px 14px;background:var(--surface)}
+  .nav .in{flex-direction:column;gap:4px;max-width:none}
+  .nav button{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;padding:11px 14px;font-size:15px;min-height:0;border-radius:12px}
+  .nav button.on{background:var(--brand-soft)}
+  .nav svg{width:20px;height:20px}
+  .page{max-width:1480px;margin:0 0 0 232px;padding:28px 32px 48px}
+  .savebar{left:232px}
+  .composer{left:232px}
+  .chatwrap{padding-bottom:96px}
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -281,13 +321,18 @@ const todayISO = () => new Date().toLocaleDateString("en-CA");
 const daysTo = d => Math.round((dt(d) - dt(todayISO())) / 864e5);
 const usd = v => v == null ? "–" : "$" + Number(v).toLocaleString("en-US", { maximumFractionDigits: 2 });
 const tel = p => String(p || "").replace(/\D/g, "");
+const phone = p => { const t = tel(p).replace(/^1(?=\d{10}$)/, ""); return t.length === 10 ? `${t.slice(0, 3)}-${t.slice(3, 6)}-${t.slice(6)}` : (p || ""); };
 const first = n => String(n || "").split(" ")[0];
 const held = p => String(p.jersey || p.jersey1 || "");  /* his number: coach-set or his saved pick */
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
 
 /* ============ state ============ */
-const S = { token: store.get("cyoToken"), data: null, tab: "home", ctab: "uniforms", drafts: {}, lastMsg: "", seenMsg: store.get("seenMsg") || "", sheetOpen: false };
+const S = { token: store.get("cyoToken"), data: null, tab: "home", ctab: "overview", sort: { k: "jersey", dir: 1 }, drafts: {}, lastMsg: "", seenMsg: store.get("seenMsg") || "", sheetOpen: false };
 const D = () => S.data;
+const WIDE = () => window.matchMedia("(min-width:1100px)").matches;
+let wasWide = WIDE();
+window.addEventListener("resize", () => { if (WIDE() !== wasWide) { wasWide = WIDE(); if (S.data) render(); } });
+const chatLive = () => S.tab === "chat" || (S.tab === "home" && WIDE());
 const dirty = () => Object.keys(S.drafts).length > 0;
 
 function toast(msg, isErr) {
@@ -307,7 +352,7 @@ async function load(quiet) {
   try {
     S.data = await api("getData", S.token);
     const m = S.data.messages; S.lastMsg = m.length ? m[m.length - 1].ts : "";
-    if (S.tab === "chat") markSeen();
+    if (chatLive()) markSeen();
     render(quiet);
   } catch (e) { fail(e); }
 }
@@ -315,12 +360,12 @@ function markSeen() { S.seenMsg = S.lastMsg; store.set("seenMsg", S.lastMsg); }
 
 /* Background refresh: never while editing, typing or with a sheet open. Chat polls every 8s. */
 setInterval(() => {
-  if (!S.token || !S.data || document.hidden || S.tab === "chat" || S.tab === "coach") return;
+  if (!S.token || !S.data || document.hidden || chatLive() || S.tab === "coach") return;
   const typing = document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
   if (!dirty() && !S.sheetOpen && !typing) load(true);
 }, 60000);
 setInterval(() => {
-  if (!S.token || !S.data || document.hidden || S.tab !== "chat") return;
+  if (!S.token || !S.data || document.hidden || !chatLive()) return;
   api("getMessages", S.token, S.lastMsg).then(ms => {
     if (!ms.length) return;
     S.data.messages = S.data.messages.concat(ms); S.lastMsg = ms[ms.length - 1].ts; markSeen(); renderChat(true);
@@ -336,13 +381,14 @@ function render(keepScroll) {
   const d = D(), tabs = [["home", "Home"], ["schedule", "Schedule"], ["chat", "Chat"], ["player", "My player"], ["team", "Team"]];
   if (d.me.admin) tabs.push(["coach", "Coach"]);
   if (!tabs.some(t => t[0] === S.tab)) S.tab = "home";
-  const unread = d.messages.length && S.lastMsg > S.seenMsg && S.tab !== "chat";
+  if (chatLive()) markSeen();
+  const unread = d.messages.length && S.lastMsg > S.seenMsg && !chatLive();
   app.innerHTML = `<main class="page">${VIEW[S.tab](d)}</main>
     ${S.tab === "chat" ? composer() : ""}
     ${dirty() ? saveBar() : ""}
     <nav class="nav" aria-label="Sections"><div class="in">${tabs.map(t =>
       `<button data-tab="${t[0]}" class="${S.tab === t[0] ? "on" : ""}" ${S.tab === t[0] ? 'aria-current="page"' : ""}><span class="${t[0] === "chat" && unread ? "badge" : ""}">${svg(t[0])}</span>${t[1]}</button>`).join("")}</div></nav>`;
-  if (S.tab === "chat") renderChat(false);
+  if (chatLive()) renderChat(false);
   if (keepScroll) window.scrollTo(0, y);
 }
 function head(title, sub, right) {
@@ -379,7 +425,8 @@ function uniPill(p) {
 
 /* ---------- views ---------- */
 const VIEW = {
-home(d) {
+home(d) { return WIDE() ? dashboard(d) : this.homeMain(d); },
+homeMain(d, noHead) {
   const s = d.settings, g = upcoming(d)[0], todo = [];
   d.mine.forEach(p => {
     const f = first(p.name);
@@ -393,8 +440,8 @@ home(d) {
     if (bal) todo.push(["", `Pay ${usd(bal)}${s.payDue ? " by " + fmt(s.payDue) : ""}`, `Venmo ${s.venmo || ""} or a check to ${s.checkPayee || ""}. Put ${f}'s name in the note.`]);
   });
   const c = g ? counts(d, g) : null, n = g ? daysTo(g.date) : 0;
-  return head("Hi, " + first(String(d.me.name).replace(/^Coach /, "")), "Hawklets · Rockhurst freshmen CYO",
-      `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`) +
+  return (noHead ? "" : head("Hi, " + first(String(d.me.name).replace(/^Coach /, "")), "Hawklets · Rockhurst freshmen CYO",
+      `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`)) +
     `<div class="stack">` +
     (g ? `<section class="hero">
         <div class="row between"><span class="label">${g.kind === "tournament" ? "Tournament game" : "Next game"}</span><span class="countdown">${n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"}</span></div>
@@ -474,21 +521,123 @@ player(d) {
 },
 
 team(d) {
-  const reg = d.players.filter(p => p.registered).length;
   const ps = d.players.slice().sort((a, b) => (a.jersey === "" || a.jersey == null ? 999 : +a.jersey) - (b.jersey === "" || b.jersey == null ? 999 : +b.jersey) || a.name.localeCompare(b.name));
+  const gs = d.games, t = todayISO(), next = gs.find(g => g.date >= t);
+  const reg = ps.filter(p => p.registered).length, nums = ps.filter(p => p.jersey).length;
+  const uni = ps.filter(p => p.uniform === "has" || p.uniform === "ordered").length, info = ps.filter(p => p.form).length;
+  const answered = ps.reduce((a, p) => a + Object.keys(p.avail || {}).length, 0);
+  const cell = v => `<span class="c ${v || "none"}">${v ? AV[v][0] : "·"}</span>`;
+  const uniTxt = u => ({ has: '<span class="dot-ok">Has one</span>', ordered: '<span class="dot-ok">Ordered</span>', needs: '<span style="color:var(--amber);font-weight:700">To order</span>' }[u] || '<span class="dot-q">–</span>');
   return head("Team", `${d.count} players · ${reg} on the CYO roster`) +
-    `<section class="card"><div class="list">${ps.map(p => `<div class="li"><div class="jn${p.jersey ? "" : " none"}">${p.jersey ? esc(p.jersey) : "–"}</div><div class="grow"><h3>${esc(p.name)}${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</h3><div class="row wrap" style="gap:6px;margin-top:4px">${p.registered ? "" : '<span class="pill red dot">Not on CYO</span>'}${uniPill(p)}</div></div></div>`).join("")}</div></section>`;
+    `<div class="stack"><div class="stats auto">
+      <div class="stat"><b>${d.count}</b><span>Players</span></div>
+      <div class="stat"><b>${reg}/${d.count}</b><span>On CYO roster</span></div>
+      <div class="stat"><b>${nums}/${d.count}</b><span>Numbers claimed</span></div>
+      <div class="stat"><b>${uni}/${d.count}</b><span>Uniforms set</span></div>
+      <div class="stat"><b>${next ? counts(d, next).yes : "–"}</b><span>In for ${next ? esc(fmt(next.date, { month: "short", day: "numeric" })) : "next game"}</span></div>
+      <div class="stat"><b>${Math.round(answered / Math.max(1, d.count * gs.length) * 100)}%</b><span>Availability answered</span></div>
+    </div>
+    <section class="card"><div class="hd"><h2>Roster and availability</h2><span class="muted small">I = in · M = maybe · O = out</span></div>
+    <div class="scroll"><table class="tbl grid-av"><thead><tr><th class="sticky1">#</th><th>Player</th><th>CYO</th><th>Uniform</th>${gs.map(g => `<th title="${esc(fmt(g.date))}">${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}${g.kind === "tournament" ? "*" : ""}</th>`).join("")}</tr></thead><tbody>
+    ${ps.map(p => `<tr class="${p.mine ? "mine" : ""}"><td class="sticky1 num-c">${esc(p.jersey || "–")}</td><td><b>${esc(p.name)}</b>${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</td><td>${p.registered ? '<span class="dot-ok">✓</span>' : '<span class="dot-no">Not yet</span>'}</td><td>${uniTxt(p.uniform)}</td>${gs.map(g => `<td>${cell((p.avail || {})[g.date])}</td>`).join("")}</tr>`).join("")}
+    <tr><td class="sticky1"></td><td><b>In</b></td><td></td><td></td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr>
+    </tbody></table></div><p class="muted small" style="margin-top:10px">* Tournament. CYO needs 5 players by the end of the first quarter. ${info} of ${d.count} families have saved player info.</p></section></div>`;
 },
 
 coach(d) {
-  const sub = [["uniforms", "Numbers & uniforms"], ["roster", "Roster"], ["avail", "Availability"], ["money", "Money"], ["games", "Games"], ["news", "Post update"], ["settings", "Settings"]];
+  const sub = [["overview", "Overview"], ["uniforms", "Numbers & uniforms"], ["roster", "Roster"], ["avail", "Availability"], ["money", "Money"], ["games", "Games"], ["news", "Post update"], ["settings", "Settings"]];
   return head("Coach", "Coaches only") +
     `<div class="stack"><nav class="subnav" aria-label="Coach sections">${sub.map(x => `<button data-act="ctab" data-id="${x[0]}" class="${S.ctab === x[0] ? "on" : ""}">${x[1]}</button>`).join("")}</nav>${COACH[S.ctab](d)}</div>`;
 }
 };
 
+
+/* ---------- desktop dashboard: everything on one screen ---------- */
+function dashboard(d) {
+  const t = todayISO(), games = d.games.filter(g => g.date >= t);
+  const mine = d.mine.map(p => {
+    const v = (k, f) => p[k] ? f(p[k]) : "–";
+    const uni = p.needsUniform === "no" ? "Has one" : p.uniformOrdered ? "Ordered" : p.needsUniform === "yes" ? "To order" : "Not set";
+    const answered = Object.keys(p.avail || {}).length;
+    return `<section class="card"><div class="hd"><h2>${esc(p.name)}</h2><button class="btn sm soft" data-tab="player">Edit</button></div>
+      <div class="row" style="gap:16px;align-items:flex-start"><div class="jn${held(p) ? "" : " none"}" style="width:56px;height:56px;font-size:20px">${held(p) ? esc(held(p)) : "?"}</div>
+      <dl class="kv" style="margin:0;flex:1">
+        <dt>CYO</dt><dd>${p.registered ? '<span class="dot-ok">Registered</span>' : '<span class="dot-no">Not registered</span>'}</dd>
+        <dt>Uniform</dt><dd>${uni}</dd>
+        <dt>Jersey</dt><dd>${v("topSize", x => SIZE[x])}</dd>
+        <dt>Shorts</dt><dd>${p.shortSize ? (p.shortLength ? esc(p.shortLength) + '" ' : "") + SIZE[p.shortSize] : "–"}</dd>
+        <dt>Availability</dt><dd>${answered} of ${d.games.length} answered</dd>
+        <dt>Cell</dt><dd>${esc(phone(p.phone) || "–")}</dd>
+      </dl></div></section>`;
+  }).join("");
+  const sched = `<section class="card"><div class="hd"><h2>Schedule</h2><button class="btn sm ghost" data-tab="schedule">Details</button></div>
+    ${games.length ? games.map(g => { const c = counts(d, g); return `<div class="mini-game">${dateTile(g.date)}<div style="min-width:0"><b style="font-size:14px">${esc(fmt(g.date, { weekday: "short" }))}${g.kind === "tournament" ? ' <span class="pill blue">Tourney</span>' : ""}</b><div class="muted" style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(where(g))}</div><div class="cts"><span class="dot-ok">${c.yes} in</span> · ${c.maybe} maybe · <span class="dot-no">${c.no} out</span></div></div><div style="display:flex;flex-direction:column;gap:4px">${d.mine.map(p => seg(p.id, g.date, (p.avail || {})[g.date] || "")).join("")}</div></div>`; }).join("") : '<p class="empty">No upcoming games.</p>'}</section>`;
+  const chat = `<section class="card chatcard"><div class="hd"><h2>Team chat</h2><span class="muted small">${d.count} players</span></div>
+    <div class="chatbox" id="chatList"></div>
+    <form id="chatForm"><label for="chatText" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" rows="1" placeholder="Message the team · Enter to send" maxlength="1000"></textarea><button class="btn" type="submit">Send</button></form></section>`;
+  return head("Hi, " + first(String(d.me.name).replace(/^Coach /, "")), "Hawklets · Rockhurst freshmen CYO",
+      `<button class="iconbtn" data-act="logout" aria-label="Sign out">${svg("out")}</button>`) +
+    `<div class="dash"><div class="col">${VIEW.homeMain(d, true)}</div><div class="col">${mine}${sched}</div><div class="col">${chat}</div></div>`;
+}
+
 /* ---------- coach views ---------- */
 const COACH = {
+overview(d) {
+  const ps = d.adminPlayers.filter(p => p.status !== "declined"), gs = d.games, t = todayISO(), next = gs.find(g => g.date >= t);
+  const team = ps.filter(p => p.status === "committed"), n = team.length;
+  const paidSum = team.reduce((a, p) => a + Number(p.paid || 0), 0);
+  const uniOf = p => p.needsUniform === "no" ? "Has one" : p.uniformOrdered ? "Ordered" : p.needsUniform === "yes" ? "To order" : "–";
+  const inCount = p => Object.values(p.avail || {}).filter(v => v === "yes").length;
+  const cols = [
+    ["jersey", "#", p => held(p) === "" ? 999 : +held(p)],
+    ["name", "Player", p => p.name],
+    ["status", "Status", p => p.status],
+    ["registered", "CYO", p => p.registered ? 1 : 0],
+    ["parent1", "Parent", p => [p.parent1, p.parent2].filter(Boolean).join(" & ")],
+    ["email1", "Email", p => [p.email1, p.email2].filter(Boolean).join(", ")],
+    ["phone", "Cell", p => phone(p.phone)],
+    ["topSize", "Jersey", p => SIZE[p.topSize] || ""],
+    ["shortSize", "Shorts", p => p.shortSize ? (p.shortLength ? p.shortLength + '" ' : "") + SIZE[p.shortSize] : ""],
+    ["uniform", "Uniform", uniOf],
+    ["avail", "Avail", p => Object.keys(p.avail || {}).length],
+    ["in", "In", inCount],
+    ["next", next ? "Next " + fmt(next.date, { month: "numeric", day: "numeric" }) : "Next", p => next ? ((p.avail || {})[next.date] || "") : ""],
+    ["paid", "Paid", p => Number(p.paid || 0)],
+    ["formAt", "Info saved", p => p.formAt || ""]
+  ];
+  const col = cols.find(c => c[0] === S.sort.k) || cols[0];
+  const rows = ps.slice().sort((a, b) => { const x = col[2](a), y = col[2](b); return (x > y ? 1 : x < y ? -1 : a.name.localeCompare(b.name)) * S.sort.dir; });
+  const cellOf = (c, p) => {
+    const v = c[2](p);
+    if (c[0] === "jersey") return `<td class="num-c">${esc(held(p) || "–")}</td>`;
+    if (c[0] === "name") return `<td><b>${esc(p.name)}</b></td>`;
+    if (c[0] === "registered") return `<td>${p.registered ? '<span class="dot-ok">✓</span>' : '<span class="dot-no">No</span>'}</td>`;
+    if (c[0] === "status") return `<td><span class="pill ${p.status === "committed" ? "green" : ""}">${esc(p.status)}</span></td>`;
+    if (c[0] === "uniform") return `<td>${v === "To order" ? '<span style="color:var(--amber);font-weight:700">To order</span>' : v === "–" ? '<span class="dot-q">–</span>' : '<span class="dot-ok">' + v + "</span>"}</td>`;
+    if (c[0] === "avail") return `<td>${v}/${gs.length}</td>`;
+    if (c[0] === "next") return `<td>${v ? `<span class="c ${v}">${AV[v][0]}</span>` : '<span class="dot-q">·</span>'}</td>`;
+    if (c[0] === "paid") return `<td>${d.share && v >= d.share ? '<span class="dot-ok">' + usd(v) + "</span>" : v ? usd(v) : '<span class="dot-q">$0</span>'}</td>`;
+    if (c[0] === "formAt") return `<td>${v ? esc(fmt(v, { month: "short", day: "numeric" })) : '<span class="dot-q">–</span>'}</td>`;
+    return `<td>${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
+  };
+  const stat = (b, s) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`;
+  return `<div class="stats auto">
+      ${stat(n, "Committed")}
+      ${stat(team.filter(p => p.registered).length + "/" + n, "On CYO roster")}
+      ${stat(team.filter(p => held(p)).length + "/" + n, "Numbers claimed")}
+      ${stat(team.filter(p => p.needsUniform === "no" || p.uniformOrdered).length + "/" + n, "Uniforms done")}
+      ${stat(team.filter(p => p.topSize || p.needsUniform === "no").length + "/" + n, "Sizes sent")}
+      ${stat(team.filter(p => Object.keys(p.avail || {}).length).length + "/" + n, "Answered availability")}
+      ${stat(next ? counts(d, next).yes : "–", next ? "In for " + esc(fmt(next.date, { month: "short", day: "numeric" })) : "Next game")}
+      ${stat(usd(paidSum), "Collected")}
+    </div>
+    <section class="card"><div class="hd"><h2>All players</h2><div class="row" style="gap:8px">
+      <button class="btn sm ghost" data-act="copy" data-v="${esc(team.flatMap(p => [p.email1, p.email2].filter(Boolean)).join(", "))}">${svg("copy")}Parent emails</button>
+      <button class="btn sm" data-act="editp">${svg("plus")}Add</button></div></div>
+    <div class="scroll"><table class="tbl"><thead><tr>${cols.map(c => `<th><button data-act="sort" data-id="${c[0]}" class="${S.sort.k === c[0] ? "on" : ""}">${esc(c[1])}${S.sort.k === c[0] ? (S.sort.dir > 0 ? " ↑" : " ↓") : ""}</button></th>`).join("")}<th></th></tr></thead>
+    <tbody>${rows.map(p => `<tr>${cols.map(c => cellOf(c, p)).join("")}<td><button class="btn sm ghost" data-act="editp" data-id="${esc(p.id)}">Edit</button></td></tr>`).join("")}</tbody></table></div>
+    <p class="muted small" style="margin-top:10px">Click a column to sort. Avail = Saturdays answered; In = Saturdays marked in.</p></section>`;
+},
 uniforms(d) {
   const ps = d.adminPlayers.filter(p => p.status === "committed").sort((a, b) => a.name.localeCompare(b.name));
   const by = {}; ps.forEach(p => { if (p.jersey) (by[p.jersey] = by[p.jersey] || []).push(p.name); });
@@ -560,13 +709,14 @@ function composer() {
 }
 function renderChat(keep) {
   const el = $("chatList"); if (!el) return;
-  const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 120;
+  const box = el.classList.contains("chatbox");
+  const nearBottom = box ? el.scrollTop + el.clientHeight >= el.scrollHeight - 80 : window.innerHeight + window.scrollY >= document.body.scrollHeight - 120;
   const me = S.data.me.email, admin = S.data.me.admin;
   el.innerHTML = S.data.messages.length ? S.data.messages.map(m => {
     const mine = String(m.email).toLowerCase() === me;
     return `<div class="msg${mine ? " me" : ""}"><div class="bub">${esc(m.text)}</div><div class="meta">${mine ? "" : esc(m.name) + " · "}${esc(new Date(m.ts).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }))}${admin ? ` · <a href="#" data-act="delmsg" data-id="${esc(m.id)}">Delete</a>` : ""}</div></div>`;
   }).join("") : `<section class="card"><p class="empty">No messages yet. Say hi to the team.</p></section>`;
-  if (!keep || nearBottom) window.scrollTo(0, document.body.scrollHeight);
+  if (!keep || nearBottom) { if (box) el.scrollTop = el.scrollHeight; else window.scrollTo(0, document.body.scrollHeight); }
 }
 
 /* ---------- save bar (My player) ---------- */
@@ -638,6 +788,7 @@ document.addEventListener("click", async e => {
   const a = t.dataset.act, id = t.dataset.id, pid = t.dataset.pid;
   if (a === "logout") { if (confirm("Sign out of the team app?")) logout(); }
   else if (a === "ctab") { S.ctab = id; render(); window.scrollTo(0, 0); }
+  else if (a === "sort") { S.sort = { k: id, dir: S.sort.k === id ? -S.sort.dir : 1 }; render(true); }
   else if (a === "pick") {
     const p = D().mine.find(x => x.id === pid), n = t.dataset.n;
     if (t.disabled) return;
