@@ -296,6 +296,12 @@ select.mini{width:84px;min-height:36px;padding:6px 8px;font-weight:600}
   .savebar{left:228px}
   .composer{left:228px}
   .chatwrap{padding-bottom:96px}
+  .pcard{display:grid;grid-template-columns:420px minmax(0,1fr);column-gap:48px;align-items:start}
+  .pcard>*{grid-column:2}
+  .pcard>:first-child{grid-column:1/-1}
+  .pcard>.numsf{grid-column:1;grid-row:2/span 30}
+  .pcard>.field+.field:not(.numsf){margin-top:16px}
+  .pcard>.numsf+.field{margin-top:0}
 }
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -451,6 +457,7 @@ function loginView() {
 /* ---------- shared pieces ---------- */
 const where = g => [g.time, g.opponent ? "vs " + g.opponent : "", g.location].filter(Boolean).join(" · ") || "Time and gym post about a week before";
 const stat = (b, s) => { const m = String(b).match(/^(\d+)\/(\d+)$/), left = m ? m[2] - m[1] : 0; return `<div class="stat"><b>${b}</b><span>${s}</span>${left > 0 ? `<em class="gap">${left} left</em>` : ""}</div>`; };
+const cell = v => `<span class="c ${v || "none"}" title="${v ? AV[v] : "No answer"}">${v === "yes" ? svg("check", 3) : v === "no" ? svg("x", 3) : v === "maybe" ? svg("minus", 3) : "·"}</span>`;
 const whereKnown = g => [g.time, g.opponent ? "vs " + g.opponent : "", g.location].filter(Boolean).join(" · ");
 const cnt = (n, w, cls) => n ? `<span class="${cls}">${n} ${w}</span>` : `<span class="dot-q">0 ${w}</span>`;
 const counts = (d, g) => { const r = { yes: 0, maybe: 0, no: 0 }; d.players.forEach(p => { const v = (p.avail || {})[g.date]; if (r[v] != null) r[v]++; }); return r; };
@@ -530,11 +537,11 @@ player(d) {
   return head("My player", "Number, uniform and contact") + `<div class="stack">` + d.mine.map(p => {
     const v = Object.assign({}, p, S.drafts[p.id] || {}), f = first(p.name), num = (S.drafts[p.id] || {}).jersey1 !== undefined ? S.drafts[p.id].jersey1 : held(p);
     const nine = v.shortLength === "9";
-    return `<section class="card">
+    return `<section class="card pcard">
       <div class="row" style="margin-bottom:16px"><div class="jn${held(p) ? "" : " none"}">${held(p) ? esc(held(p)) : "?"}</div><div class="grow"><h2 style="font-size:20px">${esc(p.name)}</h2>
         <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${held(p) ? "" : '<span class="pill amber">No number yet</span>'}${d.settings.feeReady !== "yes" ? "" : (d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
 
-      <div class="field"><div class="lab" style="justify-content:flex-start">Jersey number <span>${num ? "#" + esc(num) + (num === held(p) ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
+      <div class="field numsf"><div class="lab" style="justify-content:flex-start">Jersey number <span>${num ? "#" + esc(num) + (num === held(p) ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
         <p class="muted small" style="margin-top:-4px">Pick one number and tap Save. Once saved it's his. Grey numbers already belong to a teammate.</p>
         <div class="nums">${LEGAL.map(n => {
           const mineN = num === n, isTaken = !mineN && taken.has(n);
@@ -564,7 +571,6 @@ team(d) {
   const reg = ps.filter(p => p.registered).length, nums = ps.filter(p => p.jersey).length;
   const uni = ps.filter(p => p.uniform === "has" || p.uniform === "ordered").length, info = ps.filter(p => p.form).length;
   const answered = ps.reduce((a, p) => a + Object.keys(p.avail || {}).length, 0);
-  const cell = v => `<span class="c ${v || "none"}" title="${v ? AV[v] : "No answer"}">${v === "yes" ? svg("check", 3) : v === "no" ? svg("x", 3) : v === "maybe" ? svg("minus", 3) : "·"}</span>`;
   const uniTxt = u => ({ has: '<span class="dot-ok">Has one</span>', ordered: '<span class="dot-ok">Ordered</span>', needs: '<span style="color:var(--amber);font-weight:700">To order</span>' }[u] || '<span class="dot-q">–</span>');
   return head("Team", `${d.count} players · ${reg} on the CYO roster`) +
     `<div class="stack"><div class="stats auto">
@@ -650,7 +656,7 @@ overview(d) {
     if (c[0] === "registered") return `<td>${p.registered ? `<span class="dot-ok" aria-label="Yes">${svg("check", 3)}</span>` : '<span class="dot-no">No</span>'}</td>`;
     if (c[0] === "uniform") return `<td>${v === "To order" ? '<span style="color:var(--amber);font-weight:700">To order</span>' : v === "–" ? '<span class="dot-q">–</span>' : '<span class="dot-ok">' + v + "</span>"}</td>`;
     if (c[0] === "avail") return `<td>${v}/${gs.length}</td>`;
-    if (c[0] === "next") return `<td>${v ? `<span class="c ${v}">${AV[v][0]}</span>` : '<span class="dot-q">·</span>'}</td>`;
+    if (c[0] === "next") return `<td>${cell(v)}</td>`;
     if (c[0] === "paid") return `<td>${d.share && v >= d.share ? '<span class="dot-ok">' + usd(v) + "</span>" : v ? usd(v) : '<span class="dot-q">$0</span>'}</td>`;
     if (c[0] === "formAt") return `<td>${v ? esc(fmt(v, { month: "short", day: "numeric" })) : '<span class="dot-q">–</span>'}</td>`;
     if (c[0] === "phone") return `<td class="tel">${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
@@ -706,7 +712,7 @@ roster(d) {
 avail(d) {
   const gs = d.games, ps = d.adminPlayers.filter(p => p.status === "committed");
   return `<section class="card"><div class="hd"><h2>Availability</h2></div><div class="scroll"><table><thead><tr><th>Player</th>${gs.map(g => `<th>${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}</th>`).join("")}</tr></thead><tbody>
-    ${ps.map(p => `<tr><td>${esc(p.name)}</td>${gs.map(g => { const v = (p.avail || {})[g.date]; return `<td><span class="c ${v || "none"}">${v ? AV[v][0] : "·"}</span></td>`; }).join("")}</tr>`).join("")}
+    ${ps.map(p => `<tr><td>${esc(p.name)}</td>${gs.map(g => { const v = (p.avail || {})[g.date]; return `<td>${cell(v)}</td>`; }).join("")}</tr>`).join("")}
     <tr><td>In</td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr></tbody></table></div>
     <p class="muted small" style="margin-top:12px">Green = in, amber = maybe, red = out. CYO needs 5 players to start a game.</p></section>`;
 },

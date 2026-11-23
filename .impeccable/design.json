@@ -1,374 +1,394 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T15:51:40+00:00",
+  "generatedAt": "2026-11-23T16:41:12+00:00",
   "title": "Design System: Hawklets",
   "extensions": {
     "colorMeta": {
-      "wool": {
+      "rockhurst-navy": {
         "role": "primary",
-        "displayName": "Varsity Wool",
-        "canonical": "#0d1a35",
+        "displayName": "Rockhurst Navy",
         "tonalRamp": [
-          "#192234",
-          "#273a63",
-          "#2f5198",
-          "#3768cd",
-          "#7090d1",
-          "#a4b6da",
-          "#cfd7e8",
-          "#eff1f6"
+          "#172554",
+          "#1e3a8a",
+          "#1e40af",
+          "#1d4ed8",
+          "#3b82f6",
+          "#93c5fd",
+          "#dbeafe",
+          "#eff6ff"
         ]
       },
-      "navy": {
+      "navy-pressed": {
         "role": "primary",
-        "displayName": "Letterman Navy",
-        "canonical": "#14284f",
+        "displayName": "Navy Pressed",
         "tonalRamp": [
-          "#192233",
-          "#273b63",
-          "#305397",
-          "#386acc",
-          "#7191d0",
-          "#a5b7da",
-          "#cfd7e7",
-          "#eff1f6"
+          "#172554",
+          "#1e3a8a",
+          "#1e40af",
+          "#1d4ed8",
+          "#3b82f6",
+          "#93c5fd",
+          "#dbeafe",
+          "#eff6ff"
         ]
       },
-      "navy-light": {
+      "navy-wash": {
         "role": "primary",
-        "displayName": "Light Navy",
-        "canonical": "#1f3a6e",
+        "displayName": "Navy Wash",
         "tonalRamp": [
-          "#1a2233",
-          "#293c61",
-          "#335494",
-          "#3d6cc7",
-          "#7493cd",
-          "#a6b7d8",
-          "#d0d8e7",
-          "#eff1f6"
+          "#172554",
+          "#1e3a8a",
+          "#1e40af",
+          "#1d4ed8",
+          "#3b82f6",
+          "#93c5fd",
+          "#dbeafe",
+          "#eff6ff"
         ]
       },
-      "navy-mist": {
+      "navy-wash-deep": {
         "role": "primary",
-        "displayName": "Navy Mist",
-        "canonical": "#e6ebf4",
+        "displayName": "Navy Wash Deep",
         "tonalRamp": [
-          "#1e242f",
-          "#313f58",
-          "#425a85",
-          "#5274b2",
-          "#8298c0",
-          "#aebad1",
-          "#d3d9e3",
-          "#f0f2f5"
+          "#172554",
+          "#1e3a8a",
+          "#1e40af",
+          "#1d4ed8",
+          "#3b82f6",
+          "#93c5fd",
+          "#dbeafe",
+          "#eff6ff"
         ]
       },
-      "varsity-gold": {
-        "role": "secondary",
-        "displayName": "Varsity Gold",
-        "canonical": "#c6a24a",
-        "tonalRamp": [
-          "#322b1b",
-          "#5f502b",
-          "#907636",
-          "#c29d42",
-          "#cab277",
-          "#d7c9a8",
-          "#e6e0d1",
-          "#f5f4ef"
-        ]
-      },
-      "cool-ground": {
+      "ground": {
         "role": "neutral",
-        "displayName": "Cool Ground",
-        "canonical": "#edf0f5",
+        "displayName": "Ground",
         "tonalRamp": [
-          "#20252d",
-          "#374153",
-          "#4b5d7c",
-          "#5f79a5",
-          "#8a9bb7",
-          "#b2bccc",
-          "#d6dae1",
-          "#f1f2f4"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
-      "leather-white": {
+      "surface": {
         "role": "neutral",
-        "displayName": "Leather White",
-        "canonical": "#ffffff",
+        "displayName": "Surface",
         "tonalRamp": [
-          "#262626",
-          "#454545",
-          "#636363",
-          "#828282",
-          "#a1a1a1",
-          "#bfbfbf",
-          "#dbdbdb",
-          "#f2f2f2"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "Subtle",
+        "tonalRamp": [
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
+        ]
+      },
+      "hover": {
+        "role": "neutral",
+        "displayName": "Hover",
+        "tonalRamp": [
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
       "ink": {
         "role": "neutral",
         "displayName": "Ink",
-        "canonical": "#0c1730",
         "tonalRamp": [
-          "#192134",
-          "#273963",
-          "#304f97",
-          "#3865cc",
-          "#718ed0",
-          "#a4b5da",
-          "#cfd7e7",
-          "#eff1f6"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
       "ink-soft": {
         "role": "neutral",
         "displayName": "Ink Soft",
-        "canonical": "#2c3852",
         "tonalRamp": [
-          "#20242d",
-          "#363f54",
-          "#495a7d",
-          "#5d74a7",
-          "#8998b9",
-          "#b2bacd",
-          "#d5d9e1",
-          "#f0f2f4"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
       "muted": {
         "role": "neutral",
         "displayName": "Muted",
-        "canonical": "#58637a",
         "tonalRamp": [
-          "#23252a",
-          "#3d424d",
-          "#555f71",
-          "#6e7b96",
-          "#949cae",
-          "#b8bdc6",
-          "#d8dadf",
-          "#f1f2f3"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
       "hairline": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#e3e7ee",
         "tonalRamp": [
-          "#21252c",
-          "#394251",
-          "#4e5e79",
-          "#647aa0",
-          "#8d9bb4",
-          "#b4bcca",
-          "#d6dae0",
-          "#f1f2f4"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
-      "stitch-line": {
+      "hairline-strong": {
         "role": "neutral",
-        "displayName": "Stitch Line",
-        "canonical": "#cdd3de",
+        "displayName": "Hairline Strong",
         "tonalRamp": [
-          "#22252b",
-          "#3b424f",
-          "#525e75",
-          "#697b9b",
-          "#909cb1",
-          "#b6bdc8",
-          "#d7dadf",
-          "#f1f2f3"
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
+        ]
+      },
+      "disabled-ink": {
+        "role": "neutral",
+        "displayName": "Disabled Ink",
+        "tonalRamp": [
+          "#18181b",
+          "#27272a",
+          "#3f3f46",
+          "#52525b",
+          "#71717a",
+          "#a1a1aa",
+          "#d4d4d8",
+          "#f4f4f5"
         ]
       },
       "state-in": {
         "role": "state",
-        "displayName": "In Green",
-        "canonical": "#137344",
+        "displayName": "In",
         "tonalRamp": [
-          "#163627",
-          "#216946",
-          "#26a165",
-          "#2ada84",
-          "#68daa2",
-          "#9fdfc0",
-          "#cdeadc",
-          "#eef6f2"
+          "#052e16",
+          "#14532d",
+          "#15803d",
+          "#16a34a",
+          "#4ade80",
+          "#bbf7d0",
+          "#dcfce7",
+          "#f0fdf4"
         ]
       },
       "state-in-soft": {
         "role": "state",
-        "displayName": "In Green Soft",
-        "canonical": "#e3f3ea",
+        "displayName": "In Wash",
         "tonalRamp": [
-          "#1d2f25",
-          "#315942",
-          "#41865f",
-          "#51b37c",
-          "#81c19d",
-          "#add1bd",
-          "#d3e3da",
-          "#f0f5f2"
+          "#052e16",
+          "#14532d",
+          "#15803d",
+          "#16a34a",
+          "#4ade80",
+          "#bbf7d0",
+          "#dcfce7",
+          "#f0fdf4"
         ]
       },
       "state-maybe": {
         "role": "state",
-        "displayName": "Maybe Amber",
-        "canonical": "#8f5600",
+        "displayName": "Maybe",
         "tonalRamp": [
-          "#3c2b10",
-          "#774f13",
-          "#ba750d",
-          "#fe9b07",
-          "#f0b151",
-          "#ecc893",
-          "#f0dfc7",
-          "#f8f3ec"
+          "#451a03",
+          "#78350f",
+          "#b45309",
+          "#d97706",
+          "#fbbf24",
+          "#fde68a",
+          "#fef3c7",
+          "#fffbeb"
         ]
       },
       "state-maybe-soft": {
         "role": "state",
-        "displayName": "Maybe Amber Soft",
-        "canonical": "#fcf0d9",
+        "displayName": "Maybe Wash",
         "tonalRamp": [
-          "#392c13",
-          "#6f521a",
-          "#ad7b1a",
-          "#eba319",
-          "#e5b65d",
-          "#e5cb99",
-          "#ede1ca",
-          "#f7f4ed"
+          "#451a03",
+          "#78350f",
+          "#b45309",
+          "#d97706",
+          "#fbbf24",
+          "#fde68a",
+          "#fef3c7",
+          "#fffbeb"
         ]
       },
       "state-out": {
         "role": "state",
-        "displayName": "Out Red",
-        "canonical": "#b3261e",
+        "displayName": "Out",
         "tonalRamp": [
-          "#361816",
-          "#682521",
-          "#a12d26",
-          "#da332a",
-          "#d96e68",
-          "#dfa39f",
-          "#eacecd",
-          "#f6efee"
+          "#450a0a",
+          "#7f1d1d",
+          "#b91c1c",
+          "#dc2626",
+          "#f87171",
+          "#fecaca",
+          "#fee2e2",
+          "#fef2f2"
         ]
       },
       "state-out-soft": {
         "role": "state",
-        "displayName": "Out Red Soft",
-        "canonical": "#fbe9e7",
+        "displayName": "Out Wash",
         "tonalRamp": [
-          "#361a16",
-          "#682821",
-          "#a13226",
-          "#da3c2a",
-          "#da7368",
-          "#dfa69f",
-          "#ead0cd",
-          "#f6efee"
+          "#450a0a",
+          "#7f1d1d",
+          "#b91c1c",
+          "#dc2626",
+          "#f87171",
+          "#fecaca",
+          "#fee2e2",
+          "#fef2f2"
         ]
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Next game date in the hero; Barlow 700 sentence case."
-      },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Page header titles and rail wordmark; Barlow 700 sentence case."
+        "purpose": "Next-game day line on the hero card; largest type in the app."
+      },
+      "stat": {
+        "displayName": "Stat",
+        "purpose": "Coach stat-strip numbers and the login title."
+      },
+      "title-lg": {
+        "displayName": "Title Large",
+        "purpose": "Page title in the white header; sheet titles at 18px."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Card and sheet headings; Barlow 700 sentence case, navy."
-      },
-      "numeral": {
-        "displayName": "Numeral",
-        "purpose": "Jersey numbers, stat counts, date-block days."
+        "purpose": "Card headings."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "All reading text and inputs; tabular figures."
+        "purpose": "Running text, inputs, list item titles at 500."
       },
       "body-sm": {
-        "displayName": "Body small",
-        "purpose": "Meta lines, list secondary text, tables."
-      },
-      "button": {
-        "displayName": "Button",
-        "purpose": "Buttons and segmented controls."
+        "displayName": "Body Small",
+        "purpose": "Meta lines, list subtitles, field labels at 500."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Uppercase table headers and date-block months only."
+        "purpose": "Pills, table headers, stat captions, countdown."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Jersey-number patch; scales with the patch."
       }
     },
     "shadows": [
       {
         "name": "rest",
-        "value": "0 1px 1px rgba(13,26,53,.04), 0 2px 6px rgba(13,26,53,.06)",
-        "purpose": "Cards, tiles, stat strips, chat bubbles."
+        "value": "0 1px 2px rgba(24,24,27,.04)",
+        "purpose": "Cards and hero at rest; the hairline does the separating."
       },
       {
         "name": "lift",
-        "value": "0 6px 18px rgba(13,26,53,.14)",
-        "purpose": "Hero, hovered tiles, chat composer."
+        "value": "0 8px 24px rgba(24,24,27,.10), 0 1px 2px rgba(24,24,27,.06)",
+        "purpose": "Floating chat composer and centered desktop sheets."
       },
       {
-        "name": "float",
-        "value": "0 12px 30px rgba(13,26,53,.35)",
-        "purpose": "Save bar and toast above content."
+        "name": "overlay",
+        "value": "0 12px 32px rgba(24,24,27,.25)",
+        "purpose": "Inverted save bar (toast uses 0 10px 30px rgba(24,24,27,.2))."
+      },
+      {
+        "name": "segment-on",
+        "value": "0 1px 2px rgba(24,24,27,.12)",
+        "purpose": "Selected In / Maybe / Out segment."
       },
       {
         "name": "patch-ring",
-        "value": "0 0 0 2px #fff, 0 0 0 3.5px #c6a24a, 0 2px 5px rgba(13,26,53,.25)",
-        "purpose": "Numeral patch white piping and gold ring."
+        "value": "0 0 0 2px #fff, 0 0 0 3px #d4d4d8",
+        "purpose": "Sewn-on outer ring of the jersey-number patch."
       },
       {
         "name": "focus-halo",
-        "value": "0 0 0 3px rgba(31,58,110,.18)",
-        "purpose": "Input focus."
+        "value": "0 0 0 3px rgba(30,58,138,.14)",
+        "purpose": "Input focus halo with navy border."
       }
     ],
     "motion": [
       {
-        "name": "ease-out-settle",
+        "name": "ease-rise",
         "value": "cubic-bezier(.2,.8,.2,1)",
-        "purpose": "Save bar and sheet rise (.22s), toast drop (.2s), hero progress bar (.3s)."
+        "purpose": "Sheets, save bar, toast, availability bar fill."
       },
       {
-        "name": "state-fast",
+        "name": "duration-color",
         "value": "150ms",
-        "purpose": "Color, border and shadow state transitions on buttons, segments, tabs."
+        "purpose": "Hover and selection color transitions (120ms on chips and numbers)."
+      },
+      {
+        "name": "duration-rise",
+        "value": "220ms",
+        "purpose": "Save bar and sheet rising 12px into place; toast drops in 200ms."
       },
       {
         "name": "press",
-        "value": "transform .08s, scale(.98)",
+        "value": "transform: scale(.98) over 80ms",
         "purpose": "Button press."
       },
       {
         "name": "reduced-motion",
-        "value": "prefers-reduced-motion: reduce disables all animation and transition",
-        "purpose": "Accessibility."
+        "value": "all animation and transition removed",
+        "purpose": "prefers-reduced-motion: reduce."
       }
     ],
     "breakpoints": [
       {
-        "name": "compact",
-        "value": "max-width: 420px"
+        "name": "phone-sm",
+        "value": "420px"
       },
       {
         "name": "sheet-dialog",
         "value": "640px"
       },
       {
-        "name": "desktop-rail",
+        "name": "desktop-dashboard",
         "value": "1100px"
       }
     ]
@@ -378,147 +398,129 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Main action: save, send, sign in.",
-      "html": "<button class=\"ds-btn ds-btn-primary\">Save</button>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-sm);padding:13px 18px;min-height:50px;font:700 15px/1.2 var(--font);letter-spacing:.01em;cursor:pointer;transition:background .15s,transform .08s}.ds-btn:active{transform:scale(.98)}.ds-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-btn-primary{background:var(--navy);color:#fff}.ds-btn-primary:hover{background:var(--navy2)}"
-    },
-    {
-      "name": "Soft Button",
-      "kind": "button",
-      "refersTo": "button-soft",
-      "description": "Secondary actions such as Go, Edit, Details.",
-      "html": "<button class=\"ds-btn ds-btn-soft\">Edit</button>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-sm);padding:13px 18px;min-height:50px;font:700 15px/1.2 var(--font);letter-spacing:.01em;cursor:pointer;transition:background .15s,transform .08s}.ds-btn:active{transform:scale(.98)}.ds-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-btn-soft{background:var(--brand-soft);color:var(--navy)}.ds-btn-soft:hover{background:#d9e0ed}"
+      "description": "The one navy action per screen: Save, Claim, Send.",
+      "html": "<button class=\"ds-btn\">Save my answers</button>",
+      "css": ".ds-btn{font-family:\"Inter\",system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:8px;padding:10px 16px;min-height:44px;font-weight:500;font-size:14px;background:#1e3a8a;color:#fff;cursor:pointer;transition:background .15s,transform .08s}.ds-btn:hover{background:#172f74}.ds-btn:active{transform:scale(.98)}.ds-btn:focus-visible{outline:2px solid #1e3a8a;outline-offset:2px}"
     },
     {
       "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Dismiss or cancel.",
-      "html": "<button class=\"ds-btn ds-btn-ghost\">Cancel</button>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-sm);padding:13px 18px;min-height:50px;font:700 15px/1.2 var(--font);letter-spacing:.01em;cursor:pointer;transition:background .15s,transform .08s}.ds-btn:active{transform:scale(.98)}.ds-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-btn-ghost{background:#e9edf3;color:var(--ink2)}.ds-btn-ghost:hover{background:#dfe4ec}"
+      "description": "Secondary action on white with a strong hairline.",
+      "html": "<button class=\"ds-btn-ghost\">Cancel</button>",
+      "css": ".ds-btn-ghost{font-family:\"Inter\",system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d4d4d8;border-radius:8px;padding:10px 16px;min-height:44px;font-weight:500;font-size:14px;background:#fff;color:#18181b;cursor:pointer;transition:background .15s}.ds-btn-ghost:hover{background:#fafafa}.ds-btn-ghost:focus-visible{outline:2px solid #1e3a8a;outline-offset:2px}"
+    },
+    {
+      "name": "Soft Button",
+      "kind": "button",
+      "refersTo": "button-soft",
+      "description": "Accent-family secondary action on the navy wash.",
+      "html": "<button class=\"ds-btn-soft\">Add a game</button>",
+      "css": ".ds-btn-soft{font-family:\"Inter\",system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:8px;padding:10px 16px;min-height:44px;font-weight:500;font-size:14px;background:#eef2ff;color:#1e3a8a;cursor:pointer;transition:background .15s}.ds-btn-soft:hover{background:#e0e7ff}.ds-btn-soft:focus-visible{outline:2px solid #1e3a8a;outline-offset:2px}"
     },
     {
       "name": "Text Field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Label above, 16px text, 48px tall, navy focus halo.",
-      "html": "<div class=\"ds-field\"><label class=\"ds-lab\" for=\"ds-in\">Parent cell <span>for game-day changes</span></label><input id=\"ds-in\" class=\"ds-input\" placeholder=\"Phone number\"></div>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-field{display:flex;flex-direction:column;gap:8px;font-family:var(--font)}.ds-lab{font-size:14px;font-weight:600;color:var(--ink2);display:flex;justify-content:space-between;gap:8px}.ds-lab span{font-weight:500;color:var(--muted)}.ds-input{font:400 16px var(--font);color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:var(--r-sm);padding:12px 14px;min-height:48px;transition:border-color .15s,box-shadow .15s}.ds-input::placeholder{color:#6b7590}.ds-input:focus{outline:0;border-color:var(--navy2);box-shadow:0 0 0 3px rgba(31,58,110,.18)}"
+      "description": "Labelled field; navy border and soft halo on focus.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-lab\">Shirt size</span><input class=\"ds-input\" placeholder=\"Youth L\"></label>",
+      "css": ".ds-field{font-family:\"Inter\",system-ui,sans-serif;display:flex;flex-direction:column;gap:6px;max-width:320px}.ds-lab{font-size:13px;font-weight:500;color:#3f3f46}.ds-input{font-family:\"Inter\",system-ui,sans-serif;font-size:15px;color:#18181b;background:#fff;border:1px solid #d4d4d8;border-radius:8px;padding:10px 12px;min-height:44px;caret-color:#1e3a8a;transition:border-color .15s,box-shadow .15s}.ds-input::placeholder{color:#8a8a94}.ds-input:focus{outline:0;border-color:#1e3a8a;box-shadow:0 0 0 3px rgba(30,58,138,.14)}"
     },
     {
-      "name": "Availability Segment",
+      "name": "Availability Segmented Control",
       "kind": "custom",
-      "refersTo": "pill-in",
-      "description": "In / Maybe / Out control; selected segment fills with its state color.",
-      "html": "<div class=\"ds-seg\" role=\"group\"><button class=\"on yes\">In</button><button>Maybe</button><button>Out</button></div>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-seg{display:inline-grid;grid-template-columns:repeat(3,1fr);background:#e6eaf1;border-radius:10px;padding:3px;gap:3px;min-width:198px;font-family:var(--font)}.ds-seg button{border:0;background:transparent;border-radius:7px;padding:8px 0;font:600 14px var(--font);color:var(--ink2);cursor:pointer;transition:background .15s,color .15s}.ds-seg button:hover:not(.on){background:rgba(255,255,255,.7)}.ds-seg button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-seg .on.yes{background:var(--green);color:#fff}.ds-seg .on.maybe{background:#b26d00;color:#fff}.ds-seg .on.no{background:var(--red);color:#fff}"
+      "refersTo": "segment-in-on",
+      "description": "In / Maybe / Out; the selected segment fills with its state color.",
+      "html": "<div class=\"ds-seg\"><button class=\"on yes\">In</button><button>Maybe</button><button>Out</button></div>",
+      "css": ".ds-seg{font-family:\"Inter\",system-ui,sans-serif;display:inline-grid;grid-template-columns:repeat(3,1fr);background:#f4f4f5;border-radius:8px;padding:2px;gap:2px;min-width:192px}.ds-seg button{font-family:\"Inter\",system-ui,sans-serif;border:0;background:transparent;border-radius:6px;padding:7px 0;font-weight:500;font-size:13px;color:#3f3f46;cursor:pointer;transition:background .15s,color .15s}.ds-seg button:hover:not(.on){background:rgba(255,255,255,.8)}.ds-seg button.on{box-shadow:0 1px 2px rgba(24,24,27,.12)}.ds-seg button.on.yes{background:#15803d;color:#fff}.ds-seg button:focus-visible{outline:2px solid #1e3a8a;outline-offset:2px}"
     },
     {
-      "name": "Chips",
-      "kind": "chip",
-      "refersTo": "chip",
-      "description": "Size and option pickers; selected fills navy.",
-      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\">Youth M</button><button class=\"ds-chip on\">Youth L</button><button class=\"ds-chip\">Adult S</button></div>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-chips{display:flex;flex-wrap:wrap;gap:8px}.ds-chip{border:1px solid var(--line2);background:#fff;border-radius:var(--r-sm);padding:10px 14px;font:600 14px var(--font);min-height:44px;color:var(--ink2);cursor:pointer;transition:background .12s,border-color .12s,color .12s}.ds-chip:hover:not(.on){border-color:var(--navy2)}.ds-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-chip.on{background:var(--navy);border-color:var(--navy);color:#fff}"
-    },
-    {
-      "name": "Status Pills",
-      "kind": "chip",
-      "refersTo": "pill-in",
-      "description": "Passive state readouts; soft fill, strong text.",
-      "html": "<div style=\"display:flex;gap:6px\"><span class=\"ds-pill green\">6 in</span><span class=\"ds-pill amber\">1 maybe</span><span class=\"ds-pill red\">1 out</span><span class=\"ds-pill blue\">Yours</span></div>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-pill{display:inline-flex;align-items:center;gap:5px;font:600 12px var(--font);padding:3px 9px;border-radius:6px;background:#e9edf3;color:var(--ink2)}.ds-pill.green{background:var(--green-soft);color:var(--green)}.ds-pill.amber{background:var(--amber-soft);color:var(--amber)}.ds-pill.red{background:var(--red-soft);color:var(--red)}.ds-pill.blue{background:var(--brand-soft);color:var(--navy)}"
+      "name": "Jersey-Number Patch",
+      "kind": "custom",
+      "refersTo": "jersey-patch",
+      "description": "Stitched navy numeral disc beside every player; dashed outline when unclaimed.",
+      "html": "<span class=\"ds-jn\">23</span> <span class=\"ds-jn none\">?</span>",
+      "css": ".ds-jn{font-family:\"Inter\",system-ui,sans-serif;position:relative;display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#1e3a8a;color:#fff;font-weight:700;font-size:17px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;box-shadow:0 0 0 2px #fff,0 0 0 3px #d4d4d8;vertical-align:middle;margin:4px}.ds-jn::after{content:\"\";position:absolute;inset:3px;border-radius:50%;border:1px dashed rgba(255,255,255,.5)}.ds-jn.none{background:transparent;color:#6b6b76;box-shadow:none}.ds-jn.none::after{inset:0;border:1.5px dashed #d4d4d8}"
     },
     {
       "name": "Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "White leather panel with condensed navy title.",
-      "html": "<section class=\"ds-card\"><div class=\"ds-hd\"><h2>Your to-do list</h2><span class=\"ds-pill\">2 left</span></div><p>Send uniform sizes by Friday.</p></section>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;font:400 16px/1.5 var(--font);color:var(--ink);max-width:360px}.ds-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.ds-card h2{margin:0;font:700 18px/1.25 var(--font);letter-spacing:-.01em;color:var(--navy)}.ds-card p{margin:0}.ds-pill{font:600 12px var(--font);padding:3px 9px;border-radius:6px;background:var(--amber-soft);color:var(--amber)}"
+      "description": "White surface, hairline border, rest shadow, 18px padding.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-hd\"><h2>To do</h2><span class=\"ds-pill amber\">2 left</span></div><p>Send uniform sizes</p></div>",
+      "css": ".ds-card{font-family:\"Inter\",system-ui,sans-serif;background:#fff;border:1px solid #e8e8ec;border-radius:10px;box-shadow:0 1px 2px rgba(24,24,27,.04);padding:18px;color:#18181b;font-size:15px;max-width:360px}.ds-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.ds-card h2{margin:0;font-weight:600;font-size:15px;line-height:1.3;letter-spacing:-.01em}.ds-card p{margin:0}.ds-pill{display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:1px 8px;border-radius:99px;border:1px solid #fde7b0;background:#fffbeb;color:#b45309;line-height:1.6}"
     },
     {
-      "name": "Next-game Hero",
-      "kind": "card",
-      "refersTo": "hero",
-      "description": "Wool field with gold top rule, display date, progress of players in.",
-      "html": "<section class=\"ds-hero\"><p class=\"ds-day\">Saturday, December 5</p><p class=\"ds-meta\">Next game · Gym posts a week ahead</p><div class=\"ds-bar\"><i style=\"width:46%\"></i></div><p class=\"ds-meta\">6 of 13 players in</p></section>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-hero{background:var(--wool);color:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--lift);border-top:3px solid var(--gold);font-family:var(--font);max-width:380px}.ds-hero p{margin:0}.ds-day{font:700 32px/1.1 var(--font);letter-spacing:-.02em;margin:8px 0 6px!important}.ds-meta{color:#c4cde0;font-size:15px}.ds-bar{height:8px;border-radius:2px;background:rgba(255,255,255,.12);margin:18px 0 8px;overflow:hidden}.ds-bar i{display:block;height:100%;background:#fff;transition:width .3s cubic-bezier(.2,.8,.2,1)}"
+      "name": "State Pills",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Fully round status labels; state color always paired with its word.",
+      "html": "<span class=\"ds-p g\">In 9</span> <span class=\"ds-p a\">Maybe 2</span> <span class=\"ds-p r\">Out 1</span> <span class=\"ds-p\">No answer 3</span>",
+      "css": ".ds-p{font-family:\"Inter\",system-ui,sans-serif;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:1px 8px;border-radius:99px;border:1px solid #e8e8ec;background:#fafafa;color:#3f3f46;line-height:1.6;font-variant-numeric:tabular-nums}.ds-p::before{content:\"\";width:6px;height:6px;border-radius:50%;background:currentColor}.ds-p.g{background:#ecfdf3;border-color:#c7ecd4;color:#15803d}.ds-p.a{background:#fffbeb;border-color:#fde7b0;color:#b45309}.ds-p.r{background:#fef2f2;border-color:#fcd4d4;color:#b91c1c}"
     },
     {
-      "name": "Numeral Patch",
-      "kind": "custom",
-      "refersTo": "numeral-patch",
-      "description": "Signature: stitched varsity numeral beside every player name; empty dashed ring when unassigned.",
-      "html": "<div style=\"display:flex;gap:16px;align-items:center;padding:8px\"><span class=\"ds-jn\">5</span><span class=\"ds-jn sm\">23</span><span class=\"ds-jn none\"></span></div>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-jn{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 25px/1 var(--cond);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--gold),0 2px 5px rgba(13,26,53,.25)}.ds-jn::after{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.45);pointer-events:none}.ds-jn.sm{width:34px;height:34px;font-size:18px}.ds-jn.none{background:transparent;box-shadow:none}.ds-jn.none::after{inset:0;border-color:var(--line2)}"
-    },
-    {
-      "name": "Bottom Navigation",
+      "name": "Phone Tab Bar",
       "kind": "nav",
-      "refersTo": "nav",
-      "description": "Phone wool bar; active tab white with gold icon. Becomes a 232px gold-edged rail at 1100px.",
-      "html": "<nav class=\"ds-nav\"><button class=\"on\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z\"/></svg>Home</button><button><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/></svg>Schedule</button><button><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z\"/></svg>Chat</button></nav>",
-      "css": ":host{--bg:#edf0f5;--surface:#fff;--ink:#0c1730;--ink2:#2c3852;--muted:#58637a;--line:#e3e7ee;--line2:#cdd3de;--wool:#0d1a35;--navy:#14284f;--navy2:#1f3a6e;--brand-soft:#e6ebf4;--gold:#c6a24a;--green:#137344;--green-soft:#e3f3ea;--amber:#8f5600;--amber-soft:#fcf0d9;--red:#b3261e;--red-soft:#fbe9e7;--r:14px;--r-sm:10px;--shadow:0 1px 1px rgba(13,26,53,.04),0 2px 6px rgba(13,26,53,.06);--lift:0 6px 18px rgba(13,26,53,.14);--font:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--cond:'Barlow Condensed','Barlow',system-ui,sans-serif} .ds-nav{display:flex;gap:2px;background:var(--wool);padding:4px 8px;max-width:360px}.ds-nav button{flex:1;border:0;background:none;border-radius:10px;padding:6px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font:600 11px var(--font);letter-spacing:.02em;color:#97a3bd;min-height:54px;cursor:pointer;transition:color .15s}.ds-nav button:hover,.ds-nav button.on{color:#fff}.ds-nav button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.ds-nav svg{width:23px;height:23px}.ds-nav button.on svg{color:var(--gold);stroke-width:2.3}"
+      "refersTo": "nav-item-active-desktop",
+      "description": "Bottom tabs on phones; navy marks the active tab.",
+      "html": "<nav class=\"ds-nav\"><button class=\"on\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 10.5 12 3l9 7.5V21H3z\"/></svg>Home</button><button><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/></svg>Schedule</button><button><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z\"/></svg>Chat</button></nav>",
+      "css": ".ds-nav{font-family:\"Inter\",system-ui,sans-serif;display:flex;gap:2px;background:#fff;border-top:1px solid #e8e8ec;padding:4px 8px;max-width:380px}.ds-nav button{font-family:\"Inter\",system-ui,sans-serif;flex:1;border:0;background:none;border-radius:8px;padding:6px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:#6b6b76;min-height:52px;cursor:pointer;transition:color .15s}.ds-nav button:hover{color:#18181b}.ds-nav button.on{color:#1e3a8a}.ds-nav svg{width:22px;height:22px}.ds-nav button:focus-visible{outline:2px solid #1e3a8a;outline-offset:2px}"
     }
   ],
   "narrative": {
-    "northStar": "The Letter Jacket",
-    "overview": "**Creative North Star: \"The Letter Jacket\"**\n\nThe app wears the team's letter jacket. A deep navy wool shell (the rail, the phone header band, the next-game hero, the login field) holds crisp white leather panels set on a cool, navy-tinted ground. One thin line of varsity gold trims the jacket's edges, and every player is identified the way a jacket identifies him: by his varsity numeral, stitched into a felt patch.\n\nThe system is calm, sturdy and plainly athletic. It runs dense for coaches (a three-column desktop dashboard, sortable tables, availability grids) and roomy for parents on phones (48-50px touch targets, one task per card, a single save bar). Chest-lettering type, condensed and uppercase, names pages, cards and numbers; everything else reads in an even, friendly sans of the same family. It is explicitly not a grey SaaS dashboard with a blue accent: navy is the material, not the highlight.\n\nColor carries meaning sparingly. Green, amber and red appear only where they say In, Maybe or Out (or done, pending, missing). Gold is trim, never fill.",
+    "northStar": "The Quiet Ledger",
+    "overview": "Hawklets is the category standard played straight, at the craft level of Linear, Notion, Stripe and Airbnb. A light neutral ground holds white surfaces divided by one-pixel hairlines; nothing decorates, so the page reads as a ledger of the team: who is in for Saturday, what is left to do, which numbers are taken. The two things allowed to carry weight are the data (counts, dates, availability, all in tabular figures) and the players' jersey numerals, worn as stitched navy patches beside every player.\n\nDensity follows the reader. Parents on phones get one calm column, a white header, cards stacked at 12px, a bottom tab bar and one save bar that appears only when there is something to save. Coaches on a laptop get a light sidebar and a three-column dashboard with sortable tables. Both are the same system: same ink, same hairlines, same single accent.\n\nRockhurst navy is the only brand color, and it means \"act here, this is selected, this has focus\". Green, amber and red appear only to report state (In / Maybe / Out, done / missing). Motion is short and functional: 150ms color transitions, a 220ms rise for sheets and the save bar, all removed under reduced motion.",
     "keyCharacteristics": [
-      "Navy wool fields for identity and the \"what's next\" moment; white leather cards for everything you read and edit.",
-      "One gold trim line per field: rail edge, phone header rule, hero top rule, active tab underline, patch ring.",
-      "The stitched numeral patch wherever a player is named.",
-      "One superfamily: Barlow for UI text, Barlow 700 sentence case for titles; Barlow Condensed 700 for numerals and big counts only.",
-      "State colors only where they mean state; tabular numerals everywhere."
+      "Light neutral ground, white surfaces, hairline separation instead of shadow.",
+      "One accent: Rockhurst navy for primary actions, selection and focus.",
+      "State colors reserved for availability and completion, always paired with a word.",
+      "Inter throughout, tight negative tracking on headings, tabular numerals for every count and date.",
+      "Small, consistent radii (8 to 10px); fully round only for numerals, pills and status dots.",
+      "The stitched jersey-number patch beside every player is the one signature device."
     ],
     "rules": [
       {
-        "name": "The Gold Trim Rule",
-        "body": "Gold is a line, never a field. It appears as a 1.5-3px rule or ring at the edge of a navy or white material, at most one trim per surface.",
+        "name": "The One Accent Rule",
+        "body": "Navy is the only hue that invites action. If something is navy, it is a primary action, a selection, the focus ring, or a player's numeral.",
         "section": "colors"
       },
       {
-        "name": "The State Means State Rule",
-        "body": "Green, amber and red are reserved for In / Maybe / Out and done / pending / missing. Nothing decorative may borrow them.",
+        "name": "The State Is Not Decoration Rule",
+        "body": "Green, amber and red appear only to report a state, and always next to the word that names it (In, Maybe, Out, Has one, To order). Never use them for emphasis, categories or ornament.",
         "section": "colors"
       },
       {
-        "name": "The Wool Is Material Rule",
-        "body": "Navy wool fills whole regions (rail, header band, hero, save bar); it is not used as a small accent on a grey page.",
-        "section": "colors"
-      },
-      {
-        "name": "The Chest Lettering Rule",
-        "body": "The condensed cut is reserved for numerals: jersey patches, the number picker, stat counts and date numbers. Titles and headlines are Barlow 700 in sentence case; all-caps headlines are prohibited.",
+        "name": "The Tabular Figures Rule",
+        "body": "Every number a reader compares (stats, dates, counts, table cells, jersey numbers, the countdown) is set with tabular numerals so columns line up and counts do not jitter as they change.",
         "section": "typography"
       },
       {
-        "name": "The Tabular Rule",
-        "body": "Body text runs `font-variant-numeric: tabular-nums` so counts, dates and fees align in lists and grids.",
+        "name": "The Weight Not Face Rule",
+        "body": "Hierarchy comes from size, weight (400 / 500 / 600 / 700) and tracking within Inter. Do not introduce a second family.",
         "section": "typography"
       },
       {
-        "name": "The Navy Shadow Rule",
-        "body": "Every shadow is tinted with wool (rgba(13,26,53,…)), never neutral black, except the login card on the wool field.",
+        "name": "The Hairline First Rule",
+        "body": "Separate with a 1px hairline before reaching for a shadow. A shadow means the element floats above the page (composer, sheet, save bar, toast), not that it is important.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** put a numeral patch beside every player name, sized to context (46 / 42 / 34 / 26px).",
-      "**Do** use wool for whole regions: rail, phone header band, hero, save bar, toast, login.",
-      "**Do** keep gold to one thin trim per surface (rail edge, header rule, hero top rule, active underline, patch ring, focus outline).",
-      "**Do** set every title in Barlow 700 sentence case. Barlow Condensed is for numerals and counts only.",
-      "**Do** keep inputs at 16px text and 48px height, primary buttons at 50px, chips at 44px.",
-      "**Do** tint every shadow with wool."
+      "**Do** keep Rockhurst navy as the only accent and use it for primary actions, selection, focus and numerals.",
+      "**Do** separate surfaces with 1px hairlines (hairline) and keep cards on the Rest shadow only.",
+      "**Do** put a stitched jersey-number patch beside every player, wherever a player appears.",
+      "**Do** set every compared number in tabular figures.",
+      "**Do** pair every state color with its word (In, Maybe, Out, Has one, To order).",
+      "**Do** keep touch targets at 44px or taller for buttons and inputs on phones.",
+      "**Do** keep transitions at 150ms for color and 220ms with `cubic-bezier(.2,.8,.2,1)` for rising surfaces, and drop them all under reduced motion."
     ],
     "donts": [
-      "**Don't** use green, amber or red for anything other than In / Maybe / Out or done / pending / missing.",
-      "**Don't** fill a region or a button with gold, or set text in gold.",
-      "**Don't** introduce a second typeface; the condensed cut is already the display voice.",
-      "**Don't** fall back to a grey page with a blue accent; navy is the material, white leather the surface.",
-      "**Don't** add uppercase eyebrow or kicker lines above titles; uppercase small labels are for table headers and date blocks only."
+      "**Don't** add a second accent hue or use green, amber or red for emphasis or decoration.",
+      "**Don't** lift resting cards with larger shadows; shadow is only for floating elements.",
+      "**Don't** introduce a second typeface; hierarchy comes from Inter's weights and tracking.",
+      "**Don't** set small uppercase labels above headings; card headings stand on their own.",
+      "**Don't** use Disabled Ink (disabled-ink) for any text a reader needs to read.",
+      "**Don't** round controls past 10px; fully round shapes are reserved for patches, pills, ticks and dots."
     ]
   }
 }

@@ -1,315 +1,342 @@
 ---
 name: Hawklets
-description: The Rockhurst freshman CYO team app, worn like the team's letter jacket.
+description: The Rockhurst freshman CYO team app, a quiet and precise team tool where the data and the players' numerals carry the page.
 colors:
-  wool: "#0d1a35"
-  navy: "#14284f"
-  navy-light: "#1f3a6e"
-  navy-mist: "#e6ebf4"
-  varsity-gold: "#c6a24a"
-  cool-ground: "#edf0f5"
-  leather-white: "#ffffff"
-  ink: "#0c1730"
-  ink-soft: "#2c3852"
-  muted: "#58637a"
-  hairline: "#e3e7ee"
-  stitch-line: "#cdd3de"
-  state-in: "#137344"
-  state-in-soft: "#e3f3ea"
-  state-maybe: "#8f5600"
-  state-maybe-soft: "#fcf0d9"
-  state-out: "#b3261e"
-  state-out-soft: "#fbe9e7"
+  rockhurst-navy: "#1e3a8a"
+  navy-pressed: "#172f74"
+  navy-wash: "#eef2ff"
+  navy-wash-deep: "#e0e7ff"
+  ground: "#f7f7f8"
+  surface: "#ffffff"
+  subtle: "#fafafa"
+  hover: "#f4f4f5"
+  ink: "#18181b"
+  ink-soft: "#3f3f46"
+  muted: "#6b6b76"
+  hairline: "#e8e8ec"
+  hairline-strong: "#d4d4d8"
+  disabled-ink: "#b4b4bc"
+  state-in: "#15803d"
+  state-in-soft: "#ecfdf3"
+  state-maybe: "#b45309"
+  state-maybe-soft: "#fffbeb"
+  state-out: "#b91c1c"
+  state-out-soft: "#fef2f2"
 typography:
-  display:
-    fontFamily: "Barlow, system-ui, sans-serif"
-    fontSize: "32px"
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Barlow, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
     fontSize: "24px"
-    fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.015em"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
+  stat:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "22px"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
+    fontFeature: "\"tnum\""
+  title-lg:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "20px"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "Barlow, system-ui, sans-serif"
-    fontSize: "18px"
-    fontWeight: 700
-    lineHeight: 1.25
-    letterSpacing: "-0.01em"
-  numeral:
-    fontFamily: "Barlow Condensed, Barlow, system-ui, sans-serif"
-    fontSize: "28px"
-    fontWeight: 700
-    lineHeight: 1.1
-  body:
-    fontFamily: "Barlow, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "16px"
-    fontWeight: 400
-    lineHeight: 1.5
-    fontFeature: "tnum"
-  body-sm:
-    fontFamily: "Barlow, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1.5
-  button:
-    fontFamily: "Barlow, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
     fontSize: "15px"
-    fontWeight: 700
-    letterSpacing: "0.01em"
+    fontWeight: 600
+    lineHeight: 1.3
+    letterSpacing: "-0.01em"
+  body:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.5
+    fontFeature: "\"cv11\", \"ss01\""
+  body-sm:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.5
   label:
-    fontFamily: "Barlow, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    fontSize: "11px"
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "12px"
+    fontWeight: 500
+    lineHeight: 1.6
+  numeral:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontSize: "17px"
     fontWeight: 700
-    letterSpacing: "0.07em"
+    lineHeight: 1
+    letterSpacing: "-0.02em"
+    fontFeature: "\"tnum\""
 rounded:
-  tag: "6px"
-  sm: "10px"
-  md: "14px"
-  sheet: "18px"
-  full: "50%"
+  xs: "6px"
+  sm: "8px"
+  md: "10px"
+  bubble: "12px"
+  sheet: "14px"
+  full: "999px"
 spacing:
   xs: "4px"
   sm: "8px"
   md: "12px"
-  stack: "14px"
-  gutter: "16px"
-  card: "20px"
-  desk: "32px"
+  lg: "16px"
+  card: "18px"
+  xl: "28px"
 components:
   button-primary:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.leather-white}"
-    typography: "{typography.button}"
+    backgroundColor: "{colors.rockhurst-navy}"
+    textColor: "{colors.surface}"
     rounded: "{rounded.sm}"
-    padding: "13px 18px"
-    height: "50px"
+    padding: "10px 16px"
+    height: "44px"
   button-primary-hover:
-    backgroundColor: "{colors.navy-light}"
+    backgroundColor: "{colors.navy-pressed}"
   button-soft:
-    backgroundColor: "{colors.navy-mist}"
-    textColor: "{colors.navy}"
+    backgroundColor: "{colors.navy-wash}"
+    textColor: "{colors.rockhurst-navy}"
     rounded: "{rounded.sm}"
-    padding: "13px 18px"
+    padding: "10px 16px"
+  button-soft-hover:
+    backgroundColor: "{colors.navy-wash-deep}"
   button-ghost:
-    backgroundColor: "#e9edf3"
-    textColor: "{colors.ink-soft}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.sm}"
-    padding: "13px 18px"
+    padding: "10px 16px"
+  button-ghost-hover:
+    backgroundColor: "{colors.subtle}"
   button-danger:
-    backgroundColor: "{colors.state-out-soft}"
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.state-out}"
     rounded: "{rounded.sm}"
-    padding: "13px 18px"
+    padding: "10px 16px"
+  button-danger-hover:
+    backgroundColor: "{colors.state-out-soft}"
   card:
-    backgroundColor: "{colors.leather-white}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.surface}"
     rounded: "{rounded.md}"
     padding: "{spacing.card}"
-  hero:
-    backgroundColor: "{colors.wool}"
-    textColor: "{colors.leather-white}"
-    rounded: "{rounded.md}"
-    padding: "22px"
   input:
-    backgroundColor: "{colors.leather-white}"
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
-    typography: "{typography.body}"
     rounded: "{rounded.sm}"
-    padding: "12px 14px"
-    height: "48px"
+    padding: "10px 12px"
+    height: "44px"
   chip:
-    backgroundColor: "{colors.leather-white}"
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.ink-soft}"
     rounded: "{rounded.sm}"
-    padding: "10px 14px"
-    height: "44px"
+    padding: "8px 12px"
+    height: "40px"
   chip-selected:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.leather-white}"
-  numeral-patch:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.leather-white}"
+    backgroundColor: "{colors.rockhurst-navy}"
+    textColor: "{colors.surface}"
+  pill:
+    backgroundColor: "{colors.subtle}"
+    textColor: "{colors.ink-soft}"
+    typography: "{typography.label}"
     rounded: "{rounded.full}"
-    size: "46px"
+    padding: "1px 8px"
   pill-in:
     backgroundColor: "{colors.state-in-soft}"
     textColor: "{colors.state-in}"
-    rounded: "{rounded.tag}"
-    padding: "3px 9px"
   pill-maybe:
     backgroundColor: "{colors.state-maybe-soft}"
     textColor: "{colors.state-maybe}"
-    rounded: "{rounded.tag}"
-    padding: "3px 9px"
   pill-out:
     backgroundColor: "{colors.state-out-soft}"
     textColor: "{colors.state-out}"
-    rounded: "{rounded.tag}"
-    padding: "3px 9px"
-  nav:
-    backgroundColor: "{colors.wool}"
-    textColor: "#97a3bd"
+  segment-in-on:
+    backgroundColor: "{colors.state-in}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.xs}"
+  segment-maybe-on:
+    backgroundColor: "{colors.state-maybe}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.xs}"
+  segment-out-on:
+    backgroundColor: "{colors.state-out}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.xs}"
+  jersey-patch:
+    backgroundColor: "{colors.rockhurst-navy}"
+    textColor: "{colors.surface}"
+    typography: "{typography.numeral}"
+    size: "44px"
+  nav-item-active-desktop:
+    backgroundColor: "#ececef"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.xs}"
+  savebar:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.md}"
 ---
 
 # Design System: Hawklets
 
 ## Overview
 
-**Creative North Star: "The Letter Jacket"**
+**Creative North Star: "The Quiet Ledger"**
 
-The app wears the team's letter jacket. A deep navy wool shell (the rail, the phone header band, the next-game hero, the login field) holds crisp white leather panels set on a cool, navy-tinted ground. One thin line of varsity gold trims the jacket's edges, and every player is identified the way a jacket identifies him: by his varsity numeral, stitched into a felt patch.
+Hawklets is the category standard played straight, at the craft level of Linear, Notion, Stripe and Airbnb. A light neutral ground holds white surfaces divided by one-pixel hairlines; nothing decorates, so the page reads as a ledger of the team: who is in for Saturday, what is left to do, which numbers are taken. The two things allowed to carry weight are the data (counts, dates, availability, all in tabular figures) and the players' jersey numerals, worn as stitched navy patches beside every player.
 
-The system is calm, sturdy and plainly athletic. It runs dense for coaches (a three-column desktop dashboard, sortable tables, availability grids) and roomy for parents on phones (48-50px touch targets, one task per card, a single save bar). Chest-lettering type, condensed and uppercase, names pages, cards and numbers; everything else reads in an even, friendly sans of the same family. It is explicitly not a grey SaaS dashboard with a blue accent: navy is the material, not the highlight.
+Density follows the reader. Parents on phones get one calm column, a white header, cards stacked at 12px, a bottom tab bar and one save bar that appears only when there is something to save. Coaches on a laptop get a light sidebar and a three-column dashboard with sortable tables. Both are the same system: same ink, same hairlines, same single accent.
 
-Color carries meaning sparingly. Green, amber and red appear only where they say In, Maybe or Out (or done, pending, missing). Gold is trim, never fill.
+Rockhurst navy is the only brand color, and it means "act here, this is selected, this has focus". Green, amber and red appear only to report state (In / Maybe / Out, done / missing). Motion is short and functional: 150ms color transitions, a 220ms rise for sheets and the save bar, all removed under reduced motion.
 
 **Key Characteristics:**
-- Navy wool fields for identity and the "what's next" moment; white leather cards for everything you read and edit.
-- One gold trim line per field: rail edge, phone header rule, hero top rule, active tab underline, patch ring.
-- The stitched numeral patch wherever a player is named.
-- One superfamily: Barlow for UI text, Barlow 700 sentence case for titles; Barlow Condensed 700 for numerals and big counts only.
-- State colors only where they mean state; tabular numerals everywhere.
+- Light neutral ground, white surfaces, hairline separation instead of shadow.
+- One accent: Rockhurst navy for primary actions, selection and focus.
+- State colors reserved for availability and completion, always paired with a word.
+- Inter throughout, tight negative tracking on headings, tabular numerals for every count and date.
+- Small, consistent radii (8 to 10px); fully round only for numerals, pills and status dots.
+- The stitched jersey-number patch beside every player is the one signature device.
 
 ## Colors
 
-A two-material palette (navy wool and white leather) on a cool ground, trimmed in one gold, with a strict three-color state vocabulary.
+A zinc neutral scale on a near-white ground, one navy accent, and three state colors kept on a short leash.
 
 ### Primary
-- **Varsity Wool** (wool): The jacket shell. Mobile header band, desktop rail, next-game hero, save bar, toast, login field, and the bottom nav. Also the browser theme color.
-- **Letterman Navy** (navy): The patch felt and the action color. Primary buttons, selected chips, the numeral patch disc, card and sheet titles, the "me" chat bubble.
-- **Light Navy** (navy-light): Hover for primary buttons, input focus border, links.
-- **Navy Mist** (navy-mist): Tinted fills for soft buttons, tile icon discs, date blocks, the "yours" pill, and highlighted table rows.
-
-### Secondary
-- **Varsity Gold** (varsity-gold): Trim only. The 2px rail edge and phone header rule, the 3px hero top rule, the active coach sub-tab underline, the active nav icon, the patch outer ring, focus outlines and text selection. Never a fill behind text.
+- **Rockhurst Navy** (rockhurst-navy): The school color and the only accent. Primary buttons, the selected chip, the claimed jersey number, the availability bar fill, my own chat bubbles, the active tab on phone, focus outlines, caret and links. Pressed and hover state darkens to **Navy Pressed** (navy-pressed).
+- **Navy Wash** (navy-wash): The quiet tint of the accent. Soft buttons, tile icon wells, the "blue" pill, and the highlighted "this is my player" row in coach tables. **Navy Wash Deep** (navy-wash-deep) is its hover step.
 
 ### Neutral
-- **Cool Ground** (cool-ground): Page background; the navy-tinted surface the leather cards sit on.
-- **Leather White** (leather-white): Cards, sheets, inputs, chips, table cells.
-- **Ink** (ink): Primary text. **Ink Soft** (ink-soft): secondary text in controls and field labels. **Muted** (muted): meta lines, table headers, empty states.
-- **Hairline** (hairline): Dividers between list rows and table rows. **Stitch Line** (stitch-line): input and chip borders, the dashed empty-patch and to-do rings.
+- **Ground** (ground): Page background behind every card, and the login backdrop.
+- **Surface** (surface): Cards, header, phone tab bar, sheets, inputs, table cells.
+- **Subtle** (subtle): Row hover, chat scroll area, desktop sidebar, date chips, neutral pills.
+- **Hover** (hover): Segmented-control track, progress-bar track, desktop nav hover, taken jersey numbers.
+- **Ink** (ink): Primary text, and the inverted fill of the save bar and toast.
+- **Ink Soft** (ink-soft): Secondary text on controls: chip and segment labels, field labels, desktop nav items.
+- **Muted** (muted): Meta lines, table headers, timestamps, inactive phone tabs.
+- **Hairline** (hairline): Every card border and every divider between rows, list items and sections.
+- **Hairline Strong** (hairline-strong): Input, chip and ghost-button borders; the outer ring of the jersey patch.
+- **Disabled Ink** (disabled-ink): Taken numbers and empty availability cells only; never for readable content.
 
 ### State
-- **In** (state-in / state-in-soft), **Maybe** (state-maybe / state-maybe-soft), **Out** (state-out / state-out-soft): Availability segments, count pills, grid cells, saved confirmations, to-do ticks and error text. Soft fills with strong text for passive readouts; solid fills with white text for the selected availability segment.
+- **In** (state-in, on state-in-soft): Available, done, saved, the toast check.
+- **Maybe** (state-maybe, on state-maybe-soft): Maybe, and gaps the coach should chase (missing counts, "To order").
+- **Out** (state-out, on state-out-soft): Out, errors, destructive actions, the unread badge.
 
 ### Named Rules
-**The Gold Trim Rule.** Gold is a line, never a field. It appears as a 1.5-3px rule or ring at the edge of a navy or white material, at most one trim per surface.
+**The One Accent Rule.** Navy is the only hue that invites action. If something is navy, it is a primary action, a selection, the focus ring, or a player's numeral.
 
-**The State Means State Rule.** Green, amber and red are reserved for In / Maybe / Out and done / pending / missing. Nothing decorative may borrow them.
-
-**The Wool Is Material Rule.** Navy wool fills whole regions (rail, header band, hero, save bar); it is not used as a small accent on a grey page.
+**The State Is Not Decoration Rule.** Green, amber and red appear only to report a state, and always next to the word that names it (In, Maybe, Out, Has one, To order). Never use them for emphasis, categories or ornament.
 
 ## Typography
 
-**Display Font:** Barlow Condensed 700 (with Barlow, system-ui)
-**Body Font:** Barlow 400-700 (with system-ui, -apple-system, Segoe UI, Roboto)
+**Display Font:** Inter (with system-ui, -apple-system, Segoe UI, Roboto)
+**Body Font:** Inter
+**Label/Mono Font:** Inter, with tabular numerals instead of a mono face
 
-**Character:** One superfamily in two cuts. The condensed cut is the jacket's numerals: tall, compact, used only for numbers. The regular cut is the coach talking to parents: plain, even and readable on a phone.
+**Character:** One sans family doing every job, separated by weight and tracking rather than by typeface. Headings tighten (-0.01 to -0.025em) and sit at 600; body stays at 400 with Inter's alternate digits and single-storey a (cv11, ss01).
 
 ### Hierarchy
-- **Display** (Barlow 700, 32px, 1.1, -0.02em, sentence case; 28px under 420px): The next game's date in the hero. One per screen.
-- **Headline** (Barlow 700, 24px, 1.15, -0.015em, sentence case; 28px on login, 22px under 420px): Page header titles and the desktop rail wordmark.
-- **Title** (Barlow 700, 18px, 1.25, -0.01em, sentence case, navy; 21px in sheets): Card and sheet headings.
-- **Numeral** (Barlow Condensed 700, 28px stat counts; 25px in the patch; 24px in date blocks; 21px in the number picker): Jersey numbers and big counts.
-- **Body** (Barlow 400, 16px, 1.5, tabular figures): All reading text and inputs (16px keeps iOS from zooming).
-- **Body small** (Barlow 400-600, 14px): Meta lines, list secondary text, tables.
-- **Button** (Barlow 700, 15px, 0.01em; 14px small): Buttons and segmented controls (600, 14px).
-- **Label** (Barlow 700, 11-12px, 0.07-0.08em, uppercase, muted): Table column headers and the month line in date blocks only.
+- **Headline** (600, 24px, 1.2, -0.025em; 22px under 420px): The next-game day line on the hero card. The largest type in the app.
+- **Stat** (600, 22px, 1.2, -0.025em, tabular): Numbers in the coach stat strip. Login title uses the same size.
+- **Title Large** (600, 20px, 1.2, -0.02em): The page title in the white header. Sheet titles step to 18px.
+- **Title** (600, 15px, 1.3, -0.01em): Card headings.
+- **Body** (400, 15px, 1.5): Running text, inputs, list item titles (at 500).
+- **Body Small** (400, 13px): Meta lines, list subtitles, to-do detail, field labels (at 500).
+- **Label** (500, 12px, 1.6): Pills, table headers, stat captions, countdown.
+- **Numeral** (700, 17px, 1, -0.02em, tabular): The jersey-number patch. Scales to 15, 14 and 11px with the patch.
 
 ### Named Rules
-**The Chest Lettering Rule.** The condensed cut is reserved for numerals: jersey patches, the number picker, stat counts and date numbers. Titles and headlines are Barlow 700 in sentence case; all-caps headlines are prohibited.
+**The Tabular Figures Rule.** Every number a reader compares (stats, dates, counts, table cells, jersey numbers, the countdown) is set with tabular numerals so columns line up and counts do not jitter as they change.
 
-**The Tabular Rule.** Body text runs `font-variant-numeric: tabular-nums` so counts, dates and fees align in lists and grids.
+**The Weight Not Face Rule.** Hierarchy comes from size, weight (400 / 500 / 600 / 700) and tracking within Inter. Do not introduce a second family.
 
 ## Layout
 
-Phone first. The page is a single 720px-max column with 16px gutters, cards stacked at a 14px gap, and bottom padding that clears the fixed 68px nav plus the safe-area inset. Phone gets a full-bleed wool header band with a gold bottom rule, a 3-up tile row, and a fixed bottom nav; save bars and the chat composer float just above the nav.
+Phone first. The phone layout is a single column, max 720px, 16px side padding, cards stacked with a 12px gap, a white header pinned to the top of the flow with a hairline under it, and a fixed bottom tab bar (64px plus safe area). The save bar and chat composer float above the tab bar. Sheets rise from the bottom on phones and center as dialogs from 640px.
 
-At 1100px and up, the nav becomes a 232px wool rail on the left with a 2px gold right edge and the "Hawklets" wordmark; the page widens to 1480px with 32px gutters; the header turns into a white leather bar with a hairline bottom. Home becomes a three-column dashboard (`1.1fr / 1fr / minmax(330px, .95fr)`, 18px gap): hero and to-do, player card and schedule, then a sticky full-height chat card. Sheets are bottom sheets on phones and centered dialogs from 640px.
+At 1100px the tab bar becomes a 228px light sidebar (subtle background, hairline right edge) with the team name set in text at the top, and the page becomes a dashboard up to 1480px wide with 28px gutters: three columns (`1.1fr / 1fr / minmax(330px, .95fr)`, 16px gap). Column one holds the next game and the to-do list, column two the player card and schedule, column three a sticky full-height chat card.
 
-Spacing rhythm is tight and even: 4 / 8 / 12 / 14 / 16 / 20 / 32px, with 20px card padding and 22px hero padding. Touch targets stay at 44px minimum (chips, composer) and 48-50px for inputs and primary buttons.
+Spacing runs on a 4px base: 4, 8, 12, 16, 28, with 18px inside cards and 20px inside sheets. Rows inside a card are separated by hairlines with 10 to 14px of vertical padding, first and last rows flush to the card padding. Touch targets are at least 44px tall for inputs and buttons (40px chips, 52px tab buttons).
 
 ## Elevation & Depth
 
-Mostly flat leather on a tinted ground, with soft navy-tinted shadows that read as a card resting on cloth. Depth is tonal first (white on cool ground, wool against both); shadows only separate layers.
+Flat by default, separated by hairlines. Cards carry a 1px hairline border and a near-invisible 4% ground shadow; depth beyond that is reserved for things that float over the page.
 
 ### Shadow Vocabulary
-- **Rest** (`box-shadow: 0 1px 1px rgba(13,26,53,.04), 0 2px 6px rgba(13,26,53,.06)`): Every card, tile, stat strip and chat bubble.
-- **Lift** (`box-shadow: 0 6px 18px rgba(13,26,53,.14)`): The hero, hovered tiles, the chat composer.
-- **Float** (`box-shadow: 0 12px 30px rgba(13,26,53,.35)`): Save bar and toast, which sit above content.
-- **Patch ring** (`box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--gold), 0 2px 5px rgba(13,26,53,.25)`): The numeral patch's white piping and gold ring.
+- **Rest** (`box-shadow: 0 1px 2px rgba(24,24,27,.04)`): Cards and the hero. Barely there; the hairline does the work.
+- **Lift** (`box-shadow: 0 8px 24px rgba(24,24,27,.10), 0 1px 2px rgba(24,24,27,.06)`): The floating chat composer and centered sheets on desktop.
+- **Overlay** (`box-shadow: 0 12px 32px rgba(24,24,27,.25)`): The inverted save bar. The toast uses a slightly lighter `0 10px 30px rgba(24,24,27,.2)`.
+- **Selected Segment** (`box-shadow: 0 1px 2px rgba(24,24,27,.12)`): The active In / Maybe / Out segment.
 
 ### Named Rules
-**The Navy Shadow Rule.** Every shadow is tinted with wool (rgba(13,26,53,…)), never neutral black, except the login card on the wool field.
+**The Hairline First Rule.** Separate with a 1px hairline before reaching for a shadow. A shadow means the element floats above the page (composer, sheet, save bar, toast), not that it is important.
 
 ## Shapes
 
-Gently rounded, sporty rather than soft. Cards, hero, save bar and stat strips use a 14px radius; buttons, inputs, chips and date blocks 10px; pills, countdown tags and grid cells 6px; sheets 18px on their top corners. Circles are reserved for the numeral patch, the number picker, tile icon discs and to-do ticks. Stitching is the recurring texture: a 1.5px dashed ring inside every patch, a dashed divider in the hero, a dashed circle for an empty patch or open to-do.
+Small, consistent radii: 8px for controls (buttons, inputs, chips, icon buttons, date chips), 10px for cards, stat strips and the save bar, 6px for segments and desktop nav items, 12px chat bubbles with one 4px tail corner, 14px top corners on phone sheets. Fully round is reserved for meaning: jersey patches, the number picker, pills, ticks, status dots and the progress bar. Borders are always 1px solid hairlines; the only dashed line is the stitch inside a jersey patch and the outline of an empty (unclaimed) patch.
 
 ## Components
 
 ### Buttons
-Sturdy, full-weight, easy to hit.
-- **Shape:** 10px radius, 50px min height (38px small).
-- **Primary:** Letterman navy fill, white 15px/700 text, 13px 18px padding.
-- **Hover / Active:** Hover to light navy; press scales to 0.98. Focus shows a 2px gold outline at 2px offset.
-- **Soft / Ghost / Danger:** Navy mist with navy text for secondary actions ("Go", "Edit"); grey (#e9edf3) with ink-soft text for dismiss; out-soft with out text for destructive actions.
-- **On wool (save bar):** White fill with wool text, ghost at 10% white.
-
-### Availability segment
-The core family control. A three-part In / Maybe / Out segmented group (10px outer radius, 3px inset, 7px segments). Unselected segments are text only; the selected one fills solid green, amber or red with white text. On the wool hero the track becomes 10% white.
+Quiet and solid: flat fills, no gradients, a slight press.
+- **Shape:** Gently rounded (8px), min height 44px, 10px by 16px padding, 500 weight at 14px, 16px icons with an 8px gap.
+- **Primary:** Navy fill, white text. Hover to Navy Pressed. Press scales to 0.98.
+- **Soft:** Navy Wash fill, navy text, for secondary actions that still belong to the accent.
+- **Ghost:** White with a Hairline Strong border and ink text; hover to Subtle.
+- **Danger:** White with a pale red border and red text; hover to the red wash.
+- **Small:** 34px high (28px inside tables), 13px text.
+- **Focus:** 2px navy outline at 2px offset, shared by every focusable element.
 
 ### Chips
-- **Style:** White, 1px stitch-line border, 10px radius, 44px min height, 600/14px.
-- **State:** Selected fills letterman navy with white text; hover darkens the border to light navy; disabled drops to 35% opacity.
+- **Style:** White, Hairline Strong border, 8px radius, 40px high, ink-soft 14px/500 text. Used for uniform sizes and single choices.
+- **State:** Selected fills navy with white text; disabled drops to 40% opacity.
 
 ### Pills
-- 6px radius, 12px/600, 3px 9px. Grey default; in / maybe / out soft variants for counts and status; navy-mist for "yours" and fee amounts; an optional currentColor dot.
+- **Style:** Fully round, 12px/500, 1px border, wash background with matching ink: neutral, navy, In, Maybe, Out. An optional 6px leading dot in the text color.
 
 ### Cards / Containers
-- **Corner Style:** 14px.
-- **Background:** Leather white on cool ground.
-- **Shadow Strategy:** Rest shadow (see Elevation).
-- **Border:** None; list rows inside divide with hairlines.
-- **Internal Padding:** 20px, header row with a condensed navy title and an optional trailing pill or soft button.
-
-### Next-game hero
-A wool card with a 3px gold top rule and the lift shadow: display date, a bordered countdown tag, a meta line, an 8px white progress bar of players in, then a dashed divider and one row per family player with his patch and the availability segment.
+- **Corner Style:** 10px.
+- **Background:** Surface on the Ground.
+- **Shadow Strategy:** Rest shadow only (see Elevation & Depth).
+- **Border:** 1px Hairline.
+- **Internal Padding:** 18px; card heading row has a 12px gap below it.
+- **Stat strip:** Three or more cells joined by 1px hairline gutters inside one 10px-radius frame.
 
 ### Inputs / Fields
-- **Style:** White, 1px stitch-line border, 10px radius, 12px 14px padding, 48px min height, 16px text. Labels sit above in 600/14px ink-soft with optional muted hint.
-- **Focus:** Border to light navy plus a 3px navy halo (rgba(31,58,110,.18)).
-- **Error:** Red 600/14px text below.
+- **Style:** White, 1px Hairline Strong border, 8px radius, 10px by 12px padding, 44px min height, 15px text, navy caret. Labels sit 6px above at 13px/500 ink-soft, with an optional muted hint on the right.
+- **Focus:** Border turns navy with a 3px navy halo at 14% opacity; no outline.
+
+### Availability Segmented Control (signature)
+A three-way In / Maybe / Out switch on a Hover-grey 8px track with 2px padding. Unselected segments are transparent ink-soft text; the selected segment fills with its state color (green, amber, red) and white text with a small 1px shadow. This is the main family action in the app, on the hero card and on every upcoming game.
+
+### Jersey-Number Patch (signature)
+A navy disc with a white bold tabular numeral, a dashed white stitch ring inset 3px, and a 2px white plus 1px Hairline Strong outer ring so it reads as sewn on. 44px by default, 36px in headers, 32px in lists, 24px in dense tables (no outer ring). An unclaimed patch is a transparent disc with a dashed grey outline. The same stitched disc forms the app mark in the header. The number picker uses round 52px buttons: claimed is navy with a navy ring, taken is grey, struck through and disabled.
 
 ### Navigation
-- **Phone:** Fixed wool bottom bar, icon over 11px label in #97a3bd; active turns white with a gold, heavier-stroke icon. Unread shows a small red dot ringed in wool.
-- **Desktop:** 232px wool rail with gold right edge, condensed wordmark, horizontal rows at 15px; active row gets an 8% white fill.
-- **Coach sub-tabs:** Horizontal scroll row with a hairline base; active tab navy text over a 3px gold underline.
+- **Phone:** Fixed white bottom bar with a hairline top edge; five equal tabs, 22px icon over an 11px/500 label, muted at rest, navy when active (icon stroke thickens), red dot badge for unread.
+- **Desktop:** 228px Subtle sidebar with a hairline right edge; rows of 17px icon plus 14px label, 6px radius, ink-soft at rest, Hover background on hover, #ececef background with ink text when active.
+- **Coach sub-navigation:** Horizontal text tabs on a hairline; active tab gets ink text and a 2px ink underline.
 
-### Numeral patch (signature)
-A navy felt disc with a white condensed numeral, white piping, a gold outer ring and a dashed white stitch ring inside. 46px default, 42px in the header, 34px in rows, 26px in tables. A player with no number shows an empty dashed ring. The number picker reuses the same language: white circles with navy numerals, the chosen one becomes a full patch, taken numbers are struck through on grey.
+### Lists, Dates and Tables
+List rows are divided by hairlines. Games lead with a 46 by 50px date chip (Subtle fill, hairline border, small navy uppercase month over a 19px day). Coach tables are 13px, sticky header and first column, row hover in Subtle, availability cells as small tinted state codes, sortable headers that darken to ink when active.
 
-### Tables and grids (coach)
-13-14px, uppercase muted 11px headers, a 2px navy rule under the head, zebra rows at #f8f9fb, navy-mist on hover and for the family's own row, sticky first column. Availability cells are 28x24 soft-state blocks.
+### Save Bar and Toast
+Inverted ink surfaces that float: the save bar (10px radius, white primary button, translucent ghost) rises 12px in 220ms when a draft is unsaved; the toast drops from the top with a green check (red on error).
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put a numeral patch beside every player name, sized to context (46 / 42 / 34 / 26px).
-- **Do** use wool for whole regions: rail, phone header band, hero, save bar, toast, login.
-- **Do** keep gold to one thin trim per surface (rail edge, header rule, hero top rule, active underline, patch ring, focus outline).
-- **Do** set every title in Barlow 700 sentence case. Barlow Condensed is for numerals and counts only.
-- **Don't** set headlines in all caps.
-- **Do** keep inputs at 16px text and 48px height, primary buttons at 50px, chips at 44px.
-- **Do** tint every shadow with wool.
+- **Do** keep Rockhurst navy as the only accent and use it for primary actions, selection, focus and numerals.
+- **Do** separate surfaces with 1px hairlines (hairline) and keep cards on the Rest shadow only.
+- **Do** put a stitched jersey-number patch beside every player, wherever a player appears.
+- **Do** set every compared number in tabular figures.
+- **Do** pair every state color with its word (In, Maybe, Out, Has one, To order).
+- **Do** keep touch targets at 44px or taller for buttons and inputs on phones.
+- **Do** keep transitions at 150ms for color and 220ms with `cubic-bezier(.2,.8,.2,1)` for rising surfaces, and drop them all under reduced motion.
 
 ### Don't:
-- **Don't** use green, amber or red for anything other than In / Maybe / Out or done / pending / missing.
-- **Don't** fill a region or a button with gold, or set text in gold.
-- **Don't** introduce a second typeface; the condensed cut is already the display voice.
-- **Don't** fall back to a grey page with a blue accent; navy is the material, white leather the surface.
-- **Don't** add uppercase eyebrow or kicker lines above titles; uppercase small labels are for table headers and date blocks only.
+- **Don't** add a second accent hue or use green, amber or red for emphasis or decoration.
+- **Don't** lift resting cards with larger shadows; shadow is only for floating elements.
+- **Don't** introduce a second typeface; hierarchy comes from Inter's weights and tracking.
+- **Don't** set small uppercase labels above headings; card headings stand on their own.
+- **Don't** use Disabled Ink (disabled-ink) for any text a reader needs to read.
+- **Don't** round controls past 10px; fully round shapes are reserved for patches, pills, ticks and dots.
