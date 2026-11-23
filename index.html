@@ -41,7 +41,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .mark::after,.jn::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px dashed rgba(255,255,255,.5);pointer-events:none}
 .head .t{flex:1;min-width:0}
 .head h1{font:600 20px/1.2 var(--font);letter-spacing:-.02em}
-.head p{color:var(--muted);font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.head p{color:var(--muted);font-size:13px;margin-top:2px}
 .iconbtn{width:36px;height:36px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink2);transition:background .15s}
 .iconbtn:hover{background:var(--hover)}
 .iconbtn svg{width:18px;height:18px}
@@ -92,7 +92,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .date.past{opacity:.55}
 .li h3{font-size:15px;font-weight:500}
 .li p{font-size:13px;color:var(--muted)}
-.game{display:flex;flex-direction:column;gap:12px;padding:14px 0}
+.game{display:flex;flex-direction:column;gap:10px;padding:14px 0}
+.game>.row{align-items:center}
 .list>.game:first-child{padding-top:0}.list>.game:last-child{padding-bottom:0}
 .counts{display:flex;gap:6px;flex-wrap:wrap}
 
@@ -227,7 +228,8 @@ table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:ta
 th{font-size:12px;font-weight:500;color:var(--muted);text-align:center;padding:0 6px 8px;white-space:nowrap}
 td{padding:8px 6px;border-top:1px solid var(--line);text-align:center;white-space:nowrap}
 th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);font-weight:500;padding-right:12px}
-.c{font-feature-settings:"cv08";display:inline-block;text-align:center;width:26px;height:22px;line-height:22px;border-radius:5px;font-size:11px;font-weight:600}
+.c svg{width:12px;height:12px;vertical-align:-1px}
+.c{display:inline-block;text-align:center;width:26px;height:22px;line-height:22px;border-radius:5px;font-size:11px;font-weight:600}
 .c.yes{background:var(--green-soft);color:var(--green)}.c.maybe{background:var(--amber-soft);color:var(--amber)}.c.no{background:var(--red-soft);color:var(--red)}.c.none{color:#b4b4bc}
 .saved{color:var(--green);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:4px}
 .saved svg{width:14px;height:14px}
@@ -257,7 +259,7 @@ select.mini{width:84px;min-height:36px;padding:6px 8px;font-weight:600}
 .mini-game{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
 .mini-game:first-child{border-top:0;padding-top:0}
 .mini-game .seg{min-width:150px}.mini-game .seg button{padding:5px 0;font-size:12px}
-.mini-game .cts{font-size:12px;margin-top:2px;line-height:1.5}.mini-game .cts span{white-space:nowrap}
+.mini-game .cts{grid-column:2/-1;font-size:12px;margin-top:-6px;white-space:nowrap}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px}.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:500}
 .stats.auto{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
 .tbl{font-size:13px}
@@ -278,7 +280,8 @@ select.mini{width:84px;min-height:36px;padding:6px 8px;font-weight:600}
 .sticky1{position:sticky!important;left:0;background:var(--surface)!important;z-index:1}
 .tbl tbody tr:hover td.sticky1{background:var(--subtle)!important}.tbl tr.mine td.sticky1{background:var(--brand-soft)!important}
 .dot-ok{color:var(--green);display:inline-flex;vertical-align:middle}.dot-ok svg{width:16px;height:16px}
-.dot-no{color:var(--red);font-weight:500}.amb{color:var(--amber)}.dot-q{color:var(--muted)}
+.dot-no{color:var(--red);font-weight:500}.amb{color:var(--amber)}
+.tel{font-variant-numeric:normal}.dot-q{color:var(--muted)}
 @media (min-width:1100px){
   .nav{top:0;bottom:0;right:auto;width:228px;border-top:0;border-right:1px solid var(--line);background:var(--subtle);padding:18px 12px}
   .nav::before{content:"Hawklets";display:block;font:600 15px/1 var(--font);letter-spacing:-.01em;color:var(--ink);padding:6px 10px 2px}
@@ -343,6 +346,7 @@ const ICON = {
   out: '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/>',
   check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  minus: '<path d="M6 12h12"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
   copy: '<rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/>',
   pin: '<path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>'
@@ -446,6 +450,7 @@ function loginView() {
 
 /* ---------- shared pieces ---------- */
 const where = g => [g.time, g.opponent ? "vs " + g.opponent : "", g.location].filter(Boolean).join(" · ") || "Time and gym post about a week before";
+const stat = (b, s) => { const m = String(b).match(/^(\d+)\/(\d+)$/), left = m ? m[2] - m[1] : 0; return `<div class="stat"><b>${b}</b><span>${s}</span>${left > 0 ? `<em class="gap">${left} left</em>` : ""}</div>`; };
 const whereKnown = g => [g.time, g.opponent ? "vs " + g.opponent : "", g.location].filter(Boolean).join(" · ");
 const cnt = (n, w, cls) => n ? `<span class="${cls}">${n} ${w}</span>` : `<span class="dot-q">0 ${w}</span>`;
 const counts = (d, g) => { const r = { yes: 0, maybe: 0, no: 0 }; d.players.forEach(p => { const v = (p.avail || {})[g.date]; if (r[v] != null) r[v]++; }); return r; };
@@ -506,11 +511,11 @@ homeMain(d, noHead) {
 
 schedule(d) {
   const t = todayISO();
-  return head("Schedule", "All games are Saturdays · times and gyms post about a week ahead") +
+  return head("Schedule", "Saturdays · times and gyms post a week ahead") +
     `<section class="card"><div class="list">${d.games.map(g => {
       const c = counts(d, g), past = g.date < t;
-      return `<div class="game"><div class="row">${dateTile(g.date, past)}<div class="grow">${g.kind === "tournament" ? '<span class="pill blue">Tournament</span>' : ""}${whereKnown(g) ? `<p class="small">${esc(whereKnown(g))}</p>` : ""}${g.note ? `<p class="small" style="margin-top:2px">${esc(g.note)}</p>` : ""}</div></div>
-        ${past ? "" : d.mine.map(p => `<div class="row between"><span class="row small" style="gap:8px;font-weight:600">${patch(held(p), "xs")}${esc(first(p.name))}</span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}
+      return `<div class="game"><div class="row">${dateTile(g.date, past)}<div class="grow">${g.kind === "tournament" ? '<span class="pill blue">Tournament</span>' : ""}${whereKnown(g) ? `<p class="small">${esc(whereKnown(g))}</p>` : ""}${g.note ? `<p class="small" style="margin-top:2px">${esc(g.note)}</p>` : ""}
+        ${past ? "" : d.mine.map(p => `<div class="row between" style="margin-top:${whereKnown(g) || g.note || g.kind === "tournament" ? 8 : 0}px"><span class="row small" style="gap:8px;font-weight:600">${patch(held(p), "xs")}${esc(first(p.name))}</span>${seg(p.id, g.date, (p.avail || {})[g.date] || "")}</div>`).join("")}</div></div>
         <div class="counts">${c.yes ? `<span class="pill green">${c.yes} in</span>` : '<span class="pill">0 in</span>'}${c.maybe ? `<span class="pill amber">${c.maybe} maybe</span>` : '<span class="pill">0 maybe</span>'}${c.no ? `<span class="pill red">${c.no} out</span>` : '<span class="pill">0 out</span>'}</div></div>`;
     }).join("")}</div></section>`;
 },
@@ -529,7 +534,7 @@ player(d) {
       <div class="row" style="margin-bottom:16px"><div class="jn${held(p) ? "" : " none"}">${held(p) ? esc(held(p)) : "?"}</div><div class="grow"><h2 style="font-size:20px">${esc(p.name)}</h2>
         <div class="row wrap" style="gap:6px;margin-top:6px">${p.registered ? '<span class="pill green dot">On CYO roster</span>' : '<span class="pill red dot">Not on CYO yet</span>'}${held(p) ? "" : '<span class="pill amber">No number yet</span>'}${d.settings.feeReady !== "yes" ? "" : (d.share && Number(p.paid || 0) >= d.share) ? '<span class="pill green">Paid</span>' : `<span class="pill amber">${usd(Math.max(0, (d.share || 0) - Number(p.paid || 0)))} due</span>`}</div></div></div>
 
-      <div class="field"><div class="lab">Jersey number <span>${num ? "#" + esc(num) + (num === held(p) ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
+      <div class="field"><div class="lab" style="justify-content:flex-start">Jersey number <span>${num ? "#" + esc(num) + (num === held(p) ? " is his" : " · tap Save to claim") : "First come, first served"}</span></div>
         <p class="muted small" style="margin-top:-4px">Pick one number and tap Save. Once saved it's his. Grey numbers already belong to a teammate.</p>
         <div class="nums">${LEGAL.map(n => {
           const mineN = num === n, isTaken = !mineN && taken.has(n);
@@ -559,18 +564,18 @@ team(d) {
   const reg = ps.filter(p => p.registered).length, nums = ps.filter(p => p.jersey).length;
   const uni = ps.filter(p => p.uniform === "has" || p.uniform === "ordered").length, info = ps.filter(p => p.form).length;
   const answered = ps.reduce((a, p) => a + Object.keys(p.avail || {}).length, 0);
-  const cell = v => `<span class="c ${v || "none"}">${v ? AV[v][0] : "·"}</span>`;
+  const cell = v => `<span class="c ${v || "none"}" title="${v ? AV[v] : "No answer"}">${v === "yes" ? svg("check", 3) : v === "no" ? svg("x", 3) : v === "maybe" ? svg("minus", 3) : "·"}</span>`;
   const uniTxt = u => ({ has: '<span class="dot-ok">Has one</span>', ordered: '<span class="dot-ok">Ordered</span>', needs: '<span style="color:var(--amber);font-weight:700">To order</span>' }[u] || '<span class="dot-q">–</span>');
   return head("Team", `${d.count} players · ${reg} on the CYO roster`) +
     `<div class="stack"><div class="stats auto">
       <div class="stat"><b>${d.count}</b><span>Players</span></div>
-      <div class="stat"><b>${reg}/${d.count}</b><span>On CYO roster</span></div>
-      <div class="stat"><b>${nums}/${d.count}</b><span>Numbers claimed</span></div>
-      <div class="stat"><b>${uni}/${d.count}</b><span>Uniforms set</span></div>
+      ${stat(`${reg}/${d.count}`, "On CYO roster")}
+      ${stat(`${nums}/${d.count}`, "Numbers claimed")}
+      ${stat(`${uni}/${d.count}`, "Uniforms set")}
       <div class="stat"><b>${next ? counts(d, next).yes : "–"}</b><span>In for ${next ? esc(fmt(next.date, { month: "short", day: "numeric" })) : "next game"}</span></div>
       <div class="stat"><b>${Math.round(answered / Math.max(1, d.count * gs.length) * 100)}%</b><span>Availability answered</span></div>
     </div>
-    <section class="card"><div class="hd"><h2>Roster and availability</h2><span class="muted small">I = in · M = maybe · O = out</span></div>
+    <section class="card"><div class="hd"><h2>Roster and availability</h2><span class="muted small">Green = in · amber = maybe · red = out</span></div>
     <div class="scroll"><table class="tbl grid-av"><thead><tr><th class="sticky1">#</th><th>Player</th><th>CYO</th><th>Uniform</th>${gs.map(g => `<th title="${esc(fmt(g.date))}">${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}${g.kind === "tournament" ? "*" : ""}</th>`).join("")}</tr></thead><tbody>
     ${ps.map(p => `<tr class="${p.mine ? "mine" : ""}"><td class="sticky1 num-c">${patch(p.jersey, "xs")}</td><td><b>${esc(p.name)}</b>${p.mine ? ' <span class="pill blue">Yours</span>' : ""}</td><td>${p.registered ? `<span class="dot-ok" aria-label="Yes">${svg("check", 3)}</span>` : '<span class="dot-no">Not yet</span>'}</td><td>${uniTxt(p.uniform)}</td>${gs.map(g => `<td>${cell((p.avail || {})[g.date])}</td>`).join("")}</tr>`).join("")}
     <tr><td class="sticky1"></td><td><b>In</b></td><td></td><td></td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr>
@@ -600,11 +605,11 @@ function dashboard(d) {
         <dt>Jersey</dt><dd>${v("topSize", x => SIZE[x])}</dd>
         <dt>Shorts</dt><dd>${p.shortSize ? (p.shortLength ? esc(p.shortLength) + '" ' : "") + SIZE[p.shortSize] : "–"}</dd>
         <dt>Availability</dt><dd>${answered} of ${d.games.length} answered</dd>
-        <dt>Cell</dt><dd>${esc(phone(p.phone) || "–")}</dd>
+        <dt>Cell</dt><dd class="tel">${esc(phone(p.phone) || "–")}</dd>
       </dl></div></section>`;
   }).join("");
   const sched = `<section class="card"><div class="hd"><div><h2>Schedule</h2><p class="muted small" style="margin-top:2px">Saturdays · times and gyms post about a week ahead</p></div><button class="btn sm ghost" data-tab="schedule">Details</button></div>
-    ${games.length ? games.map(g => { const c = counts(d, g); return `<div class="mini-game">${dateTile(g.date)}<div style="min-width:0">${g.kind === "tournament" ? '<span class="pill blue">Tournament</span>' : ""}${whereKnown(g) ? `<div class="small" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(whereKnown(g))}</div>` : ""}<div class="cts">${cnt(c.yes, "in", "dot-ok")} · ${cnt(c.maybe, "maybe", "amb")} · ${cnt(c.no, "out", "dot-no")}</div></div><div style="display:flex;flex-direction:column;gap:4px">${d.mine.map(p => seg(p.id, g.date, (p.avail || {})[g.date] || "")).join("")}</div></div>`; }).join("") : '<p class="empty">No upcoming games.</p>'}</section>`;
+    ${games.length ? games.map(g => { const c = counts(d, g); return `<div class="mini-game">${dateTile(g.date)}<div style="min-width:0">${g.kind === "tournament" ? '<span class="pill blue">Tournament</span>' : ""}${whereKnown(g) ? `<div class="small" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(whereKnown(g))}</div>` : ""}</div><div style="display:flex;flex-direction:column;gap:4px">${d.mine.map(p => seg(p.id, g.date, (p.avail || {})[g.date] || "")).join("")}</div><div class="cts">${cnt(c.yes, "in", "dot-ok")} · ${cnt(c.maybe, "maybe", "amb")} · ${cnt(c.no, "out", "dot-no")}</div></div>`; }).join("") : '<p class="empty">No upcoming games.</p>'}</section>`;
   const chat = `<section class="card chatcard"><div class="hd"><h2>Team chat</h2><span class="muted small">${d.count} players</span></div>
     <div class="chatbox" id="chatList"></div>
     <form id="chatForm"><label for="chatText" style="position:absolute;left:-9999px">Message</label><textarea id="chatText" rows="1" placeholder="Message the team" maxlength="1000"></textarea><button class="btn" type="submit">Send</button></form></section>`;
@@ -648,10 +653,11 @@ overview(d) {
     if (c[0] === "next") return `<td>${v ? `<span class="c ${v}">${AV[v][0]}</span>` : '<span class="dot-q">·</span>'}</td>`;
     if (c[0] === "paid") return `<td>${d.share && v >= d.share ? '<span class="dot-ok">' + usd(v) + "</span>" : v ? usd(v) : '<span class="dot-q">$0</span>'}</td>`;
     if (c[0] === "formAt") return `<td>${v ? esc(fmt(v, { month: "short", day: "numeric" })) : '<span class="dot-q">–</span>'}</td>`;
+    if (c[0] === "phone") return `<td class="tel">${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
     if (c[0] === "parent1") return `<td class="trunc" title="${esc(v)}">${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
     return `<td>${v === "" ? '<span class="dot-q">–</span>' : esc(v)}</td>`;
   };
-  const stat = (b, s) => { const m = String(b).match(/^(\d+)\/(\d+)$/), left = m ? m[2] - m[1] : 0; return `<div class="stat"><b>${b}</b><span>${s}</span>${left > 0 ? `<em class="gap">${left} left</em>` : ""}</div>`; };
+  
   return `<div class="stats auto">
       ${stat(n, "Committed")}
       ${stat(team.filter(p => p.registered).length + "/" + n, "On CYO roster")}
@@ -674,7 +680,7 @@ uniforms(d) {
   const by = {}; ps.forEach(p => { if (p.jersey) (by[p.jersey] = by[p.jersey] || []).push(p.name); });
   const tot = {}; ps.forEach(p => { if (p.needsUniform === "yes") { if (p.topSize) tot["Jersey " + SIZE[p.topSize]] = (tot["Jersey " + SIZE[p.topSize]] || 0) + 1; if (p.shortSize) { const k = `Shorts ${p.shortLength ? p.shortLength + '" ' : ""}${SIZE[p.shortSize]}`; tot[k] = (tot[k] || 0) + 1; } } });
   const assigned = ps.filter(p => p.jersey).length, ordered = ps.filter(p => p.uniformOrdered || p.needsUniform === "no").length;
-  return `<div class="stats"><div class="stat"><b>${assigned}/${ps.length}</b><span>Numbers claimed</span></div><div class="stat"><b>${ps.filter(p => p.topSize || p.needsUniform === "no").length}/${ps.length}</b><span>Sizes sent</span></div><div class="stat"><b>${ordered}/${ps.length}</b><span>Uniform done</span></div></div>
+  return `<div class="stats">${stat(`${assigned}/${ps.length}`, "Numbers claimed")}${stat(`${ps.filter(p => p.topSize || p.needsUniform === "no").length}/${ps.length}`, "Sizes sent")}${stat(`${ordered}/${ps.length}`, "Uniform done")}</div>
     <section class="card"><div class="hd"><h2>Jersey numbers</h2></div>
     <p class="muted small" style="margin-bottom:12px">Families claim numbers first come, first served. You can change any number here; it saves instantly and taken numbers are greyed out.</p>
     <div class="list">${ps.map(p => {
@@ -702,7 +708,7 @@ avail(d) {
   return `<section class="card"><div class="hd"><h2>Availability</h2></div><div class="scroll"><table><thead><tr><th>Player</th>${gs.map(g => `<th>${esc(fmt(g.date, { month: "numeric", day: "numeric" }))}</th>`).join("")}</tr></thead><tbody>
     ${ps.map(p => `<tr><td>${esc(p.name)}</td>${gs.map(g => { const v = (p.avail || {})[g.date]; return `<td><span class="c ${v || "none"}">${v ? AV[v][0] : "·"}</span></td>`; }).join("")}</tr>`).join("")}
     <tr><td>In</td>${gs.map(g => { const c = counts(d, g).yes; return `<td><b style="color:var(--${c >= 5 ? "green" : "red"})">${c}</b></td>`; }).join("")}</tr></tbody></table></div>
-    <p class="muted small" style="margin-top:12px">I = in, M = maybe, O = out. CYO needs 5 players to start a game.</p></section>`;
+    <p class="muted small" style="margin-top:12px">Green = in, amber = maybe, red = out. CYO needs 5 players to start a game.</p></section>`;
 },
 money(d) {
   const ps = d.adminPlayers.filter(p => p.status === "committed"), got = ps.reduce((a, p) => a + Number(p.paid || 0), 0), due = (d.share || 0) * ps.length;
